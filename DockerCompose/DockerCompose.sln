@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Authentication", "Authentication\Authentication.csproj", "{0637FD01-031C-4AFA-A85E-CFD80404E55F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gateway", "Gateway\Gateway.csproj", "{B7CAFE25-094B-4B82-A116-093E3BC5851E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repertoire", "Repertoire\Repertoire.csproj", "{D23BE633-68A8-44DF-9B87-DBC2FC3F90C1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spectacles", "Spectacles\Spectacles.csproj", "{65EADB73-65C0-4A25-A00B-5578815CB507}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Statistics", "Statistics\Statistics.csproj", "{3B0BC358-D877-4655-B3A2-A55E15A561AC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tickets", "Tickets\Tickets.csproj", "{AB9DBA96-D19F-4055-A9E7-979A730424C4}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{1AA966C3-5798-4A81-9CAA-AC66FF14C71A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0637FD01-031C-4AFA-A85E-CFD80404E55F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0637FD01-031C-4AFA-A85E-CFD80404E55F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0637FD01-031C-4AFA-A85E-CFD80404E55F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0637FD01-031C-4AFA-A85E-CFD80404E55F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7CAFE25-094B-4B82-A116-093E3BC5851E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7CAFE25-094B-4B82-A116-093E3BC5851E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7CAFE25-094B-4B82-A116-093E3BC5851E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7CAFE25-094B-4B82-A116-093E3BC5851E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D23BE633-68A8-44DF-9B87-DBC2FC3F90C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D23BE633-68A8-44DF-9B87-DBC2FC3F90C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D23BE633-68A8-44DF-9B87-DBC2FC3F90C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D23BE633-68A8-44DF-9B87-DBC2FC3F90C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65EADB73-65C0-4A25-A00B-5578815CB507}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65EADB73-65C0-4A25-A00B-5578815CB507}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65EADB73-65C0-4A25-A00B-5578815CB507}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65EADB73-65C0-4A25-A00B-5578815CB507}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B0BC358-D877-4655-B3A2-A55E15A561AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B0BC358-D877-4655-B3A2-A55E15A561AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B0BC358-D877-4655-B3A2-A55E15A561AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B0BC358-D877-4655-B3A2-A55E15A561AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB9DBA96-D19F-4055-A9E7-979A730424C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB9DBA96-D19F-4055-A9E7-979A730424C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB9DBA96-D19F-4055-A9E7-979A730424C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB9DBA96-D19F-4055-A9E7-979A730424C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AA966C3-5798-4A81-9CAA-AC66FF14C71A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AA966C3-5798-4A81-9CAA-AC66FF14C71A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AA966C3-5798-4A81-9CAA-AC66FF14C71A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AA966C3-5798-4A81-9CAA-AC66FF14C71A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0893E033-CACB-4AFB-9CC4-50856BA32DF4}
+	EndGlobalSection
+EndGlobal

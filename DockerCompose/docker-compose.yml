@@ -1,0 +1,41 @@
+services:
+  authentication:
+    image: ${DOCKER_REGISTRY-}authentication
+    build:
+      context: Authentication
+      dockerfile: Dockerfile
+
+  gateway:
+    image: ${DOCKER_REGISTRY-}gateway
+    build:
+      context: Gateway
+      dockerfile: Dockerfile
+
+
+  repertoire:
+    image: ${DOCKER_REGISTRY-}repertoire
+    build:
+      context: Repertoire
+      dockerfile: Dockerfile
+
+
+  spectacles:
+    image: ${DOCKER_REGISTRY-}spectacles
+    build:
+      context: Spectacles
+      dockerfile: Dockerfile
+
+
+  statistics:
+    image: ${DOCKER_REGISTRY-}statistics
+    build:
+      context: Statistics
+      dockerfile: Dockerfile
+
+
+  tickets:
+    image: ${DOCKER_REGISTRY-}tickets
+    build:
+      context: Tickets
+      dockerfile: Dockerfile
+
