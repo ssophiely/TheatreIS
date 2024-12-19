@@ -5,8 +5,7 @@ namespace Authentication.Storage;
 
 public partial class TheatreDbContext : DbContext
 {
-    public TheatreDbContext(DbContextOptions<TheatreDbContext> options, IConfiguration config)
-        : base(options)
+    public TheatreDbContext(IConfiguration config)
     {
         _configuraion = config;
     }
@@ -72,7 +71,7 @@ public partial class TheatreDbContext : DbContext
 
             entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.Name).HasMaxLength(45);
-            entity.Property(e => e.Password).HasMaxLength(45);
+            entity.Property(e => e.Password);
         });
 
         modelBuilder.Entity<Auditoriumsector>(entity =>
@@ -290,7 +289,7 @@ public partial class TheatreDbContext : DbContext
             entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.FullName).HasMaxLength(50);
             entity.Property(e => e.Mail).HasMaxLength(50);
-            entity.Property(e => e.Password).HasMaxLength(32);
+            entity.Property(e => e.Password);
             entity.Property(e => e.Phone).HasMaxLength(11);
         });
 

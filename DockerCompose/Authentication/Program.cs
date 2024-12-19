@@ -1,9 +1,9 @@
+using Authentication.Storage;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-
-
+builder.Services.AddScoped<TheatreDbContext>();
+builder.Services.AddTransient<UserStorage>();
 
 builder.Services.AddControllers();
 

@@ -43,8 +43,8 @@ services:
   # Kafka service
   kafka:
     image: apache/kafka:latest
-    hostname: kafka
-    container_name: kafka
+    hostname: kafka_broker
+    container_name: kafka_broker
     ports:
       - 9092:9092
     environment:

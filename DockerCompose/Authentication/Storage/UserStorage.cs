@@ -1,6 +1,9 @@
-﻿using Authentication.Interaction;
+﻿using Authentication.Exceptions;
+using Authentication.Interaction;
 using Authentication.Storage.Models;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using System.Security.Cryptography;
 
 namespace Authentication.Storage;
@@ -23,8 +26,14 @@ public class UserStorage
         return storedHash.SequenceEqual(inHash);
     }
 
-    public void AddAdmin(AdminAuthInfo admin)
+    public void AddAdmin(AdminAddInfo admin)
     {
+        var admins = _dbContext.Admin.AsNoTracking();
+
+        foreach (var adm in admins)
+            if (adm.Name == admin.Name)
+                throw new ExistsException($"Администратор с логином {admin.Name} существует");
+
         var pas = EncryptPassword(admin.Password);
 
         _dbContext.Admin.Add(new Admin() { Name = admin.Name, Password = pas });
@@ -35,7 +44,7 @@ public class UserStorage
     public bool VerifyViewer(ViewerAuthInfo info)
     {
         var viewer = _dbContext.Viewer.FirstOrDefault(a => a.Id == info.Id) ??
-             throw new Exception("Администратор не найден");
+             throw new NotFoundException("Администратор не найден");
 
         (var storedHash, var inHash) = DecryptPassword(info.Password, viewer.Password);
 
@@ -43,8 +52,14 @@ public class UserStorage
         return storedHash.SequenceEqual(inHash);
     }
 
-    public void AddViewer(ViewerAuthInfo viewer)
+    public void AddViewer(ViewerAddInfo viewer)
     {
+        var viewers = _dbContext.Viewer.AsNoTracking();
+
+        foreach (var v in viewers)
+            if (v.Mail == viewer.Mail)
+                throw new ExistsException($"Пользователь с логином {viewer.Mail} существует");
+
         var pas = EncryptPassword(viewer.Password);
 
         _dbContext.Viewer.Add(new Viewer() { Mail = viewer.Mail, Password = pas });
@@ -55,7 +70,7 @@ public class UserStorage
     public void UpdateViewer(ViewerUpdateInfo info)
     {
         var viewer = _dbContext.Viewer.FirstOrDefault(v => v.Id == info.Id) ??
-            throw new Exception("Зритель не найден");
+            throw new NotFoundException("Пользователь не найден");
 
         if (info.Phone != null)
             viewer.Phone = info.Phone;

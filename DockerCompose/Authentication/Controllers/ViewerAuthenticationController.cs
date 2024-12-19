@@ -4,6 +4,7 @@ using Authentication.Storage;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using System.Net;
 using System.Security.Claims;
 using System.Text;
 
@@ -61,13 +62,17 @@ public class ViewerAuthenticationController : ControllerBase
                 return Unauthorized();
             });
         }
-        catch (StorageException ex)
+        catch (NotFoundException ex)
         {
-            return NotFound(ex.Message);
+            return Problem(ex.Message, statusCode: (int)HttpStatusCode.NotFound);
+        }
+        catch (ExistsException ex)
+        {
+            return Problem(ex.Message, statusCode: (int)HttpStatusCode.Locked);
         }
         catch (Exception ex)
         {
-            return UnprocessableEntity(ex.Message);
+            return Problem(ex.Message, statusCode: (int)HttpStatusCode.UnprocessableEntity);
         }
     }
 
@@ -75,7 +80,7 @@ public class ViewerAuthenticationController : ControllerBase
     /// Регистрация.
     /// </summary>
     [HttpPost]
-    public async Task<IActionResult> SigningUp(ViewerAuthInfo viewer)
+    public async Task<IActionResult> SigningUp(ViewerAddInfo viewer)
     {
         try
         {
@@ -86,9 +91,13 @@ public class ViewerAuthenticationController : ControllerBase
                 return Ok();
             });
         }
+        catch (ExistsException ex)
+        {
+            return Problem(ex.Message, statusCode: (int)HttpStatusCode.Locked);
+        }
         catch (Exception ex)
         {
-            return UnprocessableEntity(ex.Message);
+            return Problem(ex.Message, statusCode: (int)HttpStatusCode.UnprocessableEntity);
         }
     }
 
@@ -107,13 +116,13 @@ public class ViewerAuthenticationController : ControllerBase
                 return Ok();
             });
         }
-        catch (StorageException ex)
+        catch (ExistsException ex)
         {
-            return NotFound(ex.Message);
+            return Problem(ex.Message, statusCode: (int)HttpStatusCode.Locked);
         }
         catch (Exception ex)
         {
-            return UnprocessableEntity(ex.Message);
+            return Problem(ex.Message, statusCode: (int)HttpStatusCode.UnprocessableEntity);
         }
     }
 

@@ -1,10 +1,8 @@
 ﻿namespace Authentication.Interaction;
 
-public class AdminAuthInfo
+public class ViewerAddInfo
 {
-    public int Id { get; set; }
-
-    public string Name { get; set; } = null!;
+    public string Mail { get; set; } = null!;
 
     public string Password { get; set; } = null!;
 }

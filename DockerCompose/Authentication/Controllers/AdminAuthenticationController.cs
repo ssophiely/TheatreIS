@@ -4,6 +4,7 @@ using Authentication.Storage;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using System.Net;
 using System.Security.Claims;
 using System.Text;
 
@@ -61,13 +62,17 @@ public class AdminAuthenticationController : ControllerBase
                 return Unauthorized();
             });
         }
-        catch (StorageException ex)
+        catch (NotFoundException ex)
         {
-            return NotFound(ex.Message);
+            return Problem(ex.Message, statusCode: (int)HttpStatusCode.NotFound);
+        }
+        catch (ExistsException ex)
+        {
+            return Problem(ex.Message, statusCode: (int)HttpStatusCode.Locked);
         }
         catch (Exception ex)
         {
-            return UnprocessableEntity(ex.Message);
+            return Problem(ex.Message, statusCode: (int)HttpStatusCode.UnprocessableEntity);
         }
     }
 
@@ -75,7 +80,7 @@ public class AdminAuthenticationController : ControllerBase
     /// Регистрация.
     /// </summary>
     [HttpPost]
-    public async Task<IActionResult> SigningUp(AdminAuthInfo admin)
+    public async Task<IActionResult> SigningUp(AdminAddInfo admin)
     {
         try
         {
@@ -86,9 +91,13 @@ public class AdminAuthenticationController : ControllerBase
                 return Ok();
             });
         }
+        catch (ExistsException ex)
+        {
+            return Problem(ex.Message, statusCode: (int)HttpStatusCode.Locked);
+        }
         catch (Exception ex)
         {
-            return UnprocessableEntity(ex.Message);
+            return Problem(ex.Message, statusCode: (int)HttpStatusCode.UnprocessableEntity);
         }
     }
 

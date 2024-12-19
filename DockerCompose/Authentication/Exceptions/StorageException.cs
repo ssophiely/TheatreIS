@@ -1,8 +1,15 @@
 ﻿namespace Authentication.Exceptions;
 
-public class StorageException : Exception
+public class NotFoundException : Exception
 {
-    public StorageException(string message) :
+    public NotFoundException(string message) :
+        base(message)
+    { }
+}
+
+public class ExistsException : Exception
+{
+    public ExistsException(string message) :
         base(message)
     { }
 }
