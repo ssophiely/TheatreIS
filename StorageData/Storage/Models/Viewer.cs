@@ -1,4 +1,4 @@
-﻿namespace Authentication.Storage.Models;
+﻿namespace StorageData;
 
 public partial class Viewer
 {

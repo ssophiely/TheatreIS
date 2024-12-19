@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>f3ccc6e1-f352-4b9b-b795-98432c0d8ac1</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>StorageData</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\Act.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\Admin.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\Auditoriumsector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\Employee.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\Genre.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\Location.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\LocationState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\Position.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\Repertoire.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\Role.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\Spectacle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\State.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\Ticket.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\Viewer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\TheatreDbContext.cs" />
+  </ItemGroup>
+</Project>

@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authentication", "Authentication.csproj", "{D9F3658F-561C-44B0-B5CC-5CC2B52BFEE4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Authentication", "Authentication.csproj", "{D9F3658F-561C-44B0-B5CC-5CC2B52BFEE4}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "StorageData", "..\..\StorageData\StorageData.shproj", "{F3CCC6E1-F352-4B9B-B795-98432C0D8AC1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,5 +23,9 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {817DC1EB-098F-4CB3-9D9E-AEF0ED1249B9}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\..\StorageData\StorageData.projitems*{d9f3658f-561c-44b0-b5cc-5cc2b52bfee4}*SharedItemsImports = 5
+		..\..\StorageData\StorageData.projitems*{f3ccc6e1-f352-4b9b-b795-98432c0d8ac1}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal

@@ -1,7 +1,6 @@
-﻿using Authentication.Storage.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace Authentication.Storage;
+namespace StorageData;
 
 public partial class TheatreDbContext : DbContext
 {

@@ -1,12 +1,11 @@
 ﻿using Authentication.Exceptions;
 using Authentication.Interaction;
-using Authentication.Storage.Models;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
+using StorageData;
 using System.Security.Cryptography;
 
-namespace Authentication.Storage;
+namespace Authentication;
 
 public class UserStorage
 {

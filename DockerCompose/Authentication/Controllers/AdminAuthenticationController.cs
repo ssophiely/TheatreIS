@@ -1,6 +1,5 @@
 using Authentication.Exceptions;
 using Authentication.Interaction;
-using Authentication.Storage;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Authentication.Storage.Models;
+namespace StorageData;
 
 public partial class Employee
 {
