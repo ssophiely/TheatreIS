@@ -172,6 +172,8 @@ public partial class TheatreDbContext : DbContext
 
             entity.HasIndex(e => e.SpectacleId, "FKRepertoire391374");
 
+            entity.HasIndex(e => new { e.Date, e.SpectacleId }).IsUnique();
+
             entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.Date).HasColumnType("date");
             entity.Property(e => e.SpectacleId).HasColumnName("SpectacleID");
