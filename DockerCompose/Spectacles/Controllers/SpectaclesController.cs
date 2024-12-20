@@ -37,6 +37,27 @@ public class SpectaclesController : ControllerBase
     }
 
     /// <summary>
+    /// Получение всех жанров.
+    /// </summary>
+    [HttpGet("genres")]
+    public async Task<IActionResult> GetGenres()
+    {
+        try
+        {
+            return await Task.Run<IActionResult>(() =>
+            {
+                var genres = _storage.GetGenres();
+
+                return Ok(genres);
+            });
+        }
+        catch (Exception ex)
+        {
+            return Problem(ex.Message, statusCode: (int)HttpStatusCode.UnprocessableEntity);
+        }
+    }
+
+    /// <summary>
     /// Получение данных по спектаклю.
     /// </summary>
     [HttpGet("id")]

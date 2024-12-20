@@ -2,42 +2,42 @@ services:
   authentication:
     image: ${DOCKER_REGISTRY-}authentication
     build:
-      context: Authentication
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: Authentication/Dockerfile
 
   gateway:
     image: ${DOCKER_REGISTRY-}gateway
     build:
-      context: Gateway
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: Gateway/Dockerfile
 
 
   repertoire:
     image: ${DOCKER_REGISTRY-}repertoire
     build:
-      context: Repertoire
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: Repertoire/Dockerfile
 
 
   spectacles:
     image: ${DOCKER_REGISTRY-}spectacles
     build:
-      context: Spectacles
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: Spectacles/Dockerfile
 
 
   statistics:
     image: ${DOCKER_REGISTRY-}statistics
     build:
-      context: Statistics
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: Statistics/Dockerfile
 
 
   tickets:
     image: ${DOCKER_REGISTRY-}tickets
     build:
-      context: Tickets
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: Tickets/Dockerfile
 
 
   # Kafka service

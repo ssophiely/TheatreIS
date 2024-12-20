@@ -117,6 +117,10 @@ public class SpectacleStorage
             GenreId = info.GenreId,
             Role = roles
         };
+
+        _dbContext.Spectacle.Add(newSpectacle);
+
+        _dbContext.SaveChanges();
     }
 
     public void UpdateSpectacle(int id, SpectacleUpdateInfo info)
@@ -158,7 +162,19 @@ public class SpectacleStorage
         _dbContext.SaveChanges();
     }
 
+    public List<GenreInfo> GetGenres()
+    {
+        var genres = _dbContext.Genre.AsNoTracking();
 
+        List<GenreInfo> list = [];
+
+        foreach (var genre in genres)
+        {
+            list.Add(genre.Convert<GenreInfo, Genre>());
+        }
+
+        return list;
+    }
 
 
     private readonly TheatreDbContext _dbContext;

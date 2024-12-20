@@ -59,10 +59,10 @@ Global
 		SolutionGuid = {0893E033-CACB-4AFB-9CC4-50856BA32DF4}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		..\Exceptions\Exceptions.projitems*{0637fd01-031c-4afa-a85e-cfd80404e55f}*SharedItemsImports = 5
-		..\StorageData\StorageData.projitems*{0637fd01-031c-4afa-a85e-cfd80404e55f}*SharedItemsImports = 5
-		..\Exceptions\Exceptions.projitems*{65eadb73-65c0-4a25-a00b-5578815cb507}*SharedItemsImports = 5
-		..\StorageData\StorageData.projitems*{65eadb73-65c0-4a25-a00b-5578815cb507}*SharedItemsImports = 5
-		..\Utils\Utils.projitems*{65eadb73-65c0-4a25-a00b-5578815cb507}*SharedItemsImports = 5
+		Exceptions\Exceptions.projitems*{0637fd01-031c-4afa-a85e-cfd80404e55f}*SharedItemsImports = 5
+		StorageData\StorageData.projitems*{0637fd01-031c-4afa-a85e-cfd80404e55f}*SharedItemsImports = 5
+		Exceptions\Exceptions.projitems*{65eadb73-65c0-4a25-a00b-5578815cb507}*SharedItemsImports = 5
+		StorageData\StorageData.projitems*{65eadb73-65c0-4a25-a00b-5578815cb507}*SharedItemsImports = 5
+		Utils\Utils.projitems*{65eadb73-65c0-4a25-a00b-5578815cb507}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal

@@ -12,10 +12,10 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["Authentication.csproj", "."]
-RUN dotnet restore "./Authentication.csproj"
+COPY ["Authentication/Authentication.csproj", "Authentication/"]
+RUN dotnet restore "Authentication/Authentication.csproj"
 COPY . .
-WORKDIR "/src/."
+WORKDIR "/src/Authentication"
 RUN dotnet build "./Authentication.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # Этот этап используется для публикации проекта службы, который будет скопирован на последний этап

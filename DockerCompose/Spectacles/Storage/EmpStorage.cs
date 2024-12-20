@@ -32,6 +32,7 @@ public class EmpStorage
 
             list.Add(new EmployeeInfo()
             {
+                Id = emp.Id,
                 FullName = emp.FullName,
                 Experience = emp.Experience,
                 Phone = emp.Phone,

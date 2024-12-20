@@ -1,5 +1,4 @@
-﻿using Google.Protobuf.WellKnownTypes;
-using System.Reflection;
+﻿using System.Reflection;
 
 namespace SharedUtils;
 
@@ -18,12 +17,15 @@ public static class Mapper
         {
             var value = prop.GetValue(inObj);
 
-            if (value != null && !Equals(value, Activator.CreateInstance(prop.PropertyType)))
+            var outProp = outProperties.FirstOrDefault(p => p.Name == prop.Name);
+
+            if (value != null && !IsDefault(value) && outProp != null)
             {
-                var outProp = outProperties.First(p => p.Name == prop.Name);
                 outProp.SetValue(outObj, value);
             }
         }
+
+        Console.WriteLine("тут");
 
         return outObj;
     }
@@ -39,11 +41,18 @@ public static class Mapper
         {
             var value = prop.GetValue(updProps);
 
-            if (value != null && !Equals(value, Activator.CreateInstance(prop.PropertyType)))
+            if (value != null && !IsDefault(value))
             {
                 var objProp = properties.First(p => p.Name == prop.Name);
+
                 objProp.SetValue(obj, value);
             }
         }
+    }
+
+
+    private static bool IsDefault<T>(T o)
+    {
+        return (o == null) ? (default(T) == null) : o.Equals(default(T));
     }
 }

@@ -5,9 +5,9 @@ VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Authentication", "Authentication.csproj", "{D9F3658F-561C-44B0-B5CC-5CC2B52BFEE4}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "StorageData", "..\..\StorageData\StorageData.shproj", "{F3CCC6E1-F352-4B9B-B795-98432C0D8AC1}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Exceptions", "..\Exceptions\Exceptions.shproj", "{718256A8-CBF5-4D33-B771-EE9F61791E0F}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Exceptions", "..\..\Exceptions\Exceptions.shproj", "{718256A8-CBF5-4D33-B771-EE9F61791E0F}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "StorageData", "..\StorageData\StorageData.shproj", "{F3CCC6E1-F352-4B9B-B795-98432C0D8AC1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,9 +27,9 @@ Global
 		SolutionGuid = {817DC1EB-098F-4CB3-9D9E-AEF0ED1249B9}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		..\..\Exceptions\Exceptions.projitems*{718256a8-cbf5-4d33-b771-ee9f61791e0f}*SharedItemsImports = 13
-		..\..\Exceptions\Exceptions.projitems*{d9f3658f-561c-44b0-b5cc-5cc2b52bfee4}*SharedItemsImports = 5
-		..\..\StorageData\StorageData.projitems*{d9f3658f-561c-44b0-b5cc-5cc2b52bfee4}*SharedItemsImports = 5
-		..\..\StorageData\StorageData.projitems*{f3ccc6e1-f352-4b9b-b795-98432c0d8ac1}*SharedItemsImports = 13
+		..\Exceptions\Exceptions.projitems*{718256a8-cbf5-4d33-b771-ee9f61791e0f}*SharedItemsImports = 13
+		..\Exceptions\Exceptions.projitems*{d9f3658f-561c-44b0-b5cc-5cc2b52bfee4}*SharedItemsImports = 5
+		..\StorageData\StorageData.projitems*{d9f3658f-561c-44b0-b5cc-5cc2b52bfee4}*SharedItemsImports = 5
+		..\StorageData\StorageData.projitems*{f3ccc6e1-f352-4b9b-b795-98432c0d8ac1}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal

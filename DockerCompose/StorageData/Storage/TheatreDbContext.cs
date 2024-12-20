@@ -178,7 +178,7 @@ public partial class TheatreDbContext : DbContext
 
             entity.HasOne(d => d.Spectacle).WithMany(p => p.Repertoire)
                 .HasForeignKey(d => d.SpectacleId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FKRepertoire391374");
         });
 
@@ -208,7 +208,7 @@ public partial class TheatreDbContext : DbContext
 
             entity.HasOne(d => d.Spectacle).WithMany(p => p.Role)
                 .HasForeignKey(d => d.SpectacleId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FKRole597480");
         });
 
