@@ -1,5 +1,5 @@
-﻿using Authentication.Exceptions;
-using Authentication.Interaction;
+﻿using Authentication.Interaction;
+using Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -103,7 +103,7 @@ public class ViewerAuthenticationController : ControllerBase
     /// <summary>
     /// Обновление данных.
     /// </summary>
-    [HttpPost("update")]
+    [HttpPut("update")]
     public async Task<IActionResult> UpdateInfo(ViewerUpdateInfo info)
     {
         try
