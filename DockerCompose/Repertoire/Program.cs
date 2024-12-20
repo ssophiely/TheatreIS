@@ -7,6 +7,8 @@ builder.Services.AddScoped<TheatreDbContext>();
 
 builder.Services.AddTransient<RepertoireStorage>();
 
+builder.Services.AddTransient<ActStorage>();
+
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();

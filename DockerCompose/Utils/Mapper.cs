@@ -25,8 +25,6 @@ public static class Mapper
             }
         }
 
-        Console.WriteLine("тут");
-
         return outObj;
     }
 
