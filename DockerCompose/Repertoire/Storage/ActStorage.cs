@@ -1,5 +1,7 @@
 ﻿using Exceptions;
+using Microsoft.EntityFrameworkCore;
 using Repertoire.Interaction.In;
+using Repertoire.Interaction.Out;
 using SharedUtils;
 using StorageData;
 
@@ -20,6 +22,14 @@ public class ActStorage
         _dbContext.Act.Remove(act);
 
         _dbContext.SaveChanges();
+    }
+
+    public ActInfo Get(int id)
+    {
+        var act = _dbContext.Act.AsNoTracking().FirstOrDefault(r => r.Id == id)
+            ?? throw new NotFoundException($"Показ с id {id} не найден");
+
+        return act.Convert<ActInfo, Act>();
     }
 
     public void Add(ActCreateInfo info)

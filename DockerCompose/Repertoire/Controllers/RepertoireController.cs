@@ -16,6 +16,31 @@ public class RepertoireController : ControllerBase
     }
 
     /// <summary>
+    /// Получение репертуара.
+    /// </summary>
+    [HttpGet("id")]
+    public async Task<IActionResult> Get(int id)
+    {
+        try
+        {
+            return await Task.Run<IActionResult>(() =>
+            {
+                var repertoire = _storage.Get(id);
+
+                return Ok(repertoire);
+            });
+        }
+        catch (NotFoundException ex)
+        {
+            return Problem(ex.Message, statusCode: (int)HttpStatusCode.NotFound);
+        }
+        catch (Exception ex)
+        {
+            return Problem(ex.Message, statusCode: (int)HttpStatusCode.UnprocessableEntity);
+        }
+    }
+
+    /// <summary>
     /// Получение спектаклей из репертуара по дате.
     /// </summary>
     [HttpGet("date")]

@@ -1,12 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace StorageData;
 
 public partial class TheatreDbContext : DbContext
 {
-    public TheatreDbContext(IConfiguration config)
+    public TheatreDbContext()
     {
-        _configuraion = config;
+    }
+
+    public TheatreDbContext(DbContextOptions<TheatreDbContext> options)
+        : base(options)
+    {
     }
 
     public virtual DbSet<Act> Act { get; set; }
@@ -38,7 +44,8 @@ public partial class TheatreDbContext : DbContext
     public virtual DbSet<Viewer> Viewer { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-       => optionsBuilder.UseMySQL(_configuraion.GetConnectionString("DbConnection")!);
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseMySQL("server=localhost;database=theatre;user=root;password=root;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -70,7 +77,7 @@ public partial class TheatreDbContext : DbContext
 
             entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.Name).HasMaxLength(45);
-            entity.Property(e => e.Password);
+            entity.Property(e => e.Password).HasMaxLength(500);
         });
 
         modelBuilder.Entity<Auditoriumsector>(entity =>
@@ -129,10 +136,14 @@ public partial class TheatreDbContext : DbContext
             entity.Property(e => e.LocationStateId)
                 .HasDefaultValueSql("'1'")
                 .HasColumnName("LocationStateID");
+            entity.Property(e => e.Price)
+                .HasPrecision(10)
+                .HasDefaultValueSql("'3000.00'");
             entity.Property(e => e.SectorId).HasColumnName("SectorID");
 
             entity.HasOne(d => d.Act).WithMany(p => p.Location)
                 .HasForeignKey(d => d.ActId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("ActIdFK");
 
             entity.HasOne(d => d.LocationState).WithMany(p => p.Location)
@@ -172,15 +183,12 @@ public partial class TheatreDbContext : DbContext
 
             entity.HasIndex(e => e.SpectacleId, "FKRepertoire391374");
 
-            entity.HasIndex(e => new { e.Date, e.SpectacleId }).IsUnique();
-
             entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.Date).HasColumnType("date");
             entity.Property(e => e.SpectacleId).HasColumnName("SpectacleID");
 
             entity.HasOne(d => d.Spectacle).WithMany(p => p.Repertoire)
                 .HasForeignKey(d => d.SpectacleId)
-                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FKRepertoire391374");
         });
 
@@ -210,7 +218,6 @@ public partial class TheatreDbContext : DbContext
 
             entity.HasOne(d => d.Spectacle).WithMany(p => p.Role)
                 .HasForeignKey(d => d.SpectacleId)
-                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FKRole597480");
         });
 
@@ -257,10 +264,7 @@ public partial class TheatreDbContext : DbContext
 
             entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.LocationId).HasColumnName("LocationID");
-            entity.Property(e => e.Price).HasPrecision(10);
-            entity.Property(e => e.StateId)
-                .HasDefaultValueSql("'1'")
-                .HasColumnName("StateID");
+            entity.Property(e => e.StateId).HasColumnName("StateID");
             entity.Property(e => e.ViewerId).HasColumnName("ViewerID");
 
             entity.HasOne(d => d.Location).WithMany(p => p.Ticket)
@@ -275,7 +279,6 @@ public partial class TheatreDbContext : DbContext
 
             entity.HasOne(d => d.Viewer).WithMany(p => p.Ticket)
                 .HasForeignKey(d => d.ViewerId)
-                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FKTicket117495");
         });
 
@@ -290,7 +293,7 @@ public partial class TheatreDbContext : DbContext
             entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.FullName).HasMaxLength(50);
             entity.Property(e => e.Mail).HasMaxLength(50);
-            entity.Property(e => e.Password);
+            entity.Property(e => e.Password).HasMaxLength(500);
             entity.Property(e => e.Phone).HasMaxLength(11);
         });
 
@@ -298,6 +301,4 @@ public partial class TheatreDbContext : DbContext
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
-
-    private IConfiguration _configuraion;
 }

@@ -59,5 +59,17 @@ public class RepertoireStorage
         return list;
     }
 
+    public RepertoireInfo Get(int id)
+    {
+        var rep = _dbContext.Repertoire.Include(r => r.Act).AsNoTracking().FirstOrDefault(r => r.Id == id)
+             ?? throw new NotFoundException($"Репертуар с id {id} не найден"); ;
+
+        var repInfo = rep.Convert<RepertoireInfo, StorageData.Repertoire>();
+
+        repInfo.Acts = rep.Act.Select(a => a.Convert<ActInfo, Act>()).ToList();
+
+        return repInfo;
+    }
+
     private readonly TheatreDbContext _dbContext;
 }

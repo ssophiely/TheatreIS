@@ -61,5 +61,30 @@ public class ActController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Получение показа.
+    /// </summary>
+    [HttpGet("id")]
+    public async Task<IActionResult> Get(int id)
+    {
+        try
+        {
+            return await Task.Run<IActionResult>(() =>
+            {
+                var act = _storage.Get(id);
+
+                return Ok(act);
+            });
+        }
+        catch (NotFoundException ex)
+        {
+            return Problem(ex.Message, statusCode: (int)HttpStatusCode.NotFound);
+        }
+        catch (Exception ex)
+        {
+            return Problem(ex.Message, statusCode: (int)HttpStatusCode.UnprocessableEntity);
+        }
+    }
+
     private readonly ActStorage _storage;
 }

@@ -28,4 +28,4 @@ app.MapControllers();
 app.Run();
 
 
-//dotnet ef dbcontext scaffold "server=localhost;database=theatre;user=root;password=root;" MySql.EntityFrameworkCore --output-dir ../StorageData/Storage/Models --context TheatreDbContext --context-dir ../StorageData/Storage/ --no-pluralize --force
+//dotnet ef dbcontext scaffold "server=localhost;database=theatre;user=root;password=root;" MySql.EntityFrameworkCore --output-dir ../StorageData/Storage/Models --context TheatreDbContext --context-dir ../StorageData/Storage/ --no-pluralize --force --namespace StorageData
