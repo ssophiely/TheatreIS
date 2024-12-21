@@ -43,7 +43,7 @@ public class RepertoireStorage
 
     public List<RepertoireInfo> GetByDate(DateTime date)
     {
-        var reps = _dbContext.Repertoire.Include(r => r.Spectacle).Include(r => r.Act).AsNoTracking().Where(r => r.Date == date);
+        var reps = _dbContext.Repertoire.Include(r => r.Act).AsNoTracking().Where(r => r.Date == date);
 
         List<RepertoireInfo> list = [];
 
@@ -51,7 +51,6 @@ public class RepertoireStorage
         {
             var repInfo = rep.Convert<RepertoireInfo, StorageData.Repertoire>();
 
-            repInfo.SpectacleName = rep.Spectacle.Name;
             repInfo.Acts = rep.Act.Select(a => a.Convert<ActInfo, Act>()).ToList();
 
             list.Add(repInfo);

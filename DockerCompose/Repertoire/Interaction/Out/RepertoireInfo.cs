@@ -10,7 +10,5 @@ public class RepertoireInfo
 
     public int SpectacleId { get; set; }
 
-    public string SpectacleName { get; set; } = null!;
-
     public List<ActInfo> Acts { get; set; } = new List<ActInfo>();
 }
