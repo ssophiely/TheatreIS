@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using Microsoft.EntityFrameworkCore;
 
 namespace StorageData;
@@ -10,9 +11,9 @@ public partial class TheatreDbContext : DbContext
     {
     }
 
-    public TheatreDbContext(DbContextOptions<TheatreDbContext> options)
-        : base(options)
+    public TheatreDbContext(IConfiguration config)
     {
+        _config = config;
     }
 
     public virtual DbSet<Act> Act { get; set; }
@@ -44,8 +45,7 @@ public partial class TheatreDbContext : DbContext
     public virtual DbSet<Viewer> Viewer { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySQL("server=localhost;database=theatre;user=root;password=root;");
+        => optionsBuilder.UseMySQL(_config.GetConnectionString("DbConnection")!);
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -301,4 +301,6 @@ public partial class TheatreDbContext : DbContext
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+    private readonly IConfiguration _config;
 }

@@ -103,5 +103,30 @@ public class TicketsController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Получение жанров.
+    /// </summary>
+    [HttpPut("rate")]
+    public async Task<IActionResult> SetRate(TicketRateInfo info)
+    {
+        try
+        {
+            return await Task.Run<IActionResult>(() =>
+            {
+                _storage.SetRate(info);
+
+                return Ok();
+            });
+        }
+        catch (NotFoundException ex)
+        {
+            return Problem(ex.Message, statusCode: (int)HttpStatusCode.NotFound);
+        }
+        catch (Exception ex)
+        {
+            return Problem(ex.Message, statusCode: (int)HttpStatusCode.UnprocessableEntity);
+        }
+    }
+
     private readonly TicketsStorage _storage;
 }

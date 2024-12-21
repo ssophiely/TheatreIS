@@ -45,6 +45,16 @@ public class TicketsStorage
         return [.. states.Select(s => s.Convert<StateInfo, State>())];
     }
 
+    public void SetRate(TicketRateInfo info)
+    {
+        var ticket = _dbContext.Ticket.FirstOrDefault(t => t.Id == info.Id)
+           ?? throw new NotFoundException($"Билет с id {info.Id} не найден");
+
+        ticket.Rating = info.Rating;
+
+        _dbContext.SaveChanges();
+    }
+
 
     private readonly TheatreDbContext _dbContext;
 }

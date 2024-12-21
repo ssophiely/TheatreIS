@@ -8,6 +8,8 @@ public class RepertoireInfo
 
     public double Rating { get; set; }
 
+    public int BoxOffice { get; set; }
+
     public int SpectacleId { get; set; }
 
     public List<ActInfo> Acts { get; set; } = new List<ActInfo>();

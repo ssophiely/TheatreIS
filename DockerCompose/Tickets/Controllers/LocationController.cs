@@ -1,6 +1,7 @@
 ﻿using Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using Tickets.Interaction.In;
 using Tickets.Storage;
 
 namespace Tickets.Controllers;
@@ -102,6 +103,30 @@ public class LocationController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Изменение цены места.
+    /// </summary>
+    [HttpPut("price")]
+    public async Task<IActionResult> ChangePrice(LocationPriceChange info)
+    {
+        try
+        {
+            return await Task.Run<IActionResult>(() =>
+            {
+                _storage.ChangePrice(info);
+
+                return Ok();
+            });
+        }
+        catch (NotFoundException ex)
+        {
+            return Problem(ex.Message, statusCode: (int)HttpStatusCode.NotFound);
+        }
+        catch (Exception ex)
+        {
+            return Problem(ex.Message, statusCode: (int)HttpStatusCode.UnprocessableEntity);
+        }
+    }
 
     private readonly LocationStorage _storage;
 }
