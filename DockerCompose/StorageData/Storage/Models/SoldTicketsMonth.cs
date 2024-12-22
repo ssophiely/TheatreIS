@@ -3,9 +3,11 @@ using System.Collections.Generic;
 
 namespace StorageData;
 
-public partial class GetAllTickets
+public partial class SoldTicketsMonth
 {
-    public int ViewerId { get; set; }
+    public int? Year { get; set; }
+
+    public int? Month { get; set; }
 
     public long TicketsCount { get; set; }
 }

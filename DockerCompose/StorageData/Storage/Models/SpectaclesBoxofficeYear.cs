@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace StorageData;
 
-public partial class FindSpectaclesBoxOffice
+public partial class SpectaclesBoxofficeYear
 {
-    public string SpectacleName { get; set; } = null!;
+    public int Id { get; set; }
 
     public decimal? TotalBoxOffice { get; set; }
 }

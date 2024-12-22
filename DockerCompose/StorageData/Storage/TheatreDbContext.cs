@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Common;
 using Microsoft.EntityFrameworkCore;
 
 namespace StorageData;
@@ -13,7 +12,6 @@ public partial class TheatreDbContext : DbContext
 
     public TheatreDbContext(IConfiguration config)
     {
-        _config = config;
     }
 
     public virtual DbSet<Act> Act { get; set; }
@@ -36,13 +34,21 @@ public partial class TheatreDbContext : DbContext
 
     public virtual DbSet<Role> Role { get; set; }
 
+    public virtual DbSet<SoldTicketsMonth> SoldTicketsMonth { get; set; }
+
     public virtual DbSet<Spectacle> Spectacle { get; set; }
 
+    public virtual DbSet<SpectaclesBoxofficeYear> SpectaclesBoxofficeYear { get; set; }
+
     public virtual DbSet<State> State { get; set; }
+
+    public virtual DbSet<SumHoursWatching> SumHoursWatching { get; set; }
 
     public virtual DbSet<Ticket> Ticket { get; set; }
 
     public virtual DbSet<Viewer> Viewer { get; set; }
+
+    public virtual DbSet<ViewerGenreVisits> ViewerGenreVisits { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseMySQL(_config.GetConnectionString("DbConnection")!);
@@ -221,6 +227,15 @@ public partial class TheatreDbContext : DbContext
                 .HasConstraintName("FKRole597480");
         });
 
+        modelBuilder.Entity<SoldTicketsMonth>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("sold_tickets_month");
+
+            entity.Property(e => e.Year).HasColumnType("year");
+        });
+
         modelBuilder.Entity<Spectacle>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
@@ -240,6 +255,16 @@ public partial class TheatreDbContext : DbContext
                 .HasConstraintName("FKSpectacle929668");
         });
 
+        modelBuilder.Entity<SpectaclesBoxofficeYear>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("spectacles_boxoffice_year");
+
+            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.TotalBoxOffice).HasPrecision(32);
+        });
+
         modelBuilder.Entity<State>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
@@ -248,6 +273,16 @@ public partial class TheatreDbContext : DbContext
 
             entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.Name).HasMaxLength(20);
+        });
+
+        modelBuilder.Entity<SumHoursWatching>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("sum_hours_watching");
+
+            entity.Property(e => e.TotalHoursWatched).HasPrecision(32);
+            entity.Property(e => e.ViewerId).HasColumnName("ViewerID");
         });
 
         modelBuilder.Entity<Ticket>(entity =>
@@ -295,6 +330,16 @@ public partial class TheatreDbContext : DbContext
             entity.Property(e => e.Mail).HasMaxLength(50);
             entity.Property(e => e.Password).HasMaxLength(500);
             entity.Property(e => e.Phone).HasMaxLength(11);
+        });
+
+        modelBuilder.Entity<ViewerGenreVisits>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("viewer_genre_visits");
+
+            entity.Property(e => e.GenreId).HasColumnName("genreID");
+            entity.Property(e => e.ViewerId).HasColumnName("viewerID");
         });
 
         OnModelCreatingPartial(modelBuilder);

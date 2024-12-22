@@ -25,8 +25,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
-  <Import Project="..\StorageData\StorageData.projitems" Label="Shared" />
-
   <Import Project="..\Exceptions\Exceptions.projitems" Label="Shared" />
+
+  <Import Project="..\StorageData\StorageData.projitems" Label="Shared" />
 
 </Project>

@@ -19,10 +19,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\Position.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\Repertoire.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\Role.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\SoldTicketsMonth.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\Spectacle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\SpectaclesBoxofficeYear.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\State.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\SumHoursWatching.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\Ticket.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\Viewer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\ViewerGenreVisits.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\TheatreDbContext.cs" />
   </ItemGroup>
 </Project>
