@@ -6,12 +6,9 @@ namespace StorageData;
 
 public partial class TheatreDbContext : DbContext
 {
-    public TheatreDbContext()
-    {
-    }
-
     public TheatreDbContext(IConfiguration config)
     {
+        _config = config;
     }
 
     public virtual DbSet<Act> Act { get; set; }
@@ -78,6 +75,8 @@ public partial class TheatreDbContext : DbContext
         modelBuilder.Entity<Admin>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.HasAlternateKey(e => e.Name);
 
             entity.ToTable("admin");
 

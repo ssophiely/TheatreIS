@@ -83,7 +83,7 @@ public class TicketsController : ControllerBase
     }
 
     /// <summary>
-    /// Получение жанров.
+    /// Получение статусов.
     /// </summary>
     [HttpGet("states")]
     public async Task<IActionResult> GetStates()
@@ -104,7 +104,7 @@ public class TicketsController : ControllerBase
     }
 
     /// <summary>
-    /// Получение жанров.
+    /// Получение рейтингов из билета.
     /// </summary>
     [HttpPut("rate")]
     public async Task<IActionResult> SetRate(TicketRateInfo info)

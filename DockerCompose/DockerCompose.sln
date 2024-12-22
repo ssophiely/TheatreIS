@@ -61,6 +61,9 @@ Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Exceptions\Exceptions.projitems*{0637fd01-031c-4afa-a85e-cfd80404e55f}*SharedItemsImports = 5
 		StorageData\StorageData.projitems*{0637fd01-031c-4afa-a85e-cfd80404e55f}*SharedItemsImports = 5
+		Exceptions\Exceptions.projitems*{3b0bc358-d877-4655-b3a2-a55e15a561ac}*SharedItemsImports = 5
+		StorageData\StorageData.projitems*{3b0bc358-d877-4655-b3a2-a55e15a561ac}*SharedItemsImports = 5
+		Utils\Utils.projitems*{3b0bc358-d877-4655-b3a2-a55e15a561ac}*SharedItemsImports = 5
 		Exceptions\Exceptions.projitems*{65eadb73-65c0-4a25-a00b-5578815cb507}*SharedItemsImports = 5
 		StorageData\StorageData.projitems*{65eadb73-65c0-4a25-a00b-5578815cb507}*SharedItemsImports = 5
 		Utils\Utils.projitems*{65eadb73-65c0-4a25-a00b-5578815cb507}*SharedItemsImports = 5

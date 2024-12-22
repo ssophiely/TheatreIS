@@ -103,7 +103,7 @@ public class ViewerAuthenticationController : ControllerBase
     /// <summary>
     /// Обновление данных.
     /// </summary>
-    [HttpPut("update")]
+    [HttpPut]
     public async Task<IActionResult> UpdateInfo(ViewerUpdateInfo info)
     {
         try

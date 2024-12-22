@@ -16,7 +16,7 @@ public class UserStorage
 
     public bool VerifyAdmin(AdminAuthInfo info)
     {
-        var admin = _dbContext.Admin.FirstOrDefault(a => a.Id == info.Id) ??
+        var admin = _dbContext.Admin.FirstOrDefault(a => a.Name == info.Name) ??
              throw new Exception("Администратор не найден");
 
         (var storedHash, var inHash) = DecryptPassword(info.Password, admin.Password);
