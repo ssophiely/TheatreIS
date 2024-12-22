@@ -9,6 +9,8 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Exceptions", "..\Exceptions
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "StorageData", "..\StorageData\StorageData.shproj", "{F3CCC6E1-F352-4B9B-B795-98432C0D8AC1}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Utils", "..\Utils\Utils.shproj", "{1497CD12-B38A-4332-8F79-D25E0CD20B13}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,9 +29,11 @@ Global
 		SolutionGuid = {817DC1EB-098F-4CB3-9D9E-AEF0ED1249B9}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\Utils\Utils.projitems*{1497cd12-b38a-4332-8f79-d25e0cd20b13}*SharedItemsImports = 13
 		..\Exceptions\Exceptions.projitems*{718256a8-cbf5-4d33-b771-ee9f61791e0f}*SharedItemsImports = 13
 		..\Exceptions\Exceptions.projitems*{d9f3658f-561c-44b0-b5cc-5cc2b52bfee4}*SharedItemsImports = 5
 		..\StorageData\StorageData.projitems*{d9f3658f-561c-44b0-b5cc-5cc2b52bfee4}*SharedItemsImports = 5
+		..\Utils\Utils.projitems*{d9f3658f-561c-44b0-b5cc-5cc2b52bfee4}*SharedItemsImports = 5
 		..\StorageData\StorageData.projitems*{f3ccc6e1-f352-4b9b-b795-98432c0d8ac1}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal

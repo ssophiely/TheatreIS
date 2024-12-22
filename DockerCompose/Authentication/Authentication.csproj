@@ -29,4 +29,6 @@
 
   <Import Project="..\StorageData\StorageData.projitems" Label="Shared" />
 
+  <Import Project="..\Utils\Utils.projitems" Label="Shared" />
+
 </Project>

@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
 namespace Statistics.Controllers;
 
 [ApiController]
 [Route("statistics/viewer")]
+[Authorize]
 public class ViewerStatisticsController : ControllerBase
 {
     public ViewerStatisticsController(StatisticsStorage storage)

@@ -1,4 +1,5 @@
 using Exceptions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using Tickets.Interaction.In;
@@ -19,6 +20,7 @@ public class TicketsController : ControllerBase
     /// Создание билета.
     /// </summary>
     [HttpPost]
+    [Authorize]
     public async Task<IActionResult> CreateTicket(TicketCreateinfo info)
     {
         try
@@ -40,6 +42,7 @@ public class TicketsController : ControllerBase
     /// Изменение статуса билета.
     /// </summary>
     [HttpPut("state")]
+    [Authorize]
     public async Task<IActionResult> ChangeTicketState(TicketStateChangeInfo info)
     {
         try
@@ -104,9 +107,10 @@ public class TicketsController : ControllerBase
     }
 
     /// <summary>
-    /// Получение рейтингов из билета.
+    /// Установка рейтинга.
     /// </summary>
     [HttpPut("rate")]
+    [Authorize]
     public async Task<IActionResult> SetRate(TicketRateInfo info)
     {
         try

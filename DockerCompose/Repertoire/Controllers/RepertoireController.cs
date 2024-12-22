@@ -1,4 +1,5 @@
 using Exceptions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Repertoire.Interaction.In;
 using Repertoire.Storage;
@@ -69,6 +70,7 @@ public class RepertoireController : ControllerBase
     /// Добавление спектакля в репертуар.
     /// </summary>
     [HttpPost]
+    [Authorize]
     public async Task<IActionResult> Add(RepertoireAddInfo info)
     {
         try
@@ -94,6 +96,7 @@ public class RepertoireController : ControllerBase
     /// Удаление спектакля из репертуара.
     /// </summary>
     [HttpDelete("id")]
+    [Authorize]
     public async Task<IActionResult> Delete(int id)
     {
         try

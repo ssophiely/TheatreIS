@@ -1,4 +1,5 @@
 ﻿using Exceptions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using Tickets.Interaction.In;
@@ -107,6 +108,7 @@ public class LocationController : ControllerBase
     /// Изменение цены места.
     /// </summary>
     [HttpPut("price")]
+    [Authorize]
     public async Task<IActionResult> ChangePrice(LocationPriceChange info)
     {
         try

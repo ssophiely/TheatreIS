@@ -1,4 +1,5 @@
 using Exceptions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Spectacles.Interaction.In;
 using Spectacles.Storage;
@@ -86,6 +87,7 @@ public class SpectaclesController : ControllerBase
     /// Создание спектакля.
     /// </summary>
     [HttpPost]
+    [Authorize]
     public async Task<IActionResult> Add(SpectacleCreateInfo info)
     {
         try
@@ -107,6 +109,7 @@ public class SpectaclesController : ControllerBase
     /// Удаление спектакля.
     /// </summary>
     [HttpDelete("id")]
+    [Authorize]
     public async Task<IActionResult> Delete(int id)
     {
         try
@@ -132,6 +135,7 @@ public class SpectaclesController : ControllerBase
     /// Изменение данных по спектаклю.
     /// </summary>
     [HttpPut("id")]
+    [Authorize]
     public async Task<IActionResult> Update(int id, SpectacleUpdateInfo info)
     {
         try

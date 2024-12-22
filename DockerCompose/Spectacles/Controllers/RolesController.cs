@@ -1,4 +1,5 @@
 ﻿using Exceptions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Spectacles.Interaction.In;
 using Spectacles.Storage;
@@ -17,6 +18,7 @@ public class RolesController : ControllerBase
 
 
     [HttpPost]
+    [Authorize]
     public async Task<IActionResult> AddRole(RoleAddInfo info)
     {
         try
@@ -35,6 +37,7 @@ public class RolesController : ControllerBase
     }
 
     [HttpDelete("id")]
+    [Authorize]
     public async Task<IActionResult> DeleteRole(int id)
     {
         try
@@ -57,6 +60,7 @@ public class RolesController : ControllerBase
     }
 
     [HttpPut("id")]
+    [Authorize]
     public async Task<IActionResult> ChangeRole(int id, RoleUpdateInfo info)
     {
         try
