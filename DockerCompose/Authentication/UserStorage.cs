@@ -80,6 +80,22 @@ public class UserStorage
         _dbContext.SaveChanges();
     }
 
+    public int GetAdminId(string name)
+    {
+        var admin = _dbContext.Admin.AsNoTracking().FirstOrDefault(v => v.Name == name)
+            ?? throw new NotFoundException($"Администратор с именем {name} не найден");
+
+        return admin.Id;
+    }
+
+    public int GetUserId(string name)
+    {
+        var user = _dbContext.Viewer.AsNoTracking().FirstOrDefault(v => v.Mail == name)
+            ?? throw new NotFoundException($"Администратор с именем {name} не найден");
+
+        return user.Id;
+    }
+
 
     private string EncryptPassword(string password)
     {

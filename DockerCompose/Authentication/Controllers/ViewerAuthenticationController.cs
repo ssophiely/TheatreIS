@@ -31,13 +31,16 @@ public class ViewerAuthenticationController : ControllerBase
             {
                 if (_storage.VerifyViewer(viewer))
                 {
+                    var id = _storage.GetUserId(viewer.Mail);
+
                     var issuer = _configuration["JWT:Issuer"];
                     var audience = _configuration["JWT:Audience"];
                     var key = Encoding.UTF8.GetBytes(_configuration["JWT:Key"]!);
                     var signingCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256);
 
                     var subject = new ClaimsIdentity([
-                        new Claim(JwtRegisteredClaimNames.Email, viewer.Mail)
+                        new Claim("id", id.ToString()),
+                        new Claim("mail", viewer.Mail)
                     ]);
 
                     var expires = DateTime.UtcNow.AddMinutes(60);

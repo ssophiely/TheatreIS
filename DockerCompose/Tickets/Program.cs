@@ -1,7 +1,10 @@
 using StorageData;
+using SharedUtils;
 using Tickets.Storage;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddAuthentication(builder.Configuration);
 
 builder.Services.AddScoped<TheatreDbContext>();
 
@@ -22,6 +25,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

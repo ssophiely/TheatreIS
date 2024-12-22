@@ -10,5 +10,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Mapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WebAppBuilderExtensions.cs" />
   </ItemGroup>
 </Project>

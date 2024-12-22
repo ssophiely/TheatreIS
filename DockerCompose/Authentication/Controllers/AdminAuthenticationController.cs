@@ -31,13 +31,16 @@ public class AdminAuthenticationController : ControllerBase
             {
                 if (_storage.VerifyAdmin(admin))
                 {
+                    var id = _storage.GetAdminId(admin.Name);
+
                     var issuer = _configuration["JWT:Issuer"];
                     var audience = _configuration["JWT:Audience"];
                     var key = Encoding.UTF8.GetBytes(_configuration["JWT:Key"]!);
                     var signingCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256);
 
                     var subject = new ClaimsIdentity([
-                        new Claim(JwtRegisteredClaimNames.Sub, admin.Name)
+                        new Claim("id", id.ToString()),
+                        new Claim("name", admin.Name)
                     ]);
 
                     var expires = DateTime.UtcNow.AddMinutes(60);
