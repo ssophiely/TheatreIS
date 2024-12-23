@@ -5,6 +5,8 @@ VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gateway", "Gateway.csproj", "{2C9D88AC-D995-4B03-AD62-D76EDD12B127}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Utils", "..\Utils\Utils.shproj", "{1497CD12-B38A-4332-8F79-D25E0CD20B13}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,5 +23,9 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FC2AF6EE-2523-42EA-8284-F3DB000ABC1C}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\Utils\Utils.projitems*{1497cd12-b38a-4332-8f79-d25e0cd20b13}*SharedItemsImports = 13
+		..\Utils\Utils.projitems*{2c9d88ac-d995-4b03-ad62-d76edd12b127}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal

@@ -135,6 +135,32 @@ public class ViewerAuthenticationController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Получение данных.
+    /// </summary>
+    [HttpGet("{id}")]
+    [Authorize]
+    public async Task<IActionResult> Get(int id)
+    {
+        try
+        {
+            return await Task.Run<IActionResult>(() =>
+            {
+                var viewer = _storage.GetViewer(id);
+
+                return Ok(viewer);
+            });
+        }
+        catch (ExistsException ex)
+        {
+            return Problem(ex.Message, statusCode: (int)HttpStatusCode.Locked);
+        }
+        catch (Exception ex)
+        {
+            return Problem(ex.Message, statusCode: (int)HttpStatusCode.UnprocessableEntity);
+        }
+    }
+
 
     private readonly IConfiguration _configuration;
     private readonly UserStorage _storage;

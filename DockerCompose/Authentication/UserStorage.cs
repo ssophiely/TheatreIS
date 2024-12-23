@@ -2,6 +2,7 @@
 using Exceptions;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.EntityFrameworkCore;
+using SharedUtils;
 using StorageData;
 using System.Security.Cryptography;
 
@@ -78,6 +79,14 @@ public class UserStorage
             viewer.FullName = info.FullName;
 
         _dbContext.SaveChanges();
+    }
+
+    public ViewerInfoOut GetViewer(int id)
+    {
+        var viewer = _dbContext.Viewer.AsNoTracking().FirstOrDefault(v => v.Id == id) ??
+            throw new NotFoundException("Пользователь не найден");
+
+        return viewer.Convert<ViewerInfoOut, Viewer>();
     }
 
     public int GetAdminId(string name)

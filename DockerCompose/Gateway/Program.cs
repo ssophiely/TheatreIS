@@ -1,5 +1,6 @@
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using SharedUtils;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,8 @@ builder.Services.AddCors(options =>
               .AllowAnyHeader();
     });
 });
+
+builder.Services.AddAuthentication(builder.Configuration);
 
 builder.Services.AddOcelot(builder.Configuration);
 
@@ -30,6 +33,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors("AllowLocalhost3000");
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
