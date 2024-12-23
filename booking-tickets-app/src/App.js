@@ -1,22 +1,26 @@
-import './App.css';
+import "./App.css";
+
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { React, useState } from "react";
+
+import LoginPage from "./pages/LoginPage.js";
+import MainPage from "./pages/MainPage.js";
+import SignUpPage from "./pages/SignUpPage.js";
 
 function App() {
+  const [token, setToken] = useState(null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/login" element={<LoginPage setToken={setToken} />} />
+        <Route
+          path="/"
+          element={<MainPage token={token} setToken={setToken} />}
+        />
+        <Route path="/signup" element={<SignUpPage />} />
+      </Routes>
+    </Router>
   );
 }
 
