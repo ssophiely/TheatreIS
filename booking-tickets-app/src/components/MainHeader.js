@@ -48,7 +48,9 @@ export default function MainHeader({
                   </ul>
                 ) : (
                   <ul>
-                    <li onClick={() => navigate("/")}>Личная информация</li>
+                    <li onClick={() => setActiveSection("личные данные")}>
+                      Личная информация
+                    </li>
                     <li onClick={() => navigate("/")}> Билеты</li>
                     <li onClick={() => navigate("/")}> Статистика</li>
                     <li

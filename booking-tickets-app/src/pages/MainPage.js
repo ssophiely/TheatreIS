@@ -7,6 +7,7 @@ import "./MainPage.css";
 import RepertoireInfo from "../components/RepertoireInfo";
 import EmployeesInfo from "../components/EmployeesInfo";
 import MainHeader from "../components/MainHeader";
+import UserProfile from "../components/UserProfile";
 
 const GetSpecInfo = async (id) => {
   try {
@@ -119,6 +120,9 @@ function MainPage({ token, setToken }) {
             <EmployeesInfo data={employees} />
           )
         ) : null}
+      </main>
+      <main className="main-content">
+        {activeSection === "личные данные" && <UserProfile token={token} />}
       </main>
     </div>
   );
