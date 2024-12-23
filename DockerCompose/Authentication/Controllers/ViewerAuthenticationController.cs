@@ -32,7 +32,7 @@ public class ViewerAuthenticationController : ControllerBase
             {
                 if (_storage.VerifyViewer(viewer))
                 {
-                    var id = _storage.GetUserId(viewer.Mail);
+                    var user = _storage.GetUserId(viewer.Login);
 
                     var issuer = _configuration["JWT:Issuer"];
                     var audience = _configuration["JWT:Audience"];
@@ -40,9 +40,14 @@ public class ViewerAuthenticationController : ControllerBase
                     var signingCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256);
 
                     var subject = new ClaimsIdentity([
-                        new Claim("id", id.ToString()),
-                        new Claim("mail", viewer.Mail)
+                        new Claim("id", user.Id.ToString()),
+                        new Claim("mail", viewer.Login)
                     ]);
+
+                    if (user.Phone != null)
+                        subject.AddClaim(new Claim("phone", user.Phone));
+                    if (user.FullName != null)
+                        subject.AddClaim(new Claim("name", user.FullName));
 
                     var expires = DateTime.UtcNow.AddMinutes(60);
 

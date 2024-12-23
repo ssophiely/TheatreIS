@@ -3,6 +3,16 @@ using Ocelot.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowLocalhost3000", policy =>
+    {
+        policy.WithOrigins("http://localhost:3000")
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
+
 builder.Services.AddOcelot(builder.Configuration);
 
 builder.Services.AddControllers();
@@ -18,6 +28,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("AllowLocalhost3000");
 
 app.UseAuthorization();
 

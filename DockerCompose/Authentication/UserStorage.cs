@@ -31,7 +31,7 @@ public class UserStorage
 
         foreach (var adm in admins)
             if (adm.Name == admin.Name)
-                throw new ExistsException($"Администратор с логином {admin.Name} существует");
+                throw new ExistsException($"Администратор с логином {admin.Name} уже существует");
 
         var pas = EncryptPassword(admin.Password);
 
@@ -42,8 +42,8 @@ public class UserStorage
 
     public bool VerifyViewer(ViewerAuthInfo info)
     {
-        var viewer = _dbContext.Viewer.FirstOrDefault(a => a.Id == info.Id) ??
-             throw new NotFoundException("Администратор не найден");
+        var viewer = _dbContext.Viewer.FirstOrDefault(a => a.Mail == info.Login) ??
+             throw new NotFoundException($"Пользователь с логином {info.Login} не найден");
 
         (var storedHash, var inHash) = DecryptPassword(info.Password, viewer.Password);
 
@@ -88,12 +88,12 @@ public class UserStorage
         return admin.Id;
     }
 
-    public int GetUserId(string name)
+    public Viewer GetUserId(string name)
     {
         var user = _dbContext.Viewer.AsNoTracking().FirstOrDefault(v => v.Mail == name)
             ?? throw new NotFoundException($"Администратор с именем {name} не найден");
 
-        return user.Id;
+        return user;
     }
 
 
