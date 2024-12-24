@@ -17,6 +17,8 @@ public partial class TheatreDbContext : DbContext
 
     public virtual DbSet<Auditoriumsector> Auditoriumsector { get; set; }
 
+    public virtual DbSet<BoughtTickets> BoughtTickets { get; set; }
+
     public virtual DbSet<Employee> Employee { get; set; }
 
     public virtual DbSet<Genre> Genre { get; set; }
@@ -76,9 +78,9 @@ public partial class TheatreDbContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity.HasAlternateKey(e => e.Name);
-
             entity.ToTable("admin");
+
+            entity.HasIndex(e => e.Name, "Name_UNIQUE").IsUnique();
 
             entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.Name).HasMaxLength(45);
@@ -93,6 +95,13 @@ public partial class TheatreDbContext : DbContext
 
             entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.Name).HasMaxLength(50);
+        });
+
+        modelBuilder.Entity<BoughtTickets>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("bought_tickets");
         });
 
         modelBuilder.Entity<Employee>(entity =>
@@ -260,7 +269,7 @@ public partial class TheatreDbContext : DbContext
                 .HasNoKey()
                 .ToView("spectacles_boxoffice_year");
 
-            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.Name).HasMaxLength(50);
             entity.Property(e => e.TotalBoxOffice).HasPrecision(32);
         });
 
@@ -337,7 +346,9 @@ public partial class TheatreDbContext : DbContext
                 .HasNoKey()
                 .ToView("viewer_genre_visits");
 
-            entity.Property(e => e.GenreId).HasColumnName("genreID");
+            entity.Property(e => e.GenreName)
+                .HasMaxLength(50)
+                .HasColumnName("genreName");
             entity.Property(e => e.ViewerId).HasColumnName("viewerID");
         });
 

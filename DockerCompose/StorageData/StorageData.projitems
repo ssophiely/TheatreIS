@@ -12,6 +12,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\Act.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\Admin.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\Auditoriumsector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\BoughtTickets.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\Employee.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\Genre.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Storage\Models\Location.cs" />

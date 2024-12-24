@@ -17,14 +17,14 @@ public class ViewerStatisticsController : ControllerBase
     /// <summary>
     /// Получение количества посещений по жанрам.
     /// </summary>
-    [HttpGet("genre-visits")]
-    public async Task<IActionResult> GetGenreVisits()
+    [HttpGet("genre-visits/{id}")]
+    public async Task<IActionResult> GetGenreVisits(int id)
     {
         try
         {
             return await Task.Run<IActionResult>(() =>
             {
-                var info = _storage.GetGenreVisits();
+                var info = _storage.GetGenreVisits(id);
 
                 return Ok(info);
             });
@@ -38,14 +38,35 @@ public class ViewerStatisticsController : ControllerBase
     /// <summary>
     /// Получение часов просмотра спектаклей.
     /// </summary>
-    [HttpGet("hours-watching")]
-    public async Task<IActionResult> GetHoursWatching()
+    [HttpGet("hours-watching/{id}")]
+    public async Task<IActionResult> GetHoursWatching(int id)
     {
         try
         {
             return await Task.Run<IActionResult>(() =>
             {
-                var info = _storage.GetHoursWatching();
+                var info = _storage.GetHoursWatching(id);
+
+                return Ok(info);
+            });
+        }
+        catch (Exception ex)
+        {
+            return Problem(ex.Message, statusCode: (int)HttpStatusCode.UnprocessableEntity);
+        }
+    }
+
+    /// <summary>
+    /// Число купленных билетов.
+    /// </summary>
+    [HttpGet("bought-tickets/{id}")]
+    public async Task<IActionResult> GetTickets(int id)
+    {
+        try
+        {
+            return await Task.Run<IActionResult>(() =>
+            {
+                var info = _storage.GetTickets(id);
 
                 return Ok(info);
             });

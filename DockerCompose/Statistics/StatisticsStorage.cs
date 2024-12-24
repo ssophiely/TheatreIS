@@ -1,4 +1,5 @@
-﻿using StorageData;
+﻿using Microsoft.EntityFrameworkCore;
+using StorageData;
 
 namespace Statistics;
 
@@ -19,14 +20,19 @@ public class StatisticsStorage
         return [.. _dbContext.SpectaclesBoxofficeYear];
     }
 
-    public List<ViewerGenreVisits> GetGenreVisits()
+    public List<ViewerGenreVisits> GetGenreVisits(int id)
     {
-        return [.. _dbContext.ViewerGenreVisits];
+        return [.. _dbContext.ViewerGenreVisits.AsNoTracking().Where(v=>v.ViewerId==id)];
     }
 
-    public List<SumHoursWatching> GetHoursWatching()
+    public List<SumHoursWatching> GetHoursWatching(int id)
     {
-        return [.. _dbContext.SumHoursWatching];
+        return [.. _dbContext.SumHoursWatching.AsNoTracking().Where(v => v.ViewerId == id)];
+    }
+
+    public List<BoughtTickets> GetTickets(int id)
+    {
+        return [.. _dbContext.BoughtTickets.AsNoTracking().Where(v => v.ViewerId == id)];
     }
 
 

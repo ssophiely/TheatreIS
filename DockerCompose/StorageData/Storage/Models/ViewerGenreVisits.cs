@@ -7,7 +7,7 @@ public partial class ViewerGenreVisits
 {
     public int ViewerId { get; set; }
 
-    public int GenreId { get; set; }
+    public string GenreName { get; set; } = null!;
 
     public long VisitCount { get; set; }
 }
