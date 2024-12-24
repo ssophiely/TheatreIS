@@ -52,7 +52,9 @@ export default function MainHeader({
                       Личная информация
                     </li>
                     <li onClick={() => navigate("/")}> Билеты</li>
-                    <li onClick={() => navigate("/")}> Статистика</li>
+                    <li onClick={() => setActiveSection("статистика")}>
+                      Статистика
+                    </li>
                     <li
                       onClick={() => {
                         setToken(null);

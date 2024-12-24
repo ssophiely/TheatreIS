@@ -1,5 +1,4 @@
 import { React, useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 
 import "./MainPage.css";
@@ -8,6 +7,7 @@ import RepertoireInfo from "../components/RepertoireInfo";
 import EmployeesInfo from "../components/EmployeesInfo";
 import MainHeader from "../components/MainHeader";
 import UserProfile from "../components/UserProfile";
+import Statistics from "../components/Statistics";
 
 const GetSpecInfo = async (id) => {
   try {
@@ -36,7 +36,6 @@ function MainPage({ token, setToken }) {
       );
       const data = response.data;
 
-      console.log(data);
       setEmployees(data);
     } catch (error) {
       if (error.response) {
@@ -79,7 +78,6 @@ function MainPage({ token, setToken }) {
             .sort((a, b) => new Date(a.date) - new Date(b.date)),
         });
       }
-      console.log(repData);
       setRepertoire(repData);
     } catch (error) {
       if (error.response) {
@@ -123,6 +121,9 @@ function MainPage({ token, setToken }) {
       </main>
       <main className="main-content">
         {activeSection === "личные данные" && <UserProfile token={token} />}
+      </main>
+      <main className="main-content">
+        {activeSection === "статистика" && <Statistics token={token} />}
       </main>
     </div>
   );
