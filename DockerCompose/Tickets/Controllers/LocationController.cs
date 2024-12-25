@@ -44,7 +44,7 @@ public class LocationController : ControllerBase
     /// <summary>
     /// Получение информации о местах по идентификатору показа.
     /// </summary>
-    [HttpGet("act/id")]
+    [HttpGet("act/{id}")]
     public async Task<IActionResult> GetLocations(int id)
     {
         try

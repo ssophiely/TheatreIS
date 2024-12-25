@@ -17,7 +17,7 @@ public partial class Location
 
     public int? LocationStateId { get; set; }
 
-    public int? ActId { get; set; }
+    public int ActId { get; set; }
 
     public virtual Act? Act { get; set; }
 

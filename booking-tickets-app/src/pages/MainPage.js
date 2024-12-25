@@ -8,11 +8,12 @@ import EmployeesInfo from "../components/EmployeesInfo";
 import MainHeader from "../components/MainHeader";
 import UserProfile from "../components/UserProfile";
 import Statistics from "../components/Statistics";
+import Tickets from "../components/Tickets";
 
 const GetSpecInfo = async (id) => {
   try {
     const response = await axios.get(
-      `https://localhost:6001/gateway/spectacles/id?id=${id}`
+      `https://localhost:6001/gateway/spectacles/${id}`
     );
     return response.data; // возвращаем данные
   } catch (error) {
@@ -78,6 +79,7 @@ function MainPage({ token, setToken }) {
             .sort((a, b) => new Date(a.date) - new Date(b.date)),
         });
       }
+      console.log(10, repData);
       setRepertoire(repData);
     } catch (error) {
       if (error.response) {
@@ -124,6 +126,9 @@ function MainPage({ token, setToken }) {
       </main>
       <main className="main-content">
         {activeSection === "статистика" && <Statistics token={token} />}
+      </main>
+      <main className="main-content">
+        {activeSection === "билеты" && <Tickets token={token} />}
       </main>
     </div>
   );

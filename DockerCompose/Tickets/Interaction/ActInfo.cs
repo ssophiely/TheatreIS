@@ -1,4 +1,4 @@
-﻿namespace Repertoire.Interaction.Out;
+﻿namespace Tickets.Interaction;
 
 public class ActInfo
 {

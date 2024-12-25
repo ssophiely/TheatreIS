@@ -1,8 +1,22 @@
-import React from "react";
+import { React, useState } from "react";
 import "./RepInfo.css";
+import TheatreHall from "./TheatreHall";
 
 // Пример компонента, который будет отображать информацию о каждом спектакле
 const RepertoireInfoCard = ({ repertoire }) => {
+  const [showModal, setShowModal] = useState(false);
+  const [actId, setActId] = useState(null);
+
+  const handleDateClick = (id) => {
+    console.log("id", id);
+    setActId(id);
+    setShowModal(true); // Показываем модальное окно
+  };
+
+  const closeModal = () => {
+    setShowModal(false); // Закрываем модальное окно
+  };
+
   return (
     <div className="repertoire-card">
       <h2>Спектакль "{repertoire.name}"</h2>
@@ -39,11 +53,17 @@ const RepertoireInfoCard = ({ repertoire }) => {
 
       <div className="acts-container">
         {repertoire.acts.map((item) => (
-          <div key={item.id} className="date-time-date">
+          <div
+            key={item.id}
+            className="date-time-date"
+            onClick={() => handleDateClick(item.id)}
+          >
             {formatDate(item.date)}
           </div>
         ))}
       </div>
+
+      {showModal && <TheatreHall closeModal={closeModal} id={actId} />}
     </div>
   );
 };

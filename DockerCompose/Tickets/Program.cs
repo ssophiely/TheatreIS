@@ -1,10 +1,15 @@
 using StorageData;
 using SharedUtils;
 using Tickets.Storage;
+using Tickets.Clients;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddAuthentication(builder.Configuration);
+
+builder.Services.AddTransient<SpectaclesClient>();
+
+builder.Services.AddTransient<RepertoireClient>();
 
 builder.Services.AddScoped<TheatreDbContext>();
 

@@ -51,7 +51,7 @@ export default function MainHeader({
                     <li onClick={() => setActiveSection("личные данные")}>
                       Личная информация
                     </li>
-                    <li onClick={() => navigate("/")}> Билеты</li>
+                    <li onClick={() => setActiveSection("билеты")}> Билеты</li>
                     <li onClick={() => setActiveSection("статистика")}>
                       Статистика
                     </li>

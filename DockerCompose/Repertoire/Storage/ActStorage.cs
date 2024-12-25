@@ -26,10 +26,12 @@ public class ActStorage
 
     public ActInfo Get(int id)
     {
-        var act = _dbContext.Act.AsNoTracking().FirstOrDefault(r => r.Id == id)
+        var act = _dbContext.Act.Include(a => a.Repertoire).AsNoTracking().FirstOrDefault(r => r.Id == id)
             ?? throw new NotFoundException($"Показ с id {id} не найден");
 
-        return act.Convert<ActInfo, Act>();
+        var info = act.Convert<ActInfo, Act>();
+        info.SpectacleId = act.Repertoire.SpectacleId;
+        return info;
     }
 
     public void Add(ActCreateInfo info)

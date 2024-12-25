@@ -59,7 +59,9 @@ const Statistics = ({ token }) => {
             },
           }
         );
-        setHoursWatched(response.data[0].totalHoursWatched);
+        console.log(response.data);
+        let hours = response.data[0] ? response.data[0].totalHoursWatched : 0;
+        setHoursWatched(hours);
       } catch (error) {
         console.error("Ошибка получения данных по часам", error);
       }
@@ -75,8 +77,8 @@ const Statistics = ({ token }) => {
             },
           }
         );
-        console.log(response.data);
-        setTickets(response.data[0].ticketsCount);
+        let tickets = response.data[0] ? response.data[0].ticketsCount : 0;
+        setTickets(tickets);
       } catch (error) {
         console.error("Ошибка получения купленных билетов", error);
       }
@@ -135,7 +137,7 @@ const Statistics = ({ token }) => {
         {genreVisits.length > 0 ? (
           <Pie data={genreData} options={options} />
         ) : (
-          <p>Загружаются данные...</p>
+          <p>Данных нет</p>
         )}
       </div>
     </div>

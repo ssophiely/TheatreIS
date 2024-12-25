@@ -61,7 +61,7 @@ public class SpectaclesController : ControllerBase
     /// <summary>
     /// Получение данных по спектаклю.
     /// </summary>
-    [HttpGet("id")]
+    [HttpGet("{id}")]
     public async Task<IActionResult> Get(int id)
     {
         try
@@ -108,7 +108,7 @@ public class SpectaclesController : ControllerBase
     /// <summary>
     /// Удаление спектакля.
     /// </summary>
-    [HttpDelete("id")]
+    [HttpDelete("{id}")]
     [Authorize]
     public async Task<IActionResult> Delete(int id)
     {
@@ -134,7 +134,7 @@ public class SpectaclesController : ControllerBase
     /// <summary>
     /// Изменение данных по спектаклю.
     /// </summary>
-    [HttpPut("id")]
+    [HttpPut("{id}")]
     [Authorize]
     public async Task<IActionResult> Update(int id, SpectacleUpdateInfo info)
     {

@@ -164,7 +164,7 @@ public partial class TheatreDbContext : DbContext
                 .HasForeignKey(d => d.LocationStateId)
                 .HasConstraintName("StateIdFK");
 
-            entity.HasOne(d => d.Sector).WithMany(p => p.Location)
+            entity.HasOne(d => d.Sector).WithMany(p => p.Locations)
                 .HasForeignKey(d => d.SectorId)
                 .HasConstraintName("SectorIdFK");
         });

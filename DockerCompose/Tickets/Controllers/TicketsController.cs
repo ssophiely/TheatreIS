@@ -1,8 +1,12 @@
 using Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SharedUtils;
+using StorageData;
 using System.Net;
+using Tickets.Clients;
 using Tickets.Interaction.In;
+using Tickets.Interaction.Out;
 using Tickets.Storage;
 
 namespace Tickets.Controllers;
@@ -11,9 +15,11 @@ namespace Tickets.Controllers;
 [Route("tickets")]
 public class TicketsController : ControllerBase
 {
-    public TicketsController(TicketsStorage storage)
+    public TicketsController(TicketsStorage storage, SpectaclesClient client, RepertoireClient repClient)
     {
         _storage = storage;
+        _specClient = client;
+        _repClient = repClient;
     }
 
     /// <summary>
@@ -67,16 +73,39 @@ public class TicketsController : ControllerBase
     /// <summary>
     /// Получение билетов по идентификатору зрителя.
     /// </summary>
-    [HttpGet("viewer/id")]
+    [HttpGet("viewer/{id}")]
     public async Task<IActionResult> GetByViewerId(int id)
     {
         try
         {
-            return await Task.Run<IActionResult>(() =>
+            return await Task.Run<IActionResult>(async () =>
             {
                 var tickets = _storage.GetByViewerId(id);
 
-                return Ok(tickets);
+                List<TicketInfo> ticketInfos = [];
+
+                foreach (var ticket in tickets)
+                {
+                    TicketInfo info = ticket.Convert<TicketInfo, Ticket>();
+                    Console.WriteLine("Перевели");
+                    info.StateName = ticket.State.Name;
+                    info.Row = ticket.Location.Row;
+                    info.Seat = ticket.Location.Seat;
+                    info.Price = ticket.Location.Price;
+                    info.Sector = ticket.Location.Sector!.Name;
+
+                    var actInfo = await _repClient.GetActInfo(ticket.Location.ActId);
+                    Console.WriteLine(actInfo.SpectacleId);
+                    var specInfo = await _specClient.GetSpectacle(actInfo.SpectacleId);
+                    Console.WriteLine("Перевели2");
+
+                    info.SpectacleName = specInfo.Name;
+                    info.Date = actInfo.Date;
+
+                    ticketInfos.Add(info);
+                }
+
+                return Ok(ticketInfos);
             });
         }
         catch (Exception ex)
@@ -133,4 +162,8 @@ public class TicketsController : ControllerBase
     }
 
     private readonly TicketsStorage _storage;
+
+    private readonly SpectaclesClient _specClient;
+
+    private readonly RepertoireClient _repClient;
 }

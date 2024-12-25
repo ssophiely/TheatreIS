@@ -41,7 +41,7 @@ public class ActController : ControllerBase
     /// <summary>
     /// Удаление показа.
     /// </summary>
-    [HttpDelete("id")]
+    [HttpDelete("{id}")]
     [Authorize]
     public async Task<IActionResult> Delete(int id)
     {
@@ -67,7 +67,7 @@ public class ActController : ControllerBase
     /// <summary>
     /// Получение показа.
     /// </summary>
-    [HttpGet("id")]
+    [HttpGet("{id}")]
     public async Task<IActionResult> Get(int id)
     {
         try

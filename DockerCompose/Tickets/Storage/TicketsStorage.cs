@@ -31,11 +31,10 @@ public class TicketsStorage
         _dbContext.SaveChanges();
     }
 
-    public List<TicketInfo> GetByViewerId(int id)
+    public List<Ticket> GetByViewerId(int id)
     {
-        var tickets = _dbContext.Ticket.AsNoTracking().Where(t => t.ViewerId == id);
-
-        return [.. tickets.Select(t => t.Convert<TicketInfo, Ticket>())];
+        return _dbContext.Ticket.Include(t => t.State).Include(t => t.Location).ThenInclude(l => l.Sector)
+            .AsNoTracking().Where(t => t.ViewerId == id).ToList();
     }
 
     public List<StateInfo> GetStates()
