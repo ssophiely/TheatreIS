@@ -14,10 +14,8 @@ const TheatreHall = ({ id }) => {
       rows: [
         { seats: 20, row: 1 },
         { seats: 20, row: 2 },
-        { seats: 20, row: 3 },
-        { seats: 20, row: 4 },
-        { seats: 24, row: 5 },
-        { seats: 24, row: 6 },
+        { seats: 24, row: 3 },
+        { seats: 24, row: 4 },
       ],
     },
     {
@@ -32,11 +30,17 @@ const TheatreHall = ({ id }) => {
       ],
     },
     {
-      name: "Бенуар",
+      name: "Левый Бенуар",
       id: 3,
       rows: [
         { seats: 6, row: 1, side: "left" },
         { seats: 6, row: 2, side: "left" },
+      ],
+    },
+    {
+      name: "Правый Бенуар",
+      id: 4,
+      rows: [
         { seats: 6, row: 1, side: "right" },
         { seats: 6, row: 2, side: "right" },
       ],
@@ -45,11 +49,10 @@ const TheatreHall = ({ id }) => {
 
   // Функция для загрузки данных
   useEffect(() => {
-    console.log(id);
     axios
       .get(`https://localhost:6001/gateway/location/act/${id}`)
       .then((response) => {
-        console.log(response.data);
+        console.log("места", response.data);
         setLocations(response.data); // Сохраняем полученные данные
         setLoading(false);
       })
@@ -57,11 +60,10 @@ const TheatreHall = ({ id }) => {
         console.error("Ошибка при загрузке данных", error);
         setLoading(false);
       });
-  }, []);
+  }, [id]);
 
   // Функция для распределения мест
   const assignSeats = (sections, locations) => {
-    // Создаем копию секций и заполняем их данными
     const updatedSections = sections.map((section) => {
       return {
         ...section,
@@ -78,8 +80,8 @@ const TheatreHall = ({ id }) => {
               (location) => location.seat === index + 1
             );
             return {
-              seatId: seat ? seat.id : null,
-              seatNumber: index + 1,
+              seatId: seat ? seat.id : null, // сохраняем идентификатор места
+              seatNumber: index + 1, // отображаем номер места
             };
           });
 
@@ -103,25 +105,63 @@ const TheatreHall = ({ id }) => {
   return (
     <div className="theater-layout">
       <div className="sections-container">
-        {updatedSections.map((section, sectionIndex) => (
-          <div
-            key={sectionIndex}
-            className={`section ${section.name.toLowerCase()}`}
-          >
-            <h2>{section.name}</h2>
-            {section.rows.map((row, rowIndex) => (
-              <div key={rowIndex} className={`row ${row.side ? row.side : ""}`}>
-                {row.seats.map((seat, seatIndex) => (
-                  <div key={seatIndex} className="seat">
-                    {seat.seatId
-                      ? `Место ${seat.seatNumber} (ID: ${seat.seatId})`
-                      : `Место ${seat.seatNumber}`}
+        {/* Размещение остальных секторов (Партер и Амфитеатр) по-прежнему вертикально */}
+        {updatedSections
+          .filter((section) => section.id !== 3 && section.id !== 4)
+          .map((section, sectionIndex) => (
+            <div
+              key={sectionIndex}
+              className={`section ${section.name
+                .toLowerCase()
+                .replace(" ", "-")}`}
+            >
+              <h2>{section.name}</h2>
+              {section.rows.map((row, rowIndex) => (
+                <div
+                  key={rowIndex}
+                  className={`row ${row.side ? row.side : ""}`}
+                >
+                  {row.seats.map((seat, seatIndex) => (
+                    <div key={seatIndex} className="seat">
+                      {seat.seatId
+                        ? `${seat.seatNumber}`
+                        : `${seat.seatNumber}`}
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          ))}
+
+        {/* Размещение Левого и Правого Бенуара рядом, внизу */}
+        <div className="benuar-sections">
+          {updatedSections
+            .filter((section) => section.id === 3 || section.id === 4)
+            .map((section, sectionIndex) => (
+              <div
+                key={sectionIndex}
+                className={`section benuar ${section.name
+                  .toLowerCase()
+                  .replace(" ", "-")}`}
+              >
+                <h2>{section.name}</h2>
+                {section.rows.map((row, rowIndex) => (
+                  <div
+                    key={rowIndex}
+                    className={`row ${row.side ? row.side : ""}`}
+                  >
+                    {row.seats.map((seat, seatIndex) => (
+                      <div key={seatIndex} className="seat">
+                        {seat.seatId
+                          ? `${seat.seatNumber}`
+                          : `${seat.seatNumber}`}
+                      </div>
+                    ))}
                   </div>
                 ))}
               </div>
             ))}
-          </div>
-        ))}
+        </div>
       </div>
     </div>
   );

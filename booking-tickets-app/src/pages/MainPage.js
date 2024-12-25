@@ -10,20 +10,6 @@ import UserProfile from "../components/UserProfile";
 import Statistics from "../components/Statistics";
 import Tickets from "../components/Tickets";
 
-const GetSpecInfo = async (id) => {
-  try {
-    const response = await axios.get(
-      `https://localhost:6001/gateway/spectacles/${id}`
-    );
-    return response.data; // возвращаем данные
-  } catch (error) {
-    if (error.response) {
-      const { detail, status } = error.response.data;
-      alert(`Статус ошибки ${status}: ${detail}`);
-    }
-  }
-};
-
 function MainPage({ token, setToken }) {
   const [activeSection, setActiveSection] = useState("репертуар");
   const [repertoire, setRepertoire] = useState([]);
@@ -61,16 +47,14 @@ function MainPage({ token, setToken }) {
 
       // Проходим по каждому спектаклю и получаем информацию о нем
       for (const spec of data) {
-        const specInfo = await GetSpecInfo(spec.spectacleId); // ждем получения данных
-
         repData.push({
           id: spec.id,
           rating: spec.rating,
-          name: specInfo.name,
-          duration: specInfo.duration,
-          plot: specInfo.plot,
-          genre: specInfo.genre,
-          roles: specInfo.role.map((role) => ({
+          name: spec.spectacle.name,
+          duration: spec.spectacle.duration,
+          plot: spec.spectacle.plot,
+          genre: spec.spectacle.genre,
+          roles: spec.spectacle.role.map((role) => ({
             roleName: role.name,
             empName: role.empName,
           })),

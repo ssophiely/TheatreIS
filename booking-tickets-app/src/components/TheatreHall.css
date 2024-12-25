@@ -41,3 +41,14 @@ h2 {
   text-align: center;
   border: 1px solid #007bff;
 }
+
+/* Размещение Левого и Правого Бенуара рядом внизу */
+.benuar-sections {
+  display: flex;
+  gap: 30px;
+}
+
+/* Стили для секторов Бенуара */
+.section.benuar {
+  width: 100%;
+}
