@@ -9,7 +9,6 @@ const fetchTicketData = async (id) => {
     const response = await axios.get(
       `https://localhost:6001/gateway/tickets/viewer/${id}`
     );
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error("Ошибка получения билетов", error);
@@ -74,7 +73,7 @@ const TicketTable = ({ token }) => {
           },
         }
       );
-      setComponentKey((prevKey) => prevKey + 1); // Обновляем компонент после сохранения
+      setComponentKey((prevKey) => prevKey + 1);
     } catch (error) {
       console.error("Ошибка изменения рейтинга", error);
     }

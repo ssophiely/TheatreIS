@@ -16,6 +16,7 @@ h3 {
   width: 70%;
   margin-left: 15%;
   text-align: left;
+  user-select: none;
 }
 
 .info-list {
@@ -62,11 +63,16 @@ h3 {
   width: 150px;
   color: black;
   cursor: pointer;
+  user-select: none;
 }
 
 .date-time-date:hover {
   transform: translateY(-4px);
   background-color: #eebe37;
+}
+
+.active {
+  background-color: #eebd37dd;
 }
 
 /* Стиль для блока фильтров */
@@ -113,4 +119,9 @@ h3 {
 
 .filters input[type="text"]::placeholder {
   color: #aaa;
+}
+
+.disable {
+  pointer-events: none;
+  opacity: 0.5;
 }

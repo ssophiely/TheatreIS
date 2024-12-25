@@ -1,6 +1,7 @@
 using Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Repertoire.Clients;
 using Repertoire.Interaction.In;
 using Repertoire.Storage;
 using System.Net;
@@ -11,9 +12,10 @@ namespace Repertoire.Controllers;
 [Route("repertoire")]
 public class RepertoireController : ControllerBase
 {
-    public RepertoireController(RepertoireStorage storage)
+    public RepertoireController(RepertoireStorage storage, SpectaclesClient client)
     {
         _storage = storage;
+        _client = client;
     }
 
     /// <summary>
@@ -49,9 +51,14 @@ public class RepertoireController : ControllerBase
     {
         try
         {
-            return await Task.Run<IActionResult>(() =>
+            return await Task.Run<IActionResult>(async () =>
             {
                 var repertoire = _storage.GetByDate(date);
+
+                foreach (var rep in repertoire)
+                {
+                    rep.Spectacle = await _client.GetSpectacle(rep.SpectacleId);
+                }
 
                 return Ok(repertoire);
             });
@@ -118,7 +125,7 @@ public class RepertoireController : ControllerBase
         }
     }
 
-
+    private readonly SpectaclesClient _client;
 
     private readonly RepertoireStorage _storage;
 }

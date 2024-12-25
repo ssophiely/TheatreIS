@@ -63,7 +63,7 @@ function MainPage({ token, setToken }) {
             .sort((a, b) => new Date(a.date) - new Date(b.date)),
         });
       }
-      console.log(10, repData);
+      console.log(repData);
       setRepertoire(repData);
     } catch (error) {
       if (error.response) {
@@ -92,7 +92,7 @@ function MainPage({ token, setToken }) {
           loading ? (
             <div>Загрузка...</div>
           ) : (
-            <RepertoireInfo data={repertoire} />
+            <RepertoireInfo data={repertoire} token={token} />
           )
         ) : null}
       </main>

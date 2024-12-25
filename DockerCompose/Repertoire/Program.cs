@@ -1,3 +1,4 @@
+using Repertoire.Clients;
 using Repertoire.Storage;
 using SharedUtils;
 using StorageData;
@@ -5,6 +6,8 @@ using StorageData;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddAuthentication(builder.Configuration);
+
+builder.Services.AddTransient<SpectaclesClient>();
 
 builder.Services.AddScoped<TheatreDbContext>();
 

@@ -1,51 +1,109 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./TheatreHall.css"; // Импортируем стили
+import "./TheatreHall.css";
+import { jwtDecode } from "jwt-decode";
 
-const TheatreHall = ({ id }) => {
+// Данные для мест
+const sections = [
+  {
+    name: "Партер",
+    id: 1,
+    rows: [
+      { seats: 20, row: 1 },
+      { seats: 20, row: 2 },
+      { seats: 24, row: 3 },
+      { seats: 24, row: 4 },
+    ],
+  },
+  {
+    name: "Амфитеатр",
+    id: 2,
+    rows: [
+      { seats: 20, row: 1 },
+      { seats: 20, row: 2 },
+      { seats: 20, row: 3 },
+      { seats: 24, row: 4 },
+      { seats: 24, row: 5 },
+    ],
+  },
+  {
+    name: "Левый Бенуар",
+    id: 3,
+    rows: [
+      { seats: 6, row: 1, side: "left" },
+      { seats: 6, row: 2, side: "left" },
+    ],
+  },
+  {
+    name: "Правый Бенуар",
+    id: 4,
+    rows: [
+      { seats: 6, row: 1, side: "right" },
+      { seats: 6, row: 2, side: "right" },
+    ],
+  },
+];
+
+const TheatreHall = ({ id, token }) => {
   const [locations, setLocations] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedSeats, setSelectedSeats] = useState(new Set());
+  const [componentKey, setComponentKey] = useState(0);
 
-  // Данные для мест
-  const sections = [
-    {
-      name: "Партер",
-      id: 1,
-      rows: [
-        { seats: 20, row: 1 },
-        { seats: 20, row: 2 },
-        { seats: 24, row: 3 },
-        { seats: 24, row: 4 },
-      ],
-    },
-    {
-      name: "Амфитеатр",
-      id: 2,
-      rows: [
-        { seats: 20, row: 1 },
-        { seats: 20, row: 2 },
-        { seats: 20, row: 3 },
-        { seats: 24, row: 4 },
-        { seats: 24, row: 5 },
-      ],
-    },
-    {
-      name: "Левый Бенуар",
-      id: 3,
-      rows: [
-        { seats: 6, row: 1, side: "left" },
-        { seats: 6, row: 2, side: "left" },
-      ],
-    },
-    {
-      name: "Правый Бенуар",
-      id: 4,
-      rows: [
-        { seats: 6, row: 1, side: "right" },
-        { seats: 6, row: 2, side: "right" },
-      ],
-    },
-  ];
+  const inSelected = (seat) => {
+    const seatString = JSON.stringify(seat);
+    return Array.from(selectedSeats).some(
+      (s) => JSON.stringify(s) === seatString
+    );
+  };
+
+  const locationClick = (seat) => {
+    if (token === null || token === undefined) {
+      alert("Пройдите авторизацию!");
+      return;
+    }
+
+    if (seat.stateId === 2) return;
+
+    setSelectedSeats((prevSelectedSeats) => {
+      const updatedSeats = new Set(prevSelectedSeats);
+      console.log(inSelected(seat));
+      if (inSelected(seat)) {
+        updatedSeats.forEach((s) => {
+          if (s.seatId === seat.seatId) updatedSeats.delete(s);
+        });
+      } else {
+        updatedSeats.add(seat);
+      }
+      console.log(updatedSeats);
+      return updatedSeats;
+    });
+  };
+
+  const CreateTicket = async (stateId) => {
+    for (const seat of selectedSeats) {
+      await axios
+        .post(
+          `https://localhost:6001/gateway/tickets`,
+          {
+            viewerId: jwtDecode(token).id,
+            stateId: stateId,
+            locationId: seat.seatId,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+        .catch((error) => {
+          console.error("Ошибка при создании билета", error);
+          setLoading(false);
+        });
+    }
+    setSelectedSeats(new Set());
+    setComponentKey((prevKey) => prevKey + 1);
+  };
 
   // Функция для загрузки данных
   useEffect(() => {
@@ -60,7 +118,7 @@ const TheatreHall = ({ id }) => {
         console.error("Ошибка при загрузке данных", error);
         setLoading(false);
       });
-  }, [id]);
+  }, [id, componentKey]);
 
   // Функция для распределения мест
   const assignSeats = (sections, locations) => {
@@ -82,6 +140,9 @@ const TheatreHall = ({ id }) => {
             return {
               seatId: seat ? seat.id : null, // сохраняем идентификатор места
               seatNumber: index + 1, // отображаем номер места
+              row: seat.row,
+              price: seat.price,
+              stateId: seat.locationStateId,
             };
           });
 
@@ -122,10 +183,18 @@ const TheatreHall = ({ id }) => {
                   className={`row ${row.side ? row.side : ""}`}
                 >
                   {row.seats.map((seat, seatIndex) => (
-                    <div key={seatIndex} className="seat">
-                      {seat.seatId
-                        ? `${seat.seatNumber}`
-                        : `${seat.seatNumber}`}
+                    <div
+                      key={seatIndex}
+                      className={
+                        seat.stateId === 2
+                          ? "redSeat"
+                          : inSelected(seat)
+                          ? "greenSeat"
+                          : "seat"
+                      }
+                      onClick={() => locationClick(seat)}
+                    >
+                      {seat.seatNumber}
                     </div>
                   ))}
                 </div>
@@ -151,10 +220,18 @@ const TheatreHall = ({ id }) => {
                     className={`row ${row.side ? row.side : ""}`}
                   >
                     {row.seats.map((seat, seatIndex) => (
-                      <div key={seatIndex} className="seat">
-                        {seat.seatId
-                          ? `${seat.seatNumber}`
-                          : `${seat.seatNumber}`}
+                      <div
+                        key={seatIndex}
+                        className={
+                          seat.stateId === 2
+                            ? "redSeat"
+                            : inSelected(seat)
+                            ? "greenSeat"
+                            : "seat"
+                        }
+                        onClick={() => locationClick(seat)}
+                      >
+                        {seat.seatNumber}
                       </div>
                     ))}
                   </div>
@@ -162,6 +239,26 @@ const TheatreHall = ({ id }) => {
               </div>
             ))}
         </div>
+        {selectedSeats.size > 0 && (
+          <div className="pay_container">
+            <h3 className="pay">
+              Сумма:{" "}
+              {[...selectedSeats].reduce((sum, item) => sum + item.price, 0)}{" "}
+            </h3>
+            <button
+              className="create_ticket_btn"
+              onClick={() => CreateTicket(1)}
+            >
+              Забронировать
+            </button>
+            <button
+              className="create_ticket_btn2"
+              onClick={() => CreateTicket(2)}
+            >
+              Оплатить
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

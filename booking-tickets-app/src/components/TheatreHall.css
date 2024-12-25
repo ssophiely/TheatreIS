@@ -29,7 +29,10 @@ h2 {
   justify-content: center;
 }
 
-.seat {
+.seat,
+.redSeat,
+.greenSeat {
+  user-select: none;
   width: 30px;
   height: 30px;
   display: flex;
@@ -42,6 +45,16 @@ h2 {
   border: 1px solid #007bff;
 }
 
+.redSeat {
+  border: 1px solid #ff3700;
+  background-color: rgba(236, 68, 35, 0.583);
+}
+
+.greenSeat {
+  border: 1px solid #51a805;
+  background-color: rgba(119, 235, 31, 0.453);
+}
+
 /* Размещение Левого и Правого Бенуара рядом внизу */
 .benuar-sections {
   display: flex;
@@ -51,4 +64,61 @@ h2 {
 /* Стили для секторов Бенуара */
 .section.benuar {
   width: 100%;
+}
+
+.create_ticket_btn,
+.create_ticket_btn2 {
+  width: 150px;
+  height: 45px;
+  margin-right: 10px;
+  margin-right: 10px;
+  font-weight: bold;
+  font-size: 12px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.create_ticket_btn:focus {
+  outline: none;
+}
+
+/* Кнопка "Забронировать" */
+.create_ticket_btn {
+  background-color: #007bff; /* Синий */
+  color: white;
+}
+
+.create_ticket_btn:hover {
+  background-color: #0056b3; /* Темно-синий при наведении */
+  box-shadow: 0 4px 12px rgba(0, 91, 255, 0.3);
+}
+
+.create_ticket_btn:active {
+  background-color: #004085; /* Темно-синий при нажатии */
+  transform: translateY(2px); /* Эффект нажатия */
+}
+
+/* Кнопка "Оплатить" */
+.create_ticket_btn2 {
+  background-color: #28a745; /* Зеленый */
+  color: white;
+}
+
+.create_ticket_btn2:hover {
+  background-color: #218838; /* Темно-зеленый при наведении */
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+.create_ticket_btn2:active {
+  background-color: #1e7e34; /* Темно-зеленый при нажатии */
+  transform: translateY(2px); /* Эффект нажатия */
+}
+
+.pay {
+  text-align: left;
 }
