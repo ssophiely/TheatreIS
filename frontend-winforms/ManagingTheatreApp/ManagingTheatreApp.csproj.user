@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Compile Update="MenuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="MenuForms\ActsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="MenuForms\HallForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="MenuForms\RepertoireForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="MenuForms\StatisticsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ModalWindows\ShowEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="MenuForms\SpectaclesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ModalWindows\ShowView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="SignInForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="SignUpForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>
