@@ -197,7 +197,7 @@ const TicketTable = ({ token }) => {
                 <button
                   onClick={() => handlePay(ticket.id)}
                   disabled={
-                    [1, 3].includes(ticket.stateId) ||
+                    [2, 3].includes(ticket.stateId) ||
                     new Date(ticket.date) < new Date()
                   } // Кнопка будет неактивной, если состояние не позволяет оплатить
                 >
