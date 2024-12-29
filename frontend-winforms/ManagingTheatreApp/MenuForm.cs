@@ -8,13 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ManagingTheatreApp
+namespace ManagingTheatreApp;
+
+public partial class MenuForm : Form
 {
-    public partial class MenuForm : Form
+    public MenuForm()
     {
-        public MenuForm()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
+
+    public string Token { get; set; }  
+
+    public SignInForm SignInForm { get; set; }
 }

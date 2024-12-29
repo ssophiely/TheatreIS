@@ -30,9 +30,9 @@
         {
             label1 = new Label();
             label2 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            button1 = new Button();
+            login = new TextBox();
+            password = new TextBox();
+            signin_btn = new Button();
             linkLabel1 = new LinkLabel();
             SuspendLayout();
             // 
@@ -56,31 +56,33 @@
             label2.TabIndex = 1;
             label2.Text = "Пароль";
             // 
-            // textBox1
+            // login
             // 
-            textBox1.Font = new Font("Times New Roman", 12F);
-            textBox1.Location = new Point(257, 63);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(226, 30);
-            textBox1.TabIndex = 2;
+            login.Font = new Font("Times New Roman", 12F);
+            login.Location = new Point(257, 63);
+            login.Name = "login";
+            login.Size = new Size(226, 30);
+            login.TabIndex = 2;
             // 
-            // textBox2
+            // password
             // 
-            textBox2.Font = new Font("Times New Roman", 12F);
-            textBox2.Location = new Point(257, 132);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(226, 30);
-            textBox2.TabIndex = 3;
+            password.Font = new Font("Times New Roman", 12F);
+            password.Location = new Point(257, 132);
+            password.Name = "password";
+            password.Size = new Size(226, 30);
+            password.TabIndex = 3;
+            password.UseSystemPasswordChar = true;
             // 
-            // button1
+            // signin_btn
             // 
-            button1.Font = new Font("Times New Roman", 12F);
-            button1.Location = new Point(335, 210);
-            button1.Name = "button1";
-            button1.Size = new Size(148, 29);
-            button1.TabIndex = 4;
-            button1.Text = "Войти";
-            button1.UseVisualStyleBackColor = true;
+            signin_btn.Font = new Font("Times New Roman", 12F);
+            signin_btn.Location = new Point(335, 210);
+            signin_btn.Name = "signin_btn";
+            signin_btn.Size = new Size(148, 29);
+            signin_btn.TabIndex = 4;
+            signin_btn.Text = "Войти";
+            signin_btn.UseVisualStyleBackColor = true;
+            signin_btn.Click += signin_btn_Click;
             // 
             // linkLabel1
             // 
@@ -92,6 +94,7 @@
             linkLabel1.TabIndex = 5;
             linkLabel1.TabStop = true;
             linkLabel1.Text = "Пройти регистрацию";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
             // 
             // SignInForm
             // 
@@ -99,9 +102,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(682, 362);
             Controls.Add(linkLabel1);
-            Controls.Add(button1);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(signin_btn);
+            Controls.Add(password);
+            Controls.Add(login);
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "SignInForm";
@@ -115,9 +118,9 @@
 
         private Label label1;
         private Label label2;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private Button button1;
+        private TextBox login;
+        private TextBox password;
+        private Button signin_btn;
         private LinkLabel linkLabel1;
     }
 }
