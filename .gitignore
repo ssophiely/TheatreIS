@@ -3,4 +3,7 @@
 ################################################################################
 
 /frontend-winforms/ManagingTheatreApp/.vs/ManagingTheatreApp/FileContentIndex
-/frontend-winforms/ManagingTheatreApp/ManagingTheatreApp.csproj
+/frontend-winforms/ManagingTheatreApp/.vs/ManagingTheatreApp
+/frontend-winforms/ManagingTheatreApp/bin/Debug
+/frontend-winforms/ManagingTheatreApp/obj
+/.vs/slnx.sqlite
