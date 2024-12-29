@@ -51,7 +51,7 @@ public class SpectacleStorage
 
     public SpectacleInfo GetSpectacle(int id)
     {
-        var spectacle = _dbContext.Spectacle.Include(s => s.Genre).Include(s => s.Role).ThenInclude(r => r.Employee)
+        var spectacle = _dbContext.Spectacle.Include(s => s.Genre).Include(s => s.Role).ThenInclude(r => r.Employee).ThenInclude(e => e.Position)
             .AsNoTracking().FirstOrDefault(s => s.Id == id) ?? throw new NotFoundException($"Спектакль с id {id} не найден");
 
         List<SpecRole> roles = [];
@@ -63,7 +63,8 @@ public class SpectacleStorage
                 Id = role.Id,
                 Name = role.Name,
                 EmployeeId = role.EmployeeId,
-                EmpName = role.Employee.FullName
+                EmpName = role.Employee.FullName,
+                EmpPosition = role.Employee.Position.Name
             });
         }
 

@@ -1,6 +1,5 @@
 using System.Text.Json.Serialization;
 using System.Text.Json;
-using Microsoft.AspNetCore.WebUtilities;
 using System.Net.Http.Json;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,32 +27,16 @@ public class RestApiClient
     {
         var ResponseMsg = await _httpClient.GetAsync(url);
 
-        CheckResponseMsg(ResponseMsg);
+        await CheckResponseMsg(ResponseMsg);
 
         return await ResponseMsg.Content.ReadAsStringAsync();
-    }
-
-    public async Task<T?> GetJson<T>(string url, Func<HttpResponseMessage, bool> processFunc)
-    {
-        var ResponseMsg = await _httpClient.GetAsync(url);
-
-        if (processFunc(ResponseMsg))
-        {
-            return default;
-        }
-
-        CheckResponseMsg(ResponseMsg);
-
-        return await ResponseMsg.Content.ReadFromJsonAsync<T>();
     }
 
     public async Task<T?> GetJson<T>(string url)
     {
         var ResponseMsg = await _httpClient.GetAsync(url);
 
-        CheckResponseMsg(ResponseMsg);
-
-        Console.WriteLine(await ResponseMsg.Content.ReadAsStringAsync());
+        await CheckResponseMsg(ResponseMsg);
 
         var options = new JsonSerializerOptions
         {
@@ -64,6 +47,13 @@ public class RestApiClient
         return await ResponseMsg.Content.ReadFromJsonAsync<T>(options);
     }
 
+    public async Task<string> StringPost(string url, HttpContent content)
+    {
+        var Result = await Post(url, content);
+
+        return await Result.Content.ReadAsStringAsync();
+    }
+
     public async Task<HttpResponseMessage> Post(string url, HttpContent content)
     {
         var Result = await _httpClient.PostAsync(url, content);
@@ -71,13 +61,6 @@ public class RestApiClient
         await CheckResponseMsg(Result);
 
         return Result;
-    }
-
-    public async Task<string> StringPost(string url, HttpContent content)
-    {
-        var Result = await Post(url, content);
-
-        return await Result.Content.ReadAsStringAsync();
     }
 
     public async Task Put(string url)

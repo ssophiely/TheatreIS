@@ -28,25 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
+            exit_btn = new Button();
             button2 = new Button();
             button3 = new Button();
-            button4 = new Button();
-            button5 = new Button();
-            button6 = new Button();
-            button7 = new Button();
-            button8 = new Button();
+            act_btn = new Button();
+            hall_btn = new Button();
+            stat_btn = new Button();
+            spec_btn = new Button();
+            rep_btn = new Button();
             SuspendLayout();
             // 
-            // button1
+            // exit_btn
             // 
-            button1.Font = new Font("Times New Roman", 12F);
-            button1.Location = new Point(553, 310);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 0;
-            button1.Text = "Выйти";
-            button1.UseVisualStyleBackColor = true;
+            exit_btn.Font = new Font("Times New Roman", 12F);
+            exit_btn.Location = new Point(553, 310);
+            exit_btn.Name = "exit_btn";
+            exit_btn.Size = new Size(94, 29);
+            exit_btn.TabIndex = 0;
+            exit_btn.Text = "Выйти";
+            exit_btn.UseVisualStyleBackColor = true;
+            exit_btn.Click += exit_btn_Click;
             // 
             // button2
             // 
@@ -68,83 +69,85 @@
             button3.Text = "Управление репертуаром";
             button3.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // act_btn
             // 
-            button4.Font = new Font("Times New Roman", 12F);
-            button4.Location = new Point(204, 143);
-            button4.Name = "button4";
-            button4.Size = new Size(246, 29);
-            button4.TabIndex = 3;
-            button4.Text = "Управление показами";
-            button4.UseVisualStyleBackColor = true;
+            act_btn.Font = new Font("Times New Roman", 12F);
+            act_btn.Location = new Point(204, 143);
+            act_btn.Name = "act_btn";
+            act_btn.Size = new Size(246, 29);
+            act_btn.TabIndex = 3;
+            act_btn.Text = "Управление показами";
+            act_btn.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // hall_btn
             // 
-            button5.Font = new Font("Times New Roman", 12F);
-            button5.Location = new Point(204, 200);
-            button5.Name = "button5";
-            button5.Size = new Size(246, 29);
-            button5.TabIndex = 4;
-            button5.Text = "Настройка зала";
-            button5.UseVisualStyleBackColor = true;
+            hall_btn.Font = new Font("Times New Roman", 12F);
+            hall_btn.Location = new Point(204, 200);
+            hall_btn.Name = "hall_btn";
+            hall_btn.Size = new Size(246, 29);
+            hall_btn.TabIndex = 4;
+            hall_btn.Text = "Настройка зала";
+            hall_btn.UseVisualStyleBackColor = true;
             // 
-            // button6
+            // stat_btn
             // 
-            button6.Font = new Font("Times New Roman", 12F);
-            button6.Location = new Point(204, 254);
-            button6.Name = "button6";
-            button6.Size = new Size(246, 29);
-            button6.TabIndex = 5;
-            button6.Text = "Статистика";
-            button6.UseVisualStyleBackColor = true;
+            stat_btn.Font = new Font("Times New Roman", 12F);
+            stat_btn.Location = new Point(204, 254);
+            stat_btn.Name = "stat_btn";
+            stat_btn.Size = new Size(246, 29);
+            stat_btn.TabIndex = 5;
+            stat_btn.Text = "Статистика";
+            stat_btn.UseVisualStyleBackColor = true;
             // 
-            // button7
+            // spec_btn
             // 
-            button7.Font = new Font("Times New Roman", 12F);
-            button7.Location = new Point(204, 34);
-            button7.Name = "button7";
-            button7.Size = new Size(246, 29);
-            button7.TabIndex = 1;
-            button7.Text = "Управление спектаклями";
-            button7.UseVisualStyleBackColor = true;
+            spec_btn.Font = new Font("Times New Roman", 12F);
+            spec_btn.Location = new Point(204, 34);
+            spec_btn.Name = "spec_btn";
+            spec_btn.Size = new Size(246, 29);
+            spec_btn.TabIndex = 1;
+            spec_btn.Text = "Управление спектаклями";
+            spec_btn.UseVisualStyleBackColor = true;
+            spec_btn.Click += spec_btn_Click;
             // 
-            // button8
+            // rep_btn
             // 
-            button8.Font = new Font("Times New Roman", 12F);
-            button8.Location = new Point(204, 85);
-            button8.Name = "button8";
-            button8.Size = new Size(246, 29);
-            button8.TabIndex = 2;
-            button8.Text = "Управление репертуаром";
-            button8.UseVisualStyleBackColor = true;
+            rep_btn.Font = new Font("Times New Roman", 12F);
+            rep_btn.Location = new Point(204, 85);
+            rep_btn.Name = "rep_btn";
+            rep_btn.Size = new Size(246, 29);
+            rep_btn.TabIndex = 2;
+            rep_btn.Text = "Управление репертуаром";
+            rep_btn.UseVisualStyleBackColor = true;
             // 
             // MenuForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(682, 362);
-            Controls.Add(button6);
-            Controls.Add(button5);
-            Controls.Add(button4);
-            Controls.Add(button8);
+            Controls.Add(stat_btn);
+            Controls.Add(hall_btn);
+            Controls.Add(act_btn);
+            Controls.Add(rep_btn);
             Controls.Add(button3);
-            Controls.Add(button7);
+            Controls.Add(spec_btn);
             Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(exit_btn);
             Name = "MenuForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Меню";
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Button button1;
+        private Button exit_btn;
         private Button button2;
         private Button button3;
-        private Button button4;
-        private Button button5;
-        private Button button6;
-        private Button button7;
-        private Button button8;
+        private Button act_btn;
+        private Button hall_btn;
+        private Button stat_btn;
+        private Button spec_btn;
+        private Button rep_btn;
     }
 }

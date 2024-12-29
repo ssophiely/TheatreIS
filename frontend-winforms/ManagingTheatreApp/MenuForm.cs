@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using TheTheatre;
 
 namespace ManagingTheatreApp;
 
@@ -17,7 +9,23 @@ public partial class MenuForm : Form
         InitializeComponent();
     }
 
-    public string Token { get; set; }  
+    public string Token { get; set; } = null!;
 
-    public SignInForm SignInForm { get; set; }
+    public SignInForm SignInForm { get; set; } = null!;
+
+
+    private void exit_btn_Click(object sender, EventArgs e)
+    {
+        SignInForm.Show();
+
+        Close();
+    }
+
+    private void spec_btn_Click(object sender, EventArgs e)
+    {
+        var form = new SpectaclesForm() { MenuForm = this, Token = Token };
+        form.Show();
+
+        Hide();
+    }
 }
