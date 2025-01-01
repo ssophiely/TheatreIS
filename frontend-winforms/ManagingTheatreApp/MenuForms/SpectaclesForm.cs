@@ -1,5 +1,6 @@
 ﻿using ManagingTheatreApp.Client;
-using System.Windows.Forms;
+using ManagingTheatreApp.Interaction;
+using ManagingTheatreApp.Interaction.Out;
 
 namespace TheTheatre;
 
@@ -21,22 +22,25 @@ public partial class SpectaclesForm : Form
     {
 
         await GetSpectacles();
+        await GetEmployees();
+
+        spec_genre.Items.Clear();
+
+        foreach (var genre in _genres)
+        {
+            spec_genre.Items.Add(genre.Name);
+        }
     }
 
     private async Task GetSpectacles()
     {
         try
         {
-            var genres = await _client.GetGenres();
+            spec_dataGridView.Rows.Clear();
 
             DataGridViewComboBoxColumn comboColumn = (DataGridViewComboBoxColumn)spec_dataGridView.Columns["genre"];
 
-            comboColumn.Items.Clear();
-
-            foreach (var genre in genres)
-            {
-                comboColumn.Items.Add(genre.Name);
-            }
+            await UpdGenres(comboColumn);
 
             var specs = await _client.GetSpectacles();
 
@@ -56,6 +60,8 @@ public partial class SpectaclesForm : Form
     {
         try
         {
+            roles_dataGridView.Rows.Clear();
+
             var spec = await _client.GetSpectacle(id);
 
             foreach (var role in spec.Role)
@@ -70,19 +76,50 @@ public partial class SpectaclesForm : Form
         }
     }
 
-    private async Task UpdGenres(DataGridViewComboBoxCell cell)
+    private async Task UpdGenres(DataGridViewComboBoxColumn comboColumn)
     {
         try
         {
-            var genres = await _client.GetGenres();
+            _genres = await _client.GetGenres();
 
-            cell.Items.Clear();
+            comboColumn.Items.Clear();
 
-            foreach (var genre in genres)
+            foreach (var genre in _genres)
             {
-                cell.Items.Add(genre.Name);
+                comboColumn.Items.Add(genre.Name);
             }
 
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
+
+    private async Task DeleteSpectacle(int id)
+    {
+        try
+        {
+            await _client.DeleteSpectacle(id);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
+
+    private async Task GetEmployees()
+    {
+        try
+        {
+            _employees = await _client.GetEmployees();
+
+            all_emps.Rows.Clear();
+
+            foreach (var emp in _employees)
+            {
+                all_emps.Rows.Add(emp.Id, emp.FullName, emp.Experience, emp.Phone, emp.Position);
+            }
         }
         catch (Exception ex)
         {
@@ -94,8 +131,88 @@ public partial class SpectaclesForm : Form
     {
         if (e.ColumnIndex == spec_dataGridView.Columns["roles"].Index)
         {
-            roles_dataGridView.Rows.Clear();
             await GetRoles((int)spec_dataGridView.Rows[e.RowIndex].Cells[0].Value);
+            return;
+        }
+
+        if (e.ColumnIndex == spec_dataGridView.Columns["delete"].Index)
+        {
+            await DeleteSpectacle((int)spec_dataGridView.Rows[e.RowIndex].Cells[0].Value);
+            await GetSpectacles();
+            return;
         }
     }
+
+    private void all_emps_CellContentClick(object sender, DataGridViewCellEventArgs e)
+    {
+        if (e.ColumnIndex == all_emps.Columns["emp_add"].Index)
+        {
+            var cells = all_emps.Rows[e.RowIndex].Cells;
+            spec_emps.Rows.Add(cells[0].Value, cells[1].Value, "");
+
+            all_emps.Rows.RemoveAt(e.RowIndex);
+            return;
+        }
+    }
+
+    private void spec_emps_CellContentClick(object sender, DataGridViewCellEventArgs e)
+    {
+        if (e.ColumnIndex == spec_emps.Columns["emp_del"].Index)
+        {
+            var id = (int)spec_emps.Rows[e.RowIndex].Cells[0].Value;
+
+            spec_emps.Rows.RemoveAt(e.RowIndex);
+
+            var emp = _employees.First(e => e.Id == id);
+            all_emps.Rows.Add(emp.Id, emp.FullName, emp.Experience, emp.Phone, emp.Position);
+
+            return;
+        }
+    }
+
+    private async void create_btn_Click(object sender, EventArgs e)
+    {
+        List<RoleCreateInfo> roles = new();
+
+        foreach (DataGridViewRow row in spec_emps.Rows)
+        {
+            if (string.IsNullOrEmpty((string)row.Cells[2].Value))
+                continue;
+
+            roles.Add(new RoleCreateInfo() { EmployeeId = (int)row.Cells[0].Value, Name = (string)row.Cells[1].Value });
+        }
+
+        if (roles.Count < 0)
+        {
+            MessageBox.Show($"Заполните данные об участниках спектакля!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+        }
+
+        var info = new CreateSpectacle()
+        {
+            Name = name.Text,
+            Plot = string.IsNullOrEmpty(spec_plot.Text) ? null : spec_plot.Text,
+            GenreId = _genres.First(g => g.Name == spec_genre.Text).Id,
+            Duration = (double)hours.Value,
+            Roles = roles
+        };
+
+        try
+        {
+            await _client.GetEmployees();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        await GetSpectacles();
+    }
+
+
+
+
+    private List<GenreInfo> _genres = new List<GenreInfo>();
+
+    private List<EmployeeInfo> _employees = new List<EmployeeInfo>();
 }

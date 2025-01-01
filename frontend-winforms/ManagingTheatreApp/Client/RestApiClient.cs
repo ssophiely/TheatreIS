@@ -63,6 +63,15 @@ public class RestApiClient
         return Result;
     }
 
+    public async Task<HttpResponseMessage> Delete(string url)
+    {
+        var Result = await _httpClient.DeleteAsync(url);
+
+        await CheckResponseMsg(Result);
+
+        return Result;
+    }
+
     public async Task Put(string url)
     {
         var ResponseMsg = await _httpClient.PutAsync(url, null);

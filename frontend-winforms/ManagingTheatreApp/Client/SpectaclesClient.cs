@@ -1,4 +1,7 @@
 ﻿using ManagingTheatreApp.Interaction;
+using ManagingTheatreApp.Interaction.Out;
+using System.Text.Json;
+using System.Text;
 
 namespace ManagingTheatreApp.Client;
 
@@ -36,6 +39,35 @@ internal class SpectaclesClient
         return SendResponse(rcl => rcl.GetJson<List<GenreInfo>>($"https://localhost:6001/gateway/spectacles/genres"));
     }
 
+    /// <summary>
+    /// Удаление спектакля.
+    /// </summary>
+    public Task DeleteSpectacle(int id)
+    {
+        return _restClient.Delete($"https://localhost:6001/gateway/spectacles/{id}");
+    }
+
+    /// <summary>
+    /// Получение сотрудников.
+    /// </summary>
+    public Task<List<EmployeeInfo>> GetEmployees()
+    {
+        return SendResponse(rcl => rcl.GetJson<List<EmployeeInfo>>($"https://localhost:6001/gateway/employees"));
+    }
+
+    /// <summary>
+    /// Создание спектакля.
+    /// </summary>
+    public Task CreateSpectacle(CreateSpectacle info)
+    {
+        var content = new StringContent(
+           JsonSerializer.Serialize(info),
+           Encoding.UTF8,
+           "application/json"
+       );
+
+        return _restClient.Post($"https://localhost:6001/gateway/spectacles", content);
+    }
 
 
     private async Task<T> SendResponse<T>(Func<RestApiClient, Task<T?>> func)

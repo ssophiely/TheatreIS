@@ -16,13 +16,7 @@
     <Compile Update="MenuForms\StatisticsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="ModalWindows\ShowEdit.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="MenuForms\SpectaclesForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="ModalWindows\ShowView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="SignInForm.cs">
