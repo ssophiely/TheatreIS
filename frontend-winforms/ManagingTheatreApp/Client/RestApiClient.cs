@@ -2,6 +2,8 @@ using System.Text.Json.Serialization;
 using System.Text.Json;
 using System.Net.Http.Json;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Http.Headers;
+using System.Net.Http;
 
 namespace ManagingTheatreApp.Client;
 
@@ -54,27 +56,40 @@ public class RestApiClient
         return await Result.Content.ReadAsStringAsync();
     }
 
-    public async Task<HttpResponseMessage> Post(string url, HttpContent content)
+    public async Task<HttpResponseMessage> Post(string url, HttpContent content, string? token = null)
     {
+        if (token != null)
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
         var Result = await _httpClient.PostAsync(url, content);
 
+        _httpClient.DefaultRequestHeaders.Authorization = null;
+
         await CheckResponseMsg(Result);
 
         return Result;
     }
 
-    public async Task<HttpResponseMessage> Delete(string url)
+    public async Task Delete(string url, string? token = null)
     {
+        if (token != null)
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
         var Result = await _httpClient.DeleteAsync(url);
 
-        await CheckResponseMsg(Result);
+        _httpClient.DefaultRequestHeaders.Authorization = null;
 
-        return Result;
+        await CheckResponseMsg(Result);
     }
 
-    public async Task Put(string url)
+    public async Task Put(string url, HttpContent content, string? token = null)
     {
-        var ResponseMsg = await _httpClient.PutAsync(url, null);
+        if (token != null)
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+        var ResponseMsg = await _httpClient.PutAsync(url, content);
+
+        _httpClient.DefaultRequestHeaders.Authorization = null;
 
         await CheckResponseMsg(ResponseMsg);
     }

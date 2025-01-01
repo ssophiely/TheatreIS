@@ -164,7 +164,7 @@ public partial class TheatreDbContext : DbContext
                 .HasForeignKey(d => d.LocationStateId)
                 .HasConstraintName("StateIdFK");
 
-            entity.HasOne(d => d.Sector).WithMany(p => p.Locations)
+            entity.HasOne(d => d.Sector).WithMany(p => p.Location)
                 .HasForeignKey(d => d.SectorId)
                 .HasConstraintName("SectorIdFK");
         });
@@ -289,7 +289,6 @@ public partial class TheatreDbContext : DbContext
                 .HasNoKey()
                 .ToView("sum_hours_watching");
 
-            entity.Property(e => e.TotalHoursWatched).HasPrecision(32);
             entity.Property(e => e.ViewerId).HasColumnName("ViewerID");
         });
 
@@ -312,7 +311,6 @@ public partial class TheatreDbContext : DbContext
 
             entity.HasOne(d => d.Location).WithMany(p => p.Ticket)
                 .HasForeignKey(d => d.LocationId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("LocationIDFK");
 
             entity.HasOne(d => d.State).WithMany(p => p.Ticket)

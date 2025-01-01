@@ -10,9 +10,10 @@ namespace ManagingTheatreApp.Client;
 /// </summary>
 internal class SpectaclesClient
 {
-    public SpectaclesClient()
+    public SpectaclesClient(string token)
     {
         _restClient = new RestApiClient(_url);
+        _token = token;
     }
 
     /// <summary>
@@ -44,7 +45,21 @@ internal class SpectaclesClient
     /// </summary>
     public Task DeleteSpectacle(int id)
     {
-        return _restClient.Delete($"https://localhost:6001/gateway/spectacles/{id}");
+        return _restClient.Delete($"https://localhost:6001/gateway/spectacles/{id}", _token);
+    }
+
+    /// <summary>
+    /// Обновление спектакля.
+    /// </summary>
+    public Task UpdateSpectacle(int id, UpdateSpectacle info)
+    {
+        var content = new StringContent(
+           JsonSerializer.Serialize(info),
+           Encoding.UTF8,
+           "application/json"
+        );
+
+        return _restClient.Put($"https://localhost:6001/gateway/spectacles/{id}", content, _token);
     }
 
     /// <summary>
@@ -66,7 +81,7 @@ internal class SpectaclesClient
            "application/json"
        );
 
-        return _restClient.Post($"https://localhost:6001/gateway/spectacles", content);
+        return _restClient.Post($"https://localhost:6001/gateway/spectacles", content, _token);
     }
 
 
@@ -84,6 +99,8 @@ internal class SpectaclesClient
 
 
     private readonly RestApiClient _restClient;
+
+    private readonly string _token;
 
     private const string _url = @"http://localhost:1002";
 }

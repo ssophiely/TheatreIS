@@ -7,5 +7,5 @@ public partial class SumHoursWatching
 {
     public int ViewerId { get; set; }
 
-    public decimal? TotalHoursWatched { get; set; }
+    public double? TotalHoursWatched { get; set; }
 }

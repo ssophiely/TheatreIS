@@ -6,7 +6,7 @@ public class SpectacleInfo
 
     public string Name { get; set; } = null!;
 
-    public int Duration { get; set; }
+    public double Duration { get; set; }
 
     public string? Plot { get; set; }
 

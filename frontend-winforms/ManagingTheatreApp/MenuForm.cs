@@ -23,7 +23,7 @@ public partial class MenuForm : Form
 
     private void spec_btn_Click(object sender, EventArgs e)
     {
-        var form = new SpectaclesForm() { MenuForm = this, Token = Token };
+        var form = new SpectaclesForm(Token) { MenuForm = this };
         form.Show();
 
         Hide();

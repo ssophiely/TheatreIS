@@ -6,17 +6,17 @@ namespace TheTheatre;
 
 public partial class SpectaclesForm : Form
 {
-    public SpectaclesForm()
+    public SpectaclesForm(string token)
     {
         InitializeComponent();
+        _client = new(token);
     }
 
     public Form MenuForm { get; set; } = null!;
 
-    public string Token { get; set; } = null!;
 
+    private readonly SpectaclesClient _client;
 
-    private readonly SpectaclesClient _client = new();
 
     private async void SpectaclesForm_Load(object sender, EventArgs e)
     {
@@ -25,11 +25,11 @@ public partial class SpectaclesForm : Form
         await GetEmployees();
 
         spec_genre.Items.Clear();
-
         foreach (var genre in _genres)
         {
             spec_genre.Items.Add(genre.Name);
         }
+        spec_genre.SelectedIndex = 0;
     }
 
     private async Task GetSpectacles()
@@ -108,6 +108,28 @@ public partial class SpectaclesForm : Form
         }
     }
 
+    private async Task UpdateSpectacle(int rowInd)
+    {
+        var row = spec_dataGridView.Rows[rowInd];
+
+        UpdateSpectacle info = new()
+        {
+            Name = (string)row.Cells[1].Value,
+            Duration = Convert.ToDouble(row.Cells[2].Value),
+            GenreId = _genres.First(g => g.Name == (string)row.Cells[3].Value).Id,
+            Plot = row.Cells[4].Value?.ToString() ?? null
+        };
+
+        try
+        {
+            await _client.UpdateSpectacle((int)row.Cells[0].Value, info);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
+
     private async Task GetEmployees()
     {
         try
@@ -139,6 +161,15 @@ public partial class SpectaclesForm : Form
         {
             await DeleteSpectacle((int)spec_dataGridView.Rows[e.RowIndex].Cells[0].Value);
             await GetSpectacles();
+            roles_dataGridView.Rows.Clear();
+            return;
+        }
+
+        if (e.ColumnIndex == spec_dataGridView.Columns["update"].Index)
+        {
+            await UpdateSpectacle(e.RowIndex);
+            await GetSpectacles();
+            roles_dataGridView.Rows.Clear();
             return;
         }
     }
@@ -172,6 +203,12 @@ public partial class SpectaclesForm : Form
 
     private async void create_btn_Click(object sender, EventArgs e)
     {
+        if (string.IsNullOrEmpty(name.Text) || hours.Value == 0)
+        {
+            MessageBox.Show($"Заполните данные!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+        }
+
         List<RoleCreateInfo> roles = new();
 
         foreach (DataGridViewRow row in spec_emps.Rows)
@@ -179,10 +216,10 @@ public partial class SpectaclesForm : Form
             if (string.IsNullOrEmpty((string)row.Cells[2].Value))
                 continue;
 
-            roles.Add(new RoleCreateInfo() { EmployeeId = (int)row.Cells[0].Value, Name = (string)row.Cells[1].Value });
+            roles.Add(new RoleCreateInfo() { EmployeeId = (int)row.Cells[0].Value, Name = (string)row.Cells[2].Value });
         }
 
-        if (roles.Count < 0)
+        if (roles.Count == 0)
         {
             MessageBox.Show($"Заполните данные об участниках спектакля!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
@@ -199,7 +236,8 @@ public partial class SpectaclesForm : Form
 
         try
         {
-            await _client.GetEmployees();
+            await _client.CreateSpectacle(info);
+            await GetSpectacles();
         }
         catch (Exception ex)
         {
@@ -207,7 +245,25 @@ public partial class SpectaclesForm : Form
         }
 
         await GetSpectacles();
+
+        name.Text = string.Empty;
+        spec_plot.Text = string.Empty;
+        hours.Value = 0;
+        spec_emps.Rows.Clear();
+        await GetEmployees();
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

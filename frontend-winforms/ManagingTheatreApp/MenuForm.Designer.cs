@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             exit_btn = new Button();
-            button2 = new Button();
-            button3 = new Button();
             act_btn = new Button();
             hall_btn = new Button();
             stat_btn = new Button();
@@ -48,26 +46,6 @@
             exit_btn.Text = "Выйти";
             exit_btn.UseVisualStyleBackColor = true;
             exit_btn.Click += exit_btn_Click;
-            // 
-            // button2
-            // 
-            button2.Font = new Font("Times New Roman", 12F);
-            button2.Location = new Point(223, 36);
-            button2.Name = "button2";
-            button2.Size = new Size(207, 29);
-            button2.TabIndex = 1;
-            button2.Text = "Управление спектаклями";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            button3.Font = new Font("Times New Roman", 12F);
-            button3.Location = new Point(223, 87);
-            button3.Name = "button3";
-            button3.Size = new Size(207, 29);
-            button3.TabIndex = 2;
-            button3.Text = "Управление репертуаром";
-            button3.UseVisualStyleBackColor = true;
             // 
             // act_btn
             // 
@@ -102,7 +80,7 @@
             // spec_btn
             // 
             spec_btn.Font = new Font("Times New Roman", 12F);
-            spec_btn.Location = new Point(204, 34);
+            spec_btn.Location = new Point(204, 30);
             spec_btn.Name = "spec_btn";
             spec_btn.Size = new Size(246, 29);
             spec_btn.TabIndex = 1;
@@ -129,9 +107,7 @@
             Controls.Add(hall_btn);
             Controls.Add(act_btn);
             Controls.Add(rep_btn);
-            Controls.Add(button3);
             Controls.Add(spec_btn);
-            Controls.Add(button2);
             Controls.Add(exit_btn);
             Name = "MenuForm";
             StartPosition = FormStartPosition.CenterScreen;
@@ -142,8 +118,6 @@
         #endregion
 
         private Button exit_btn;
-        private Button button2;
-        private Button button3;
         private Button act_btn;
         private Button hall_btn;
         private Button stat_btn;

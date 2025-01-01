@@ -16,7 +16,7 @@ public class RepertoireClient
     /// <summary>
     /// Получение спектакля.
     /// </summary>
-    public Task<ActInfo> GetActInfo(int id)
+    public Task<ActInfo> GetActInfo(int? id)
     {
         return SendGetResponse(rcl => rcl.GetJson<ActInfo>($"http://Repertoire:8080/act/{id}"));
     }
