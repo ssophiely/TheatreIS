@@ -1,4 +1,5 @@
-﻿using TheTheatre;
+﻿using ManagingTheatreApp.MenuForms;
+using TheTheatre;
 
 namespace ManagingTheatreApp;
 
@@ -24,6 +25,14 @@ public partial class MenuForm : Form
     private void spec_btn_Click(object sender, EventArgs e)
     {
         var form = new SpectaclesForm(Token) { MenuForm = this };
+        form.Show();
+
+        Hide();
+    }
+
+    private void rep_btn_Click(object sender, EventArgs e)
+    {
+        var form = new RepertoireForm(Token) { MenuForm = this };
         form.Show();
 
         Hide();

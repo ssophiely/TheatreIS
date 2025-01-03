@@ -21,16 +21,22 @@ public class RepertoireController : ControllerBase
     /// <summary>
     /// Получение репертуара.
     /// </summary>
-    [HttpGet("id")]
-    public async Task<IActionResult> Get(int id)
+    [HttpGet]
+    public async Task<IActionResult> Get()
     {
         try
         {
-            return await Task.Run<IActionResult>(() =>
+            return await Task.Run<IActionResult>(async () =>
             {
-                var repertoire = _storage.Get(id);
+                var reps = _storage.Get();
 
-                return Ok(repertoire);
+                foreach (var rep in reps)
+                {
+                    var spec = await _client.GetSpectacle(rep.SpectacleId);
+                    rep.Spectacle = spec;
+                }
+
+                return Ok(reps);
             });
         }
         catch (NotFoundException ex)
@@ -102,7 +108,7 @@ public class RepertoireController : ControllerBase
     /// <summary>
     /// Удаление спектакля из репертуара.
     /// </summary>
-    [HttpDelete("id")]
+    [HttpDelete("{id}")]
     [Authorize]
     public async Task<IActionResult> Delete(int id)
     {

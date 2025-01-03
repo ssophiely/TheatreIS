@@ -4,9 +4,6 @@
     <Compile Update="MenuForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="MenuForms\ActsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="MenuForms\HallForm.cs">
       <SubType>Form</SubType>
     </Compile>

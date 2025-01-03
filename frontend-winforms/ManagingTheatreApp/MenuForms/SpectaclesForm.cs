@@ -293,14 +293,11 @@ public partial class SpectaclesForm : Form
         }
     }
 
-
-
-
-
-
-
-
-
+    private void Close_Click(object sender, EventArgs e)
+    {
+        MenuForm.Show();
+        Close();
+    }
 
 
     private List<GenreInfo> _genres = new List<GenreInfo>();

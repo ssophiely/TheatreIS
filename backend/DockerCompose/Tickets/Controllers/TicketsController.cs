@@ -161,6 +161,31 @@ public class TicketsController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Проверка наличия оплаченных билетов.
+    /// </summary>
+    [HttpGet("check-payed/{actId}")]
+    public async Task<IActionResult> CheckPayed(int actId)
+    {
+        try
+        {
+            return await Task.Run<IActionResult>(() =>
+            {
+                bool f = _storage.CheckPayed(actId);
+
+                return Ok(f);
+            });
+        }
+        catch (NotFoundException ex)
+        {
+            return Problem(ex.Message, statusCode: (int)HttpStatusCode.NotFound);
+        }
+        catch (Exception ex)
+        {
+            return Problem(ex.Message, statusCode: (int)HttpStatusCode.UnprocessableEntity);
+        }
+    }
+
     private readonly TicketsStorage _storage;
 
     private readonly SpectaclesClient _specClient;

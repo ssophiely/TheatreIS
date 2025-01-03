@@ -1,3 +1,5 @@
+using ManagingTheatreApp.MenuForms;
+
 namespace ManagingTheatreApp;
 
 internal static class Program
@@ -12,6 +14,6 @@ internal static class Program
         // see https://aka.ms/applicationconfiguration.
         ApplicationConfiguration.Initialize();
         Application.Run(new SignInForm());
-        //Application.Run(new SpectaclesForm());
+        //Application.Run(new RepertoireForm(string.Empty));
     }
 }

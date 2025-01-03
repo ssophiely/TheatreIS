@@ -54,6 +54,33 @@ public class TicketsStorage
         _dbContext.SaveChanges();
     }
 
+    public bool CheckPayed(int id)
+    {
+        Console.WriteLine(id);
+        var locations = _dbContext.Location.AsNoTracking().Where(l => l.ActId == id).ToList();
+
+        bool f = false;
+
+        foreach (var location in locations)
+        {
+            var tickets = _dbContext.Ticket.AsNoTracking().Where(t => t.LocationId == location.Id).ToList();
+
+            foreach (var ticket in tickets)
+            {
+                if (ticket.StateId == 2)
+                {
+                    f = true;
+                    break;
+                }
+
+            }
+
+            if (f) break;
+        }
+
+        return f;
+    }
+
 
     private readonly TheatreDbContext _dbContext;
 }

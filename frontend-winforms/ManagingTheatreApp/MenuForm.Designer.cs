@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             exit_btn = new Button();
-            act_btn = new Button();
             hall_btn = new Button();
             stat_btn = new Button();
             spec_btn = new Button();
@@ -47,20 +46,10 @@
             exit_btn.UseVisualStyleBackColor = true;
             exit_btn.Click += exit_btn_Click;
             // 
-            // act_btn
-            // 
-            act_btn.Font = new Font("Times New Roman", 12F);
-            act_btn.Location = new Point(204, 143);
-            act_btn.Name = "act_btn";
-            act_btn.Size = new Size(246, 29);
-            act_btn.TabIndex = 3;
-            act_btn.Text = "Управление показами";
-            act_btn.UseVisualStyleBackColor = true;
-            // 
             // hall_btn
             // 
             hall_btn.Font = new Font("Times New Roman", 12F);
-            hall_btn.Location = new Point(204, 200);
+            hall_btn.Location = new Point(201, 188);
             hall_btn.Name = "hall_btn";
             hall_btn.Size = new Size(246, 29);
             hall_btn.TabIndex = 4;
@@ -70,7 +59,7 @@
             // stat_btn
             // 
             stat_btn.Font = new Font("Times New Roman", 12F);
-            stat_btn.Location = new Point(204, 254);
+            stat_btn.Location = new Point(201, 242);
             stat_btn.Name = "stat_btn";
             stat_btn.Size = new Size(246, 29);
             stat_btn.TabIndex = 5;
@@ -80,7 +69,7 @@
             // spec_btn
             // 
             spec_btn.Font = new Font("Times New Roman", 12F);
-            spec_btn.Location = new Point(204, 30);
+            spec_btn.Location = new Point(201, 74);
             spec_btn.Name = "spec_btn";
             spec_btn.Size = new Size(246, 29);
             spec_btn.TabIndex = 1;
@@ -91,12 +80,13 @@
             // rep_btn
             // 
             rep_btn.Font = new Font("Times New Roman", 12F);
-            rep_btn.Location = new Point(204, 85);
+            rep_btn.Location = new Point(201, 129);
             rep_btn.Name = "rep_btn";
             rep_btn.Size = new Size(246, 29);
             rep_btn.TabIndex = 2;
             rep_btn.Text = "Управление репертуаром";
             rep_btn.UseVisualStyleBackColor = true;
+            rep_btn.Click += rep_btn_Click;
             // 
             // MenuForm
             // 
@@ -105,7 +95,6 @@
             ClientSize = new Size(682, 362);
             Controls.Add(stat_btn);
             Controls.Add(hall_btn);
-            Controls.Add(act_btn);
             Controls.Add(rep_btn);
             Controls.Add(spec_btn);
             Controls.Add(exit_btn);
@@ -118,7 +107,6 @@
         #endregion
 
         private Button exit_btn;
-        private Button act_btn;
         private Button hall_btn;
         private Button stat_btn;
         private Button spec_btn;

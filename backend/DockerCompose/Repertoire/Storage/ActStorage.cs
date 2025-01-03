@@ -1,9 +1,11 @@
 ﻿using Exceptions;
 using Microsoft.EntityFrameworkCore;
+using Org.BouncyCastle.Ocsp;
 using Repertoire.Interaction.In;
 using Repertoire.Interaction.Out;
 using SharedUtils;
 using StorageData;
+using System.Security.Cryptography.Xml;
 
 namespace Repertoire.Storage;
 
@@ -24,14 +26,21 @@ public class ActStorage
         _dbContext.SaveChanges();
     }
 
-    public ActInfo Get(int id)
+    public List<ActInfo> Get(int id)
     {
-        var act = _dbContext.Act.Include(a => a.Repertoire).AsNoTracking().FirstOrDefault(r => r.Id == id)
-            ?? throw new NotFoundException($"Показ с id {id} не найден");
+        var acts = _dbContext.Act.Include(a => a.Repertoire).AsNoTracking().Where(r => r.RepertoireId == id);
 
-        var info = act.Convert<ActInfo, Act>();
-        info.SpectacleId = act.Repertoire.SpectacleId;
-        return info;
+        List<ActInfo> list = [];
+
+        foreach (var act in acts)
+        {
+            var info = act.Convert<ActInfo, Act>();
+            info.SpectacleId = act.Repertoire.SpectacleId;
+
+            list.Add(info);
+        }
+
+        return list;
     }
 
     public void Add(ActCreateInfo info)

@@ -125,6 +125,7 @@
             Close.TabIndex = 3;
             Close.Text = "Меню";
             Close.UseVisualStyleBackColor = false;
+            Close.Click += Close_Click;
             // 
             // spec_dataGridView
             // 
@@ -680,8 +681,6 @@
             roles_dataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle30;
             roles_dataGridView.RowHeadersWidth = 51;
             dataGridViewCellStyle31.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            dataGridViewCellStyle31.SelectionBackColor = Color.Empty;
-            dataGridViewCellStyle31.SelectionForeColor = Color.Empty;
             roles_dataGridView.RowsDefaultCellStyle = dataGridViewCellStyle31;
             roles_dataGridView.Size = new Size(1054, 98);
             roles_dataGridView.TabIndex = 9;
