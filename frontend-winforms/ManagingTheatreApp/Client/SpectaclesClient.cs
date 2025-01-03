@@ -8,7 +8,7 @@ namespace ManagingTheatreApp.Client;
 /// <summary>
 /// Клиент сервиса спектаклей.
 /// </summary>
-internal class SpectaclesClient
+public class SpectaclesClient
 {
     public SpectaclesClient(string token)
     {
@@ -82,6 +82,50 @@ internal class SpectaclesClient
        );
 
         return _restClient.Post($"https://localhost:6001/gateway/spectacles", content, _token);
+    }
+
+    /// <summary>
+    /// Получение ролей.
+    /// </summary>
+    public Task<List<SpecRole>> GetRoles(int id)
+    {
+        return SendResponse(rcl => rcl.GetJson<List<SpecRole>>($"https://localhost:6001/gateway/roles/{id}"));
+    }
+
+    /// <summary>
+    /// Изменение роли.
+    /// </summary>
+    public Task UpdateRole(int id, UpdateRole info)
+    {
+        var content = new StringContent(
+           JsonSerializer.Serialize(info),
+           Encoding.UTF8,
+           "application/json"
+       );
+
+        return _restClient.Put($"https://localhost:6001/gateway/roles/{id}", content, _token);
+    }
+
+    /// <summary>
+    /// Удаление роли.
+    /// </summary>
+    public Task DeleteRole(int id)
+    {
+        return _restClient.Delete($"https://localhost:6001/gateway/roles/{id}", _token);
+    }
+
+    /// <summary>
+    /// Добавление роли.
+    /// </summary>
+    public Task AddRole(CreateRole info)
+    {
+        var content = new StringContent(
+           JsonSerializer.Serialize(info),
+           Encoding.UTF8,
+           "application/json"
+       );
+
+        return _restClient.Post($"https://localhost:6001/gateway/roles", content, _token);
     }
 
 

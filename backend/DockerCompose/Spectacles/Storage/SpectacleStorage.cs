@@ -31,7 +31,9 @@ public class SpectacleStorage
                     Id = role.Id,
                     Name = role.Name,
                     EmployeeId = role.EmployeeId,
-                    EmpName = role.Employee.FullName
+                    EmpName = role.Employee.FullName,
+                    SpecName = s.Name,
+                    SpecId = s.Id,
                 });
             }
 
@@ -151,6 +153,30 @@ public class SpectacleStorage
         _dbContext.Role.Remove(role);
 
         _dbContext.SaveChanges();
+    }
+
+    public List<SpecRole> GetRoles(int id)
+    {
+        var roles = _dbContext.Role.Include(r => r.Spectacle).Include(r => r.Employee).ThenInclude(e => e.Position)
+            .Where(r => r.SpectacleId == id).AsNoTracking();
+
+        List<SpecRole> res = [];
+
+        foreach (var role in roles)
+        {
+            res.Add(new SpecRole()
+            {
+                Id = role.Id,
+                Name = role.Name,
+                EmployeeId = role.EmployeeId,
+                EmpName = role.Employee.FullName,
+                EmpPosition = role.Employee.Position.Name,
+                SpecName = role.Spectacle.Name,
+                SpecId = role.Spectacle.Id,
+            });
+        }
+
+        return res;
     }
 
     public void ChangeRole(int id, RoleUpdateInfo info)

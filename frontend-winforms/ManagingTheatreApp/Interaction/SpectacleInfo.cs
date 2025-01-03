@@ -25,5 +25,9 @@ public class SpecRole
 
     public string EmpName { get; set; } = null!;
 
+    public string SpecName { get; set; } = null!;
+
     public string EmpPosition { get; set; } = null!;
+
+    public int SpecId { get; set; }
 }

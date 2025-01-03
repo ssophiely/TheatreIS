@@ -1,6 +1,7 @@
 ﻿using ManagingTheatreApp.Client;
 using ManagingTheatreApp.Interaction;
 using ManagingTheatreApp.Interaction.Out;
+using ManagingTheatreApp.ModalWindows;
 
 namespace TheTheatre;
 
@@ -9,13 +10,13 @@ public partial class SpectaclesForm : Form
     public SpectaclesForm(string token)
     {
         InitializeComponent();
-        _client = new(token);
+        Client = new(token);
     }
 
     public Form MenuForm { get; set; } = null!;
 
 
-    private readonly SpectaclesClient _client;
+    public readonly SpectaclesClient Client;
 
 
     private async void SpectaclesForm_Load(object sender, EventArgs e)
@@ -42,7 +43,7 @@ public partial class SpectaclesForm : Form
 
             await UpdGenres(comboColumn);
 
-            var specs = await _client.GetSpectacles();
+            var specs = await Client.GetSpectacles();
 
             foreach (var spec in specs)
             {
@@ -56,17 +57,18 @@ public partial class SpectaclesForm : Form
         }
     }
 
-    private async Task GetRoles(int id)
+    public async Task GetRoles(int id)
     {
         try
         {
             roles_dataGridView.Rows.Clear();
 
-            var spec = await _client.GetSpectacle(id);
+            var roles = await Client.GetRoles(id);
 
-            foreach (var role in spec.Role)
+            foreach (var role in roles)
             {
-                roles_dataGridView.Rows.Add(role.Name, role.EmpName, role.EmpPosition, spec.Name);
+                roles_dataGridView.Rows.Add(role.Id, role.Name, role.EmpName,
+                    role.EmployeeId, role.EmpPosition, role.SpecName, role.SpecId);
             }
 
         }
@@ -80,7 +82,7 @@ public partial class SpectaclesForm : Form
     {
         try
         {
-            _genres = await _client.GetGenres();
+            _genres = await Client.GetGenres();
 
             comboColumn.Items.Clear();
 
@@ -100,7 +102,7 @@ public partial class SpectaclesForm : Form
     {
         try
         {
-            await _client.DeleteSpectacle(id);
+            await Client.DeleteSpectacle(id);
         }
         catch (Exception ex)
         {
@@ -122,7 +124,7 @@ public partial class SpectaclesForm : Form
 
         try
         {
-            await _client.UpdateSpectacle((int)row.Cells[0].Value, info);
+            await Client.UpdateSpectacle((int)row.Cells[0].Value, info);
         }
         catch (Exception ex)
         {
@@ -134,7 +136,7 @@ public partial class SpectaclesForm : Form
     {
         try
         {
-            _employees = await _client.GetEmployees();
+            _employees = await Client.GetEmployees();
 
             all_emps.Rows.Clear();
 
@@ -154,6 +156,15 @@ public partial class SpectaclesForm : Form
         if (e.ColumnIndex == spec_dataGridView.Columns["roles"].Index)
         {
             await GetRoles((int)spec_dataGridView.Rows[e.RowIndex].Cells[0].Value);
+            return;
+        }
+
+        if (e.ColumnIndex == spec_dataGridView.Columns["role_add"].Index)
+        {
+            var form = new AddRole((int)spec_dataGridView.Rows[e.RowIndex].Cells[0].Value) { Form = this, Emps = _employees };
+
+            form.Show();
+
             return;
         }
 
@@ -236,12 +247,13 @@ public partial class SpectaclesForm : Form
 
         try
         {
-            await _client.CreateSpectacle(info);
+            await Client.CreateSpectacle(info);
             await GetSpectacles();
         }
         catch (Exception ex)
         {
             MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
         }
 
         await GetSpectacles();
@@ -254,9 +266,32 @@ public partial class SpectaclesForm : Form
     }
 
 
+    private async void roles_dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+    {
+        if (e.ColumnIndex == roles_dataGridView.Columns["role_change"].Index)
+        {
+            var form = new ChangeRole(_employees, (int)roles_dataGridView.Rows[e.RowIndex].Cells[0].Value,
+                (int)roles_dataGridView.Rows[e.RowIndex].Cells[6].Value, (int)roles_dataGridView.Rows[e.RowIndex].Cells[3].Value)
+            { Form = this, Role = (string)roles_dataGridView.Rows[e.RowIndex].Cells[1].Value };
+            form.Show();
+            return;
+        }
 
+        if (e.ColumnIndex == roles_dataGridView.Columns["role_del"].Index)
+        {
+            try
+            {
+                await Client.DeleteRole((int)roles_dataGridView.Rows[e.RowIndex].Cells[0].Value);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
-
+            await GetRoles((int)roles_dataGridView.Rows[e.RowIndex].Cells[6].Value);
+            return;
+        }
+    }
 
 
 

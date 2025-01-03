@@ -1,6 +1,6 @@
 ﻿namespace ManagingTheatreApp.Interaction;
 
-internal class EmployeeInfo
+public class EmployeeInfo
 {
     public int Id { get; set; }
 

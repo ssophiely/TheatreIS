@@ -36,7 +36,7 @@ public class RolesController : ControllerBase
         }
     }
 
-    [HttpDelete("id")]
+    [HttpDelete("{id}")]
     [Authorize]
     public async Task<IActionResult> DeleteRole(int id)
     {
@@ -59,7 +59,29 @@ public class RolesController : ControllerBase
         }
     }
 
-    [HttpPut("id")]
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetRoles(int id)
+    {
+        try
+        {
+            return await Task.Run<IActionResult>(() =>
+            {
+                var roles = _storage.GetRoles(id);
+
+                return Ok(roles);
+            });
+        }
+        catch (NotFoundException ex)
+        {
+            return Problem(ex.Message, statusCode: (int)HttpStatusCode.NotFound);
+        }
+        catch (Exception ex)
+        {
+            return Problem(ex.Message, statusCode: (int)HttpStatusCode.UnprocessableEntity);
+        }
+    }
+
+    [HttpPut("{id}")]
     [Authorize]
     public async Task<IActionResult> ChangeRole(int id, RoleUpdateInfo info)
     {

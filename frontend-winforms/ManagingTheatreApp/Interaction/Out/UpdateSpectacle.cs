@@ -1,6 +1,6 @@
 ﻿namespace ManagingTheatreApp.Interaction.Out;
 
-internal class UpdateSpectacle
+public class UpdateSpectacle
 {
     public string? Name { get; set; }
 

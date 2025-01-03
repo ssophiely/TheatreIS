@@ -19,6 +19,12 @@
     <Compile Update="MenuForms\SpectaclesForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="ModalWindows\AddRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ModalWindows\ChangeRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="SignInForm.cs">
       <SubType>Form</SubType>
     </Compile>

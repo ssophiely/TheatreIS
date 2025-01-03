@@ -29,34 +29,47 @@
         private void InitializeComponent()
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle19 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle20 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle17 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle18 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle21 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle26 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle27 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle22 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle23 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle24 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle25 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle20 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle21 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle17 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle18 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle19 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle22 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle29 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle30 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle31 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle23 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle24 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle25 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle26 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle27 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle28 = new DataGridViewCellStyle();
             Close = new Button();
             spec_dataGridView = new DataGridView();
+            Id = new DataGridViewTextBoxColumn();
+            spec_name = new DataGridViewTextBoxColumn();
+            duration = new DataGridViewTextBoxColumn();
+            genre = new DataGridViewComboBoxColumn();
+            plot = new DataGridViewTextBoxColumn();
+            roles = new DataGridViewButtonColumn();
+            role_add = new DataGridViewButtonColumn();
+            update = new DataGridViewButtonColumn();
+            delete = new DataGridViewButtonColumn();
             label1 = new Label();
             label2 = new Label();
             add_spectacle = new GroupBox();
@@ -83,18 +96,15 @@
             label3 = new Label();
             label4 = new Label();
             roles_dataGridView = new DataGridView();
+            role_id = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            EmpId = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
-            Id = new DataGridViewTextBoxColumn();
-            spec_name = new DataGridViewTextBoxColumn();
-            duration = new DataGridViewTextBoxColumn();
-            genre = new DataGridViewComboBoxColumn();
-            plot = new DataGridViewTextBoxColumn();
-            roles = new DataGridViewButtonColumn();
-            update = new DataGridViewButtonColumn();
-            delete = new DataGridViewButtonColumn();
+            sp_id = new DataGridViewTextBoxColumn();
+            role_change = new DataGridViewButtonColumn();
+            role_del = new DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)spec_dataGridView).BeginInit();
             add_spectacle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)all_emps).BeginInit();
@@ -109,7 +119,7 @@
             Close.BackColor = Color.Black;
             Close.Font = new Font("Times New Roman", 12F);
             Close.ForeColor = Color.White;
-            Close.Location = new Point(930, 694);
+            Close.Location = new Point(930, 679);
             Close.Name = "Close";
             Close.Size = new Size(136, 36);
             Close.TabIndex = 3;
@@ -131,24 +141,138 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             spec_dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             spec_dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            spec_dataGridView.Columns.AddRange(new DataGridViewColumn[] { Id, spec_name, duration, genre, plot, roles, update, delete });
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = SystemColors.Window;
-            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle7.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = Color.White;
-            dataGridViewCellStyle7.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
-            spec_dataGridView.DefaultCellStyle = dataGridViewCellStyle7;
+            spec_dataGridView.Columns.AddRange(new DataGridViewColumn[] { Id, spec_name, duration, genre, plot, roles, role_add, update, delete });
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = SystemColors.Window;
+            dataGridViewCellStyle8.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle8.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = Color.White;
+            dataGridViewCellStyle8.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
+            spec_dataGridView.DefaultCellStyle = dataGridViewCellStyle8;
             spec_dataGridView.GridColor = Color.DimGray;
             spec_dataGridView.Location = new Point(12, 32);
             spec_dataGridView.Name = "spec_dataGridView";
             spec_dataGridView.RowHeadersWidth = 51;
-            dataGridViewCellStyle8.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            spec_dataGridView.RowsDefaultCellStyle = dataGridViewCellStyle8;
-            spec_dataGridView.Size = new Size(1054, 211);
+            dataGridViewCellStyle9.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            spec_dataGridView.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            spec_dataGridView.Size = new Size(1054, 201);
             spec_dataGridView.TabIndex = 4;
             spec_dataGridView.CellContentClick += spec_dataGridView_CellContentClick;
+            // 
+            // Id
+            // 
+            Id.HeaderText = "Id";
+            Id.MinimumWidth = 6;
+            Id.Name = "Id";
+            Id.Visible = false;
+            // 
+            // spec_name
+            // 
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            spec_name.DefaultCellStyle = dataGridViewCellStyle2;
+            spec_name.FillWeight = 120F;
+            spec_name.HeaderText = "Название";
+            spec_name.MinimumWidth = 6;
+            spec_name.Name = "spec_name";
+            // 
+            // duration
+            // 
+            duration.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            duration.HeaderText = "Время";
+            duration.MinimumWidth = 6;
+            duration.Name = "duration";
+            duration.Width = 88;
+            // 
+            // genre
+            // 
+            genre.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            genre.HeaderText = "Жанр";
+            genre.MinimumWidth = 6;
+            genre.Name = "genre";
+            genre.Resizable = DataGridViewTriState.True;
+            genre.SortMode = DataGridViewColumnSortMode.Automatic;
+            genre.Width = 81;
+            // 
+            // plot
+            // 
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            plot.DefaultCellStyle = dataGridViewCellStyle3;
+            plot.FillWeight = 150F;
+            plot.HeaderText = "Сюжет";
+            plot.MinimumWidth = 6;
+            plot.Name = "plot";
+            // 
+            // roles
+            // 
+            roles.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = Color.LightBlue;
+            dataGridViewCellStyle4.Font = new Font("Times New Roman", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            dataGridViewCellStyle4.ForeColor = Color.Black;
+            dataGridViewCellStyle4.NullValue = "Открыть";
+            dataGridViewCellStyle4.SelectionBackColor = Color.LightBlue;
+            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
+            roles.DefaultCellStyle = dataGridViewCellStyle4;
+            roles.FlatStyle = FlatStyle.Popup;
+            roles.HeaderText = "Роли";
+            roles.MinimumWidth = 6;
+            roles.Name = "roles";
+            roles.Text = "Открыть";
+            roles.Width = 80;
+            // 
+            // role_add
+            // 
+            role_add.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = Color.LightBlue;
+            dataGridViewCellStyle5.ForeColor = Color.Black;
+            dataGridViewCellStyle5.NullValue = "Добавить";
+            dataGridViewCellStyle5.SelectionBackColor = Color.LightBlue;
+            dataGridViewCellStyle5.SelectionForeColor = Color.Black;
+            role_add.DefaultCellStyle = dataGridViewCellStyle5;
+            role_add.FlatStyle = FlatStyle.Popup;
+            role_add.HeaderText = "Роли";
+            role_add.MinimumWidth = 6;
+            role_add.Name = "role_add";
+            role_add.Width = 80;
+            // 
+            // update
+            // 
+            update.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = Color.LightBlue;
+            dataGridViewCellStyle6.ForeColor = Color.Black;
+            dataGridViewCellStyle6.NullValue = "Изменить";
+            dataGridViewCellStyle6.SelectionBackColor = Color.LightBlue;
+            dataGridViewCellStyle6.SelectionForeColor = Color.Black;
+            update.DefaultCellStyle = dataGridViewCellStyle6;
+            update.FlatStyle = FlatStyle.Popup;
+            update.HeaderText = "";
+            update.MinimumWidth = 6;
+            update.Name = "update";
+            update.Resizable = DataGridViewTriState.True;
+            update.SortMode = DataGridViewColumnSortMode.Automatic;
+            update.Text = "Изменить";
+            update.Width = 90;
+            // 
+            // delete
+            // 
+            delete.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = Color.LightBlue;
+            dataGridViewCellStyle7.Font = new Font("Times New Roman", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            dataGridViewCellStyle7.ForeColor = Color.Black;
+            dataGridViewCellStyle7.NullValue = "Удалить";
+            dataGridViewCellStyle7.SelectionBackColor = Color.LightBlue;
+            dataGridViewCellStyle7.SelectionForeColor = Color.Black;
+            delete.DefaultCellStyle = dataGridViewCellStyle7;
+            delete.FlatStyle = FlatStyle.Popup;
+            delete.HeaderText = "";
+            delete.MinimumWidth = 6;
+            delete.Name = "delete";
+            delete.Text = "Удалить";
+            delete.Width = 80;
             // 
             // label1
             // 
@@ -164,7 +288,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Times New Roman", 10.2F);
-            label2.Location = new Point(12, 256);
+            label2.Location = new Point(12, 246);
             label2.Name = "label2";
             label2.Size = new Size(44, 19);
             label2.TabIndex = 6;
@@ -185,9 +309,9 @@
             add_spectacle.Controls.Add(label3);
             add_spectacle.Controls.Add(label4);
             add_spectacle.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            add_spectacle.Location = new Point(12, 391);
+            add_spectacle.Location = new Point(12, 393);
             add_spectacle.Name = "add_spectacle";
-            add_spectacle.Size = new Size(1054, 297);
+            add_spectacle.Size = new Size(1054, 288);
             add_spectacle.TabIndex = 8;
             add_spectacle.TabStop = false;
             add_spectacle.Text = "Добавить спектакль";
@@ -198,7 +322,7 @@
             create_btn.BackColor = Color.LightBlue;
             create_btn.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 204);
             create_btn.ForeColor = Color.Black;
-            create_btn.Location = new Point(11, 260);
+            create_btn.Location = new Point(11, 251);
             create_btn.Name = "create_btn";
             create_btn.Size = new Size(130, 31);
             create_btn.TabIndex = 10;
@@ -214,43 +338,43 @@
             all_emps.AllowUserToOrderColumns = true;
             all_emps.AllowUserToResizeColumns = false;
             all_emps.AllowUserToResizeRows = false;
-            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.Font = new Font("Times New Roman", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
-            all_emps.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.Font = new Font("Times New Roman", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.True;
+            all_emps.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
             all_emps.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             all_emps.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             all_emps.BackgroundColor = Color.White;
             all_emps.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = SystemColors.Control;
-            dataGridViewCellStyle10.Font = new Font("Times New Roman", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            dataGridViewCellStyle10.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.True;
-            all_emps.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = SystemColors.Control;
+            dataGridViewCellStyle11.Font = new Font("Times New Roman", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            dataGridViewCellStyle11.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.True;
+            all_emps.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             all_emps.ColumnHeadersHeight = 25;
             all_emps.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             all_emps.Columns.AddRange(new DataGridViewColumn[] { emp_id, dataGridViewTextBoxColumn5, Exp, Phone, dataGridViewTextBoxColumn6, emp_add });
-            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle14.BackColor = SystemColors.Window;
-            dataGridViewCellStyle14.Font = new Font("Times New Roman", 9F, FontStyle.Bold);
-            dataGridViewCellStyle14.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle14.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = DataGridViewTriState.True;
-            all_emps.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.BackColor = SystemColors.Window;
+            dataGridViewCellStyle15.Font = new Font("Times New Roman", 9F, FontStyle.Bold);
+            dataGridViewCellStyle15.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle15.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = DataGridViewTriState.True;
+            all_emps.DefaultCellStyle = dataGridViewCellStyle15;
             all_emps.Location = new Point(504, 163);
             all_emps.Name = "all_emps";
             all_emps.ReadOnly = true;
             all_emps.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             all_emps.RowHeadersVisible = false;
             all_emps.RowHeadersWidth = 70;
-            dataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle15.Font = new Font("Times New Roman", 7.8F);
-            dataGridViewCellStyle15.WrapMode = DataGridViewTriState.True;
-            all_emps.RowsDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle16.Font = new Font("Times New Roman", 7.8F);
+            dataGridViewCellStyle16.WrapMode = DataGridViewTriState.True;
+            all_emps.RowsDefaultCellStyle = dataGridViewCellStyle16;
             all_emps.RowTemplate.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             all_emps.RowTemplate.Height = 50;
             all_emps.ShowCellToolTips = false;
@@ -260,9 +384,9 @@
             // 
             // emp_id
             // 
-            dataGridViewCellStyle11.Format = "N0";
-            dataGridViewCellStyle11.NullValue = null;
-            emp_id.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle12.Format = "N0";
+            dataGridViewCellStyle12.NullValue = null;
+            emp_id.DefaultCellStyle = dataGridViewCellStyle12;
             emp_id.HeaderText = "ID";
             emp_id.MinimumWidth = 6;
             emp_id.Name = "emp_id";
@@ -271,11 +395,11 @@
             // 
             // dataGridViewTextBoxColumn5
             // 
-            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.SelectionBackColor = Color.White;
-            dataGridViewCellStyle12.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
-            dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.SelectionBackColor = Color.White;
+            dataGridViewCellStyle13.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.True;
+            dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle13;
             dataGridViewTextBoxColumn5.DividerWidth = 1;
             dataGridViewTextBoxColumn5.FillWeight = 300F;
             dataGridViewTextBoxColumn5.HeaderText = "Имя";
@@ -312,11 +436,11 @@
             // 
             // emp_add
             // 
-            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.BackColor = Color.LightBlue;
-            dataGridViewCellStyle13.SelectionBackColor = Color.LightBlue;
-            dataGridViewCellStyle13.SelectionForeColor = Color.Black;
-            emp_add.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.BackColor = Color.LightBlue;
+            dataGridViewCellStyle14.SelectionBackColor = Color.LightBlue;
+            dataGridViewCellStyle14.SelectionForeColor = Color.Black;
+            emp_add.DefaultCellStyle = dataGridViewCellStyle14;
             emp_add.DividerWidth = 1;
             emp_add.FillWeight = 120F;
             emp_add.FlatStyle = FlatStyle.Popup;
@@ -336,34 +460,34 @@
             spec_emps.AllowUserToOrderColumns = true;
             spec_emps.AllowUserToResizeColumns = false;
             spec_emps.AllowUserToResizeRows = false;
-            spec_emps.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            spec_emps.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
             spec_emps.Anchor = AnchorStyles.Right;
             spec_emps.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             spec_emps.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             spec_emps.BackgroundColor = Color.White;
             spec_emps.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            spec_emps.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            spec_emps.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             spec_emps.ColumnHeadersHeight = 25;
             spec_emps.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             spec_emps.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn9, dataGridViewTextBoxColumn8, role, emp_del });
-            dataGridViewCellStyle19.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle19.BackColor = SystemColors.Window;
-            dataGridViewCellStyle19.Font = new Font("Times New Roman", 9F, FontStyle.Bold);
-            dataGridViewCellStyle19.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle19.SelectionBackColor = Color.White;
-            dataGridViewCellStyle19.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle19.WrapMode = DataGridViewTriState.True;
-            spec_emps.DefaultCellStyle = dataGridViewCellStyle19;
-            spec_emps.Location = new Point(504, 29);
+            dataGridViewCellStyle20.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle20.BackColor = SystemColors.Window;
+            dataGridViewCellStyle20.Font = new Font("Times New Roman", 9F, FontStyle.Bold);
+            dataGridViewCellStyle20.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle20.SelectionBackColor = Color.White;
+            dataGridViewCellStyle20.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle20.WrapMode = DataGridViewTriState.True;
+            spec_emps.DefaultCellStyle = dataGridViewCellStyle20;
+            spec_emps.Location = new Point(504, 25);
             spec_emps.MultiSelect = false;
             spec_emps.Name = "spec_emps";
             spec_emps.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             spec_emps.RowHeadersVisible = false;
             spec_emps.RowHeadersWidth = 70;
-            dataGridViewCellStyle20.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle20.Font = new Font("Times New Roman", 7.8F);
-            dataGridViewCellStyle20.WrapMode = DataGridViewTriState.True;
-            spec_emps.RowsDefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle21.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle21.Font = new Font("Times New Roman", 7.8F);
+            dataGridViewCellStyle21.WrapMode = DataGridViewTriState.True;
+            spec_emps.RowsDefaultCellStyle = dataGridViewCellStyle21;
             spec_emps.RowTemplate.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             spec_emps.RowTemplate.Height = 50;
             spec_emps.ShowCellToolTips = false;
@@ -373,9 +497,9 @@
             // 
             // dataGridViewTextBoxColumn9
             // 
-            dataGridViewCellStyle16.Format = "N0";
-            dataGridViewCellStyle16.NullValue = null;
-            dataGridViewTextBoxColumn9.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle17.Format = "N0";
+            dataGridViewCellStyle17.NullValue = null;
+            dataGridViewTextBoxColumn9.DefaultCellStyle = dataGridViewCellStyle17;
             dataGridViewTextBoxColumn9.HeaderText = "ID";
             dataGridViewTextBoxColumn9.MinimumWidth = 6;
             dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
@@ -385,11 +509,11 @@
             // dataGridViewTextBoxColumn8
             // 
             dataGridViewTextBoxColumn8.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle17.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle17.SelectionBackColor = Color.White;
-            dataGridViewCellStyle17.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle17.WrapMode = DataGridViewTriState.True;
-            dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle18.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle18.SelectionBackColor = Color.White;
+            dataGridViewCellStyle18.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle18.WrapMode = DataGridViewTriState.True;
+            dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle18;
             dataGridViewTextBoxColumn8.DividerWidth = 1;
             dataGridViewTextBoxColumn8.FillWeight = 180F;
             dataGridViewTextBoxColumn8.HeaderText = "Участник";
@@ -408,12 +532,12 @@
             // emp_del
             // 
             emp_del.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle18.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle18.BackColor = Color.LightBlue;
-            dataGridViewCellStyle18.ForeColor = Color.Black;
-            dataGridViewCellStyle18.SelectionBackColor = Color.LightBlue;
-            dataGridViewCellStyle18.SelectionForeColor = Color.Black;
-            emp_del.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle19.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle19.BackColor = Color.LightBlue;
+            dataGridViewCellStyle19.ForeColor = Color.Black;
+            dataGridViewCellStyle19.SelectionBackColor = Color.LightBlue;
+            dataGridViewCellStyle19.SelectionForeColor = Color.Black;
+            emp_del.DefaultCellStyle = dataGridViewCellStyle19;
             emp_del.DividerWidth = 1;
             emp_del.FillWeight = 80F;
             emp_del.FlatStyle = FlatStyle.Popup;
@@ -432,7 +556,7 @@
             spec_genre.DropDownStyle = ComboBoxStyle.DropDownList;
             spec_genre.Font = new Font("Times New Roman", 9F);
             spec_genre.FormattingEnabled = true;
-            spec_genre.Location = new Point(125, 78);
+            spec_genre.Location = new Point(125, 74);
             spec_genre.Name = "spec_genre";
             spec_genre.Size = new Size(349, 25);
             spec_genre.TabIndex = 22;
@@ -442,7 +566,7 @@
             label6.Anchor = AnchorStyles.Right;
             label6.AutoSize = true;
             label6.Font = new Font("Times New Roman", 9F);
-            label6.Location = new Point(11, 78);
+            label6.Location = new Point(11, 74);
             label6.Name = "label6";
             label6.Size = new Size(45, 17);
             label6.TabIndex = 21;
@@ -453,7 +577,7 @@
             label7.Anchor = AnchorStyles.Right;
             label7.AutoSize = true;
             label7.Font = new Font("Times New Roman", 9F);
-            label7.Location = new Point(247, 225);
+            label7.Location = new Point(247, 221);
             label7.Name = "label7";
             label7.Size = new Size(16, 17);
             label7.TabIndex = 18;
@@ -464,7 +588,7 @@
             hours.Anchor = AnchorStyles.Right;
             hours.DecimalPlaces = 2;
             hours.Font = new Font("Times New Roman", 9F);
-            hours.Location = new Point(166, 217);
+            hours.Location = new Point(166, 213);
             hours.Maximum = new decimal(new int[] { 5, 0, 0, 0 });
             hours.Name = "hours";
             hours.Size = new Size(75, 25);
@@ -475,7 +599,7 @@
             label5.Anchor = AnchorStyles.Right;
             label5.AutoSize = true;
             label5.Font = new Font("Times New Roman", 9F);
-            label5.Location = new Point(12, 219);
+            label5.Location = new Point(12, 215);
             label5.Name = "label5";
             label5.Size = new Size(138, 17);
             label5.TabIndex = 16;
@@ -525,170 +649,144 @@
             roles_dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             roles_dataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             roles_dataGridView.BackgroundColor = Color.White;
-            dataGridViewCellStyle21.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle21.BackColor = SystemColors.Control;
-            dataGridViewCellStyle21.Font = new Font("Times New Roman", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            dataGridViewCellStyle21.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle21.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle21.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle21.WrapMode = DataGridViewTriState.True;
-            roles_dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle22.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle22.BackColor = SystemColors.Control;
+            dataGridViewCellStyle22.Font = new Font("Times New Roman", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            dataGridViewCellStyle22.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle22.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle22.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle22.WrapMode = DataGridViewTriState.True;
+            roles_dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
             roles_dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            roles_dataGridView.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4 });
+            roles_dataGridView.Columns.AddRange(new DataGridViewColumn[] { role_id, dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, EmpId, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, sp_id, role_change, role_del });
+            dataGridViewCellStyle29.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle29.BackColor = SystemColors.Window;
+            dataGridViewCellStyle29.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle29.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle29.SelectionBackColor = Color.White;
+            dataGridViewCellStyle29.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle29.WrapMode = DataGridViewTriState.False;
+            roles_dataGridView.DefaultCellStyle = dataGridViewCellStyle29;
             roles_dataGridView.GridColor = Color.DimGray;
-            roles_dataGridView.Location = new Point(12, 278);
+            roles_dataGridView.Location = new Point(12, 268);
             roles_dataGridView.Name = "roles_dataGridView";
-            dataGridViewCellStyle26.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle26.BackColor = SystemColors.Control;
-            dataGridViewCellStyle26.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            dataGridViewCellStyle26.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle26.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle26.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle26.WrapMode = DataGridViewTriState.True;
-            roles_dataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle30.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle30.BackColor = SystemColors.Control;
+            dataGridViewCellStyle30.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            dataGridViewCellStyle30.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle30.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle30.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle30.WrapMode = DataGridViewTriState.True;
+            roles_dataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle30;
             roles_dataGridView.RowHeadersWidth = 51;
-            dataGridViewCellStyle27.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            dataGridViewCellStyle27.SelectionBackColor = Color.White;
-            dataGridViewCellStyle27.SelectionForeColor = Color.Black;
-            roles_dataGridView.RowsDefaultCellStyle = dataGridViewCellStyle27;
-            roles_dataGridView.Size = new Size(1054, 107);
+            dataGridViewCellStyle31.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            dataGridViewCellStyle31.SelectionBackColor = Color.Empty;
+            dataGridViewCellStyle31.SelectionForeColor = Color.Empty;
+            roles_dataGridView.RowsDefaultCellStyle = dataGridViewCellStyle31;
+            roles_dataGridView.Size = new Size(1054, 98);
             roles_dataGridView.TabIndex = 9;
+            roles_dataGridView.CellContentClick += roles_dataGridView_CellContentClick;
+            // 
+            // role_id
+            // 
+            role_id.HeaderText = "Id";
+            role_id.MinimumWidth = 6;
+            role_id.Name = "role_id";
+            role_id.Visible = false;
             // 
             // dataGridViewTextBoxColumn1
             // 
-            dataGridViewCellStyle22.WrapMode = DataGridViewTriState.True;
-            dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle23.WrapMode = DataGridViewTriState.True;
+            dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle23;
             dataGridViewTextBoxColumn1.FillWeight = 150F;
             dataGridViewTextBoxColumn1.HeaderText = "Название";
             dataGridViewTextBoxColumn1.MinimumWidth = 6;
             dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn2
             // 
-            dataGridViewCellStyle23.WrapMode = DataGridViewTriState.True;
-            dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle24.WrapMode = DataGridViewTriState.True;
+            dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle24;
             dataGridViewTextBoxColumn2.FillWeight = 150F;
             dataGridViewTextBoxColumn2.HeaderText = "Сотрудник";
             dataGridViewTextBoxColumn2.MinimumWidth = 6;
             dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // EmpId
+            // 
+            EmpId.HeaderText = "";
+            EmpId.MinimumWidth = 6;
+            EmpId.Name = "EmpId";
+            EmpId.Visible = false;
             // 
             // dataGridViewTextBoxColumn3
             // 
-            dataGridViewCellStyle24.WrapMode = DataGridViewTriState.True;
-            dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle25.WrapMode = DataGridViewTriState.True;
+            dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle25;
             dataGridViewTextBoxColumn3.HeaderText = "Должность";
             dataGridViewTextBoxColumn3.MinimumWidth = 6;
             dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            dataGridViewTextBoxColumn3.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn4
             // 
-            dataGridViewCellStyle25.WrapMode = DataGridViewTriState.True;
-            dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle26.WrapMode = DataGridViewTriState.True;
+            dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle26;
             dataGridViewTextBoxColumn4.FillWeight = 150F;
             dataGridViewTextBoxColumn4.HeaderText = "Спектакль";
             dataGridViewTextBoxColumn4.MinimumWidth = 6;
             dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            dataGridViewTextBoxColumn4.ReadOnly = true;
             // 
-            // Id
+            // sp_id
             // 
-            Id.HeaderText = "Id";
-            Id.MinimumWidth = 6;
-            Id.Name = "Id";
-            Id.Visible = false;
+            sp_id.HeaderText = "";
+            sp_id.MinimumWidth = 6;
+            sp_id.Name = "sp_id";
+            sp_id.Visible = false;
             // 
-            // spec_name
+            // role_change
             // 
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            spec_name.DefaultCellStyle = dataGridViewCellStyle2;
-            spec_name.FillWeight = 120F;
-            spec_name.HeaderText = "Название";
-            spec_name.MinimumWidth = 6;
-            spec_name.Name = "spec_name";
+            role_change.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle27.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle27.BackColor = Color.LightBlue;
+            dataGridViewCellStyle27.ForeColor = Color.Black;
+            dataGridViewCellStyle27.NullValue = "Изменить";
+            dataGridViewCellStyle27.SelectionBackColor = Color.LightBlue;
+            dataGridViewCellStyle27.SelectionForeColor = Color.Black;
+            role_change.DefaultCellStyle = dataGridViewCellStyle27;
+            role_change.FlatStyle = FlatStyle.Popup;
+            role_change.HeaderText = "";
+            role_change.MinimumWidth = 6;
+            role_change.Name = "role_change";
+            role_change.Resizable = DataGridViewTriState.True;
+            role_change.SortMode = DataGridViewColumnSortMode.Automatic;
+            role_change.Width = 80;
             // 
-            // duration
+            // role_del
             // 
-            duration.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-            duration.HeaderText = "Время";
-            duration.MinimumWidth = 6;
-            duration.Name = "duration";
-            duration.Width = 88;
-            // 
-            // genre
-            // 
-            genre.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            genre.HeaderText = "Жанр";
-            genre.MinimumWidth = 6;
-            genre.Name = "genre";
-            genre.Resizable = DataGridViewTriState.True;
-            genre.SortMode = DataGridViewColumnSortMode.Automatic;
-            genre.Width = 81;
-            // 
-            // plot
-            // 
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            plot.DefaultCellStyle = dataGridViewCellStyle3;
-            plot.FillWeight = 150F;
-            plot.HeaderText = "Сюжет";
-            plot.MinimumWidth = 6;
-            plot.Name = "plot";
-            // 
-            // roles
-            // 
-            roles.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.Font = new Font("Times New Roman", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            dataGridViewCellStyle4.NullValue = "Открыть";
-            roles.DefaultCellStyle = dataGridViewCellStyle4;
-            roles.FlatStyle = FlatStyle.Popup;
-            roles.HeaderText = "Роли";
-            roles.MinimumWidth = 6;
-            roles.Name = "roles";
-            roles.Text = "Открыть";
-            roles.Width = 80;
-            // 
-            // update
-            // 
-            update.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = Color.LightBlue;
-            dataGridViewCellStyle5.ForeColor = Color.Black;
-            dataGridViewCellStyle5.NullValue = "Изменить";
-            dataGridViewCellStyle5.SelectionBackColor = Color.LightBlue;
-            dataGridViewCellStyle5.SelectionForeColor = Color.Black;
-            update.DefaultCellStyle = dataGridViewCellStyle5;
-            update.FlatStyle = FlatStyle.Popup;
-            update.HeaderText = "";
-            update.MinimumWidth = 6;
-            update.Name = "update";
-            update.Resizable = DataGridViewTriState.True;
-            update.SortMode = DataGridViewColumnSortMode.Automatic;
-            update.Text = "Изменить";
-            update.Width = 90;
-            // 
-            // delete
-            // 
-            delete.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = Color.LightBlue;
-            dataGridViewCellStyle6.Font = new Font("Times New Roman", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            dataGridViewCellStyle6.ForeColor = Color.Black;
-            dataGridViewCellStyle6.NullValue = "Удалить";
-            dataGridViewCellStyle6.SelectionBackColor = Color.LightBlue;
-            dataGridViewCellStyle6.SelectionForeColor = Color.Black;
-            delete.DefaultCellStyle = dataGridViewCellStyle6;
-            delete.FlatStyle = FlatStyle.Popup;
-            delete.HeaderText = "";
-            delete.MinimumWidth = 6;
-            delete.Name = "delete";
-            delete.Text = "Удалить";
-            delete.Width = 80;
+            role_del.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle28.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle28.BackColor = Color.LightBlue;
+            dataGridViewCellStyle28.ForeColor = Color.Black;
+            dataGridViewCellStyle28.NullValue = "Удалить";
+            dataGridViewCellStyle28.SelectionBackColor = Color.LightBlue;
+            dataGridViewCellStyle28.SelectionForeColor = Color.Black;
+            role_del.DefaultCellStyle = dataGridViewCellStyle28;
+            role_del.FlatStyle = FlatStyle.Popup;
+            role_del.HeaderText = "";
+            role_del.MinimumWidth = 6;
+            role_del.Name = "role_del";
+            role_del.Width = 80;
             // 
             // SpectaclesForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1084, 733);
+            ClientSize = new Size(1084, 718);
             Controls.Add(roles_dataGridView);
             Controls.Add(add_spectacle);
             Controls.Add(label2);
@@ -729,10 +827,6 @@
         private Label label4;
         private DataGridView all_emps;
         private DataGridView spec_emps;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private Button create_btn;
         private DataGridViewTextBoxColumn emp_id;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
@@ -750,7 +844,17 @@
         private DataGridViewComboBoxColumn genre;
         private DataGridViewTextBoxColumn plot;
         private DataGridViewButtonColumn roles;
+        private DataGridViewButtonColumn role_add;
         private DataGridViewButtonColumn update;
         private DataGridViewButtonColumn delete;
+        private DataGridViewTextBoxColumn role_id;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn EmpId;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private DataGridViewTextBoxColumn sp_id;
+        private DataGridViewButtonColumn role_change;
+        private DataGridViewButtonColumn role_del;
     }
 }

@@ -14,7 +14,7 @@ public class SpectacleInfo
 
     public List<SpecRole> Role { get; set; } = new List<SpecRole>();
 }
-    
+
 public class SpecRole
 {
     public int Id { get; set; }
@@ -24,6 +24,10 @@ public class SpecRole
     public int EmployeeId { get; set; }
 
     public string EmpName { get; set; } = null!;
+
+    public string SpecName { get; set; } = null!;
+
+    public int SpecId { get; set; }
 
     public string EmpPosition { get; set; } = null!;
 }
