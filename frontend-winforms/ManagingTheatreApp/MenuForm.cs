@@ -37,4 +37,12 @@ public partial class MenuForm : Form
 
         Hide();
     }
+
+    private void stat_btn_Click(object sender, EventArgs e)
+    {
+        var form = new StatisticsForm(Token) { MenuForm = this };
+        form.Show();
+
+        Hide();
+    }
 }

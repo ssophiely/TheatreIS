@@ -34,9 +34,14 @@ public class RestApiClient
         return await ResponseMsg.Content.ReadAsStringAsync();
     }
 
-    public async Task<T?> GetJson<T>(string url)
+    public async Task<T?> GetJson<T>(string url, string? token = null)
     {
+        if (token != null)
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
         var ResponseMsg = await _httpClient.GetAsync(url);
+
+        _httpClient.DefaultRequestHeaders.Authorization = null;
 
         await CheckResponseMsg(ResponseMsg);
 

@@ -65,6 +65,7 @@
             stat_btn.TabIndex = 5;
             stat_btn.Text = "Статистика";
             stat_btn.UseVisualStyleBackColor = true;
+            stat_btn.Click += stat_btn_Click;
             // 
             // spec_btn
             // 
