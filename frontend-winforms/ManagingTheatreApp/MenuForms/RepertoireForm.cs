@@ -1,5 +1,7 @@
 ﻿using ManagingTheatreApp.Client;
 using ManagingTheatreApp.Interaction;
+using ManagingTheatreApp.Interaction.Out;
+using System.Globalization;
 
 namespace ManagingTheatreApp.MenuForms;
 
@@ -10,6 +12,7 @@ public partial class RepertoireForm : Form
         InitializeComponent();
         Client = new(token);
         TicketsClient = new(token);
+        SpecClient = new(token);
     }
 
     public Form MenuForm { get; set; } = null!;
@@ -17,12 +20,23 @@ public partial class RepertoireForm : Form
 
     public readonly RepClient Client;
     public readonly TicketsClient TicketsClient;
+    public readonly SpectaclesClient SpecClient;
 
     private List<RepInfo>? _reps;
 
     private async void RepertoireForm_Load(object sender, EventArgs e)
     {
         await GetRepertoire();
+
+        act_date.CustomFormat = "dd.MM.yyyy HH:mm";
+        rep_date.CustomFormat = "MM.yyyy";
+
+        var spectacles = await GetSpectacles();
+
+        foreach (var spec in spectacles)
+        {
+            specs.Items.Add(spec);
+        }
     }
 
     private async Task GetRepertoire()
@@ -45,6 +59,19 @@ public partial class RepertoireForm : Form
         }
     }
 
+    private async Task<List<SpectacleInfo>> GetSpectacles()
+    {
+        try
+        {
+            return await SpecClient.GetSpectacles();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            throw new Exception();
+        }
+    }
+
     private async Task GetActs(int id, string spec)
     {
         try
@@ -55,7 +82,7 @@ public partial class RepertoireForm : Form
 
             foreach (var act in acts)
             {
-                acts_table.Rows.Add(act.Id, act.Date, spec, act.SpectacleId);
+                acts_table.Rows.Add(act.Id, act.Date.AddHours(-3), spec, act.RepertoireId);
             }
 
         }
@@ -124,5 +151,50 @@ public partial class RepertoireForm : Form
                 return;
             }
         }
+    }
+
+    private async void add_act_Click(object sender, EventArgs e)
+    {
+        string date = act_date.Text;
+        int repId = (int)this.repId.Value;
+
+        try
+        {
+            await Client.AddAct(new CreateAct() { Date = DateTime.ParseExact(date, "dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture), RepertoireId = repId });
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+        }
+
+        MessageBox.Show($"Показ успешно добавлен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+    }
+
+    private async void add_rep_Click(object sender, EventArgs e)
+    {
+        string date = rep_date.Text;
+        var selectedSpecs = specs.CheckedItems;
+
+        foreach (var spec in selectedSpecs)
+        {
+            var spectacle = spec as SpectacleInfo;
+
+            if (spectacle != null)
+            {
+
+                try
+                {
+                    await Client.AddRepertoire(new CreateRep() { Date = DateTime.ParseExact(date, "MM.yyyy", CultureInfo.InvariantCulture), SpectacleId = spectacle.Id });
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Не удалось добавить спектакль {spectacle.Name}: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+        }
+
+        await GetRepertoire();
     }
 }

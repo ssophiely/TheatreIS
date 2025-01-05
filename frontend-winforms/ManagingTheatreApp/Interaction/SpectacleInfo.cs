@@ -13,6 +13,12 @@ public class SpectacleInfo
     public string Genre { get; set; } = null!;
 
     public List<SpecRole> Role { get; set; } = new List<SpecRole>();
+
+
+    public override string ToString()
+    {
+        return Name;
+    }
 }
 
 public class SpecRole

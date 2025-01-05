@@ -4,5 +4,5 @@ public class CreateRep
 {
     public DateTime Date { get; set; }
 
-    public List<int> SpectacleIds { get; set; } = null!;
+    public int SpectacleId { get; set; }
 }

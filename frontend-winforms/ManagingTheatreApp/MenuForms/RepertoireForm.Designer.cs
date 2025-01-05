@@ -54,7 +54,7 @@
             rep_del = new DataGridViewButtonColumn();
             add_spectacle = new GroupBox();
             specs = new CheckedListBox();
-            dateTimePicker1 = new DateTimePicker();
+            rep_date = new DateTimePicker();
             add_rep = new Button();
             label7 = new Label();
             hours = new NumericUpDown();
@@ -64,25 +64,25 @@
             Close = new Button();
             groupBox1 = new GroupBox();
             add_act = new Button();
-            numericUpDown2 = new NumericUpDown();
-            dateTimePicker2 = new DateTimePicker();
+            repId = new NumericUpDown();
+            act_date = new DateTimePicker();
             label1 = new Label();
             numericUpDown1 = new NumericUpDown();
             label2 = new Label();
             label6 = new Label();
             label8 = new Label();
             acts_table = new DataGridView();
-            label9 = new Label();
             role_id = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn7 = new DataGridViewTextBoxColumn();
             spec_id = new DataGridViewTextBoxColumn();
             act_del = new DataGridViewButtonColumn();
+            label9 = new Label();
             ((System.ComponentModel.ISupportInitialize)rep_table).BeginInit();
             add_spectacle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)hours).BeginInit();
             groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)repId).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)acts_table).BeginInit();
             SuspendLayout();
@@ -216,7 +216,7 @@
             // add_spectacle
             // 
             add_spectacle.Controls.Add(specs);
-            add_spectacle.Controls.Add(dateTimePicker1);
+            add_spectacle.Controls.Add(rep_date);
             add_spectacle.Controls.Add(add_rep);
             add_spectacle.Controls.Add(label7);
             add_spectacle.Controls.Add(hours);
@@ -233,17 +233,19 @@
             // 
             // specs
             // 
+            specs.ForeColor = SystemColors.WindowText;
             specs.Location = new Point(95, 75);
             specs.Name = "specs";
             specs.Size = new Size(499, 92);
             specs.TabIndex = 30;
             // 
-            // dateTimePicker1
+            // rep_date
             // 
-            dateTimePicker1.Location = new Point(95, 36);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(250, 27);
-            dateTimePicker1.TabIndex = 29;
+            rep_date.Format = DateTimePickerFormat.Custom;
+            rep_date.Location = new Point(95, 36);
+            rep_date.Name = "rep_date";
+            rep_date.Size = new Size(250, 27);
+            rep_date.TabIndex = 29;
             // 
             // add_rep
             // 
@@ -257,6 +259,7 @@
             add_rep.TabIndex = 28;
             add_rep.Text = "Создать";
             add_rep.UseVisualStyleBackColor = false;
+            add_rep.Click += add_rep_Click;
             // 
             // label7
             // 
@@ -328,8 +331,8 @@
             // groupBox1
             // 
             groupBox1.Controls.Add(add_act);
-            groupBox1.Controls.Add(numericUpDown2);
-            groupBox1.Controls.Add(dateTimePicker2);
+            groupBox1.Controls.Add(repId);
+            groupBox1.Controls.Add(act_date);
             groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(numericUpDown1);
             groupBox1.Controls.Add(label2);
@@ -355,20 +358,23 @@
             add_act.TabIndex = 31;
             add_act.Text = "Добавить";
             add_act.UseVisualStyleBackColor = false;
+            add_act.Click += add_act_Click;
             // 
-            // numericUpDown2
+            // repId
             // 
-            numericUpDown2.Location = new Point(165, 102);
-            numericUpDown2.Name = "numericUpDown2";
-            numericUpDown2.Size = new Size(180, 27);
-            numericUpDown2.TabIndex = 30;
+            repId.Location = new Point(165, 102);
+            repId.Maximum = new decimal(new int[] { 99999999, 0, 0, 0 });
+            repId.Name = "repId";
+            repId.Size = new Size(180, 27);
+            repId.TabIndex = 30;
             // 
-            // dateTimePicker2
+            // act_date
             // 
-            dateTimePicker2.Location = new Point(95, 36);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(250, 27);
-            dateTimePicker2.TabIndex = 29;
+            act_date.Format = DateTimePickerFormat.Custom;
+            act_date.Location = new Point(95, 36);
+            act_date.Name = "act_date";
+            act_date.Size = new Size(250, 27);
+            act_date.TabIndex = 29;
             // 
             // label1
             // 
@@ -467,16 +473,6 @@
             acts_table.TabIndex = 33;
             acts_table.CellContentClick += acts_table_CellContentClick;
             // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Times New Roman", 10.2F);
-            label9.Location = new Point(12, 157);
-            label9.Name = "label9";
-            label9.Size = new Size(63, 19);
-            label9.TabIndex = 32;
-            label9.Text = "Показы";
-            // 
             // role_id
             // 
             role_id.HeaderText = "Id";
@@ -530,6 +526,16 @@
             act_del.ReadOnly = true;
             act_del.Width = 80;
             // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Times New Roman", 10.2F);
+            label9.Location = new Point(12, 157);
+            label9.Name = "label9";
+            label9.Size = new Size(63, 19);
+            label9.TabIndex = 32;
+            label9.Text = "Показы";
+            // 
             // RepertoireForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -551,7 +557,7 @@
             ((System.ComponentModel.ISupportInitialize)hours).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)repId).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ((System.ComponentModel.ISupportInitialize)acts_table).EndInit();
             ResumeLayout(false);
@@ -569,17 +575,17 @@
         private Label label4;
         private Button Close;
         private Button add_rep;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker rep_date;
         private CheckedListBox specs;
         private GroupBox groupBox1;
-        private DateTimePicker dateTimePicker2;
+        private DateTimePicker act_date;
         private Label label1;
         private NumericUpDown numericUpDown1;
         private Label label2;
         private Label label6;
         private Label label8;
         private Button add_act;
-        private NumericUpDown numericUpDown2;
+        private NumericUpDown repId;
         private DataGridView acts_table;
         private Label label9;
         private DataGridViewTextBoxColumn Id;

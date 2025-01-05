@@ -32,11 +32,11 @@ public class RepertoireStorage
             throw new ExistsException("Запрещено создавать репертуар на несколько месяцев вперед");
 
         foreach (var specId in info.SpectacleIds)
-            _dbContext.Repertoire.Add(new StorageData.Repertoire()
-            {
-                Date = info.Date,
-                SpectacleId = specId,
-            });
+        _dbContext.Repertoire.Add(new StorageData.Repertoire()
+        {
+            Date = info.Date,
+            SpectacleId = info.SpectacleId,
+        });
 
         _dbContext.SaveChanges();
     }
