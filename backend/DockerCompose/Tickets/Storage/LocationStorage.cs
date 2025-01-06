@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using SharedUtils;
 using StorageData;
+using System.Linq;
 using Tickets.Interaction.In;
 using Tickets.Interaction.Out;
 
@@ -16,17 +17,31 @@ public class LocationStorage
 
     public LocationInfo GetById(int id)
     {
-        var location = _dbContext.Location.AsNoTracking().FirstOrDefault(l => l.Id == id)
-            ?? throw new NotFoundException($"Место с id {id} не найдено");
+        var location = _dbContext.Location.Include(l => l.Sector).Include(l => l.LocationState).AsNoTracking()
+            .FirstOrDefault(l => l.Id == id) ?? throw new NotFoundException($"Место с id {id} не найдено");
 
-        return location.Convert<LocationInfo, Location>();
+        var res = location.Convert<LocationInfo, Location>();
+        res.Sector = location.Sector!.Name;
+        res.State = location.LocationState!.Name;
+
+        return res;
     }
 
     public List<LocationInfo> GetByActId(int id)
     {
-        var locations = _dbContext.Location.Where(l => l.ActId == id).AsNoTracking();
+        var locations = _dbContext.Location.Include(l => l.Sector).Include(l => l.LocationState).Where(l => l.ActId == id).AsNoTracking();
 
-        return [.. locations.Select(l => l.Convert<LocationInfo, Location>())];
+        List<LocationInfo> res = [];
+
+        foreach (var location in locations)
+        {
+            var l = location.Convert<LocationInfo, Location>();
+            l.State = location.LocationState!.Name;
+            l.Sector = location.Sector!.Name;
+            res.Add(l);
+        }
+
+        return res;
     }
 
     public List<LocationStateInfo> GetLocationStates()

@@ -72,12 +72,12 @@
             label6 = new Label();
             label8 = new Label();
             acts_table = new DataGridView();
+            label9 = new Label();
             role_id = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn7 = new DataGridViewTextBoxColumn();
             spec_id = new DataGridViewTextBoxColumn();
             act_del = new DataGridViewButtonColumn();
-            label9 = new Label();
             ((System.ComponentModel.ISupportInitialize)rep_table).BeginInit();
             add_spectacle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)hours).BeginInit();
@@ -473,13 +473,23 @@
             acts_table.TabIndex = 33;
             acts_table.CellContentClick += acts_table_CellContentClick;
             // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Times New Roman", 10.2F);
+            label9.Location = new Point(12, 157);
+            label9.Name = "label9";
+            label9.Size = new Size(63, 19);
+            label9.TabIndex = 32;
+            label9.Text = "Показы";
+            // 
             // role_id
             // 
+            role_id.FillWeight = 70F;
             role_id.HeaderText = "Id";
             role_id.MinimumWidth = 6;
             role_id.Name = "role_id";
             role_id.ReadOnly = true;
-            role_id.Visible = false;
             // 
             // dataGridViewTextBoxColumn4
             // 
@@ -495,7 +505,7 @@
             // 
             dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
             dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle12;
-            dataGridViewTextBoxColumn7.FillWeight = 300F;
+            dataGridViewTextBoxColumn7.FillWeight = 200F;
             dataGridViewTextBoxColumn7.HeaderText = "Спектакль";
             dataGridViewTextBoxColumn7.MinimumWidth = 6;
             dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
@@ -525,16 +535,6 @@
             act_del.Name = "act_del";
             act_del.ReadOnly = true;
             act_del.Width = 80;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Times New Roman", 10.2F);
-            label9.Location = new Point(12, 157);
-            label9.Name = "label9";
-            label9.Size = new Size(63, 19);
-            label9.TabIndex = 32;
-            label9.Text = "Показы";
             // 
             // RepertoireForm
             // 

@@ -55,6 +55,7 @@
             hall_btn.TabIndex = 4;
             hall_btn.Text = "Настройка зала";
             hall_btn.UseVisualStyleBackColor = true;
+            hall_btn.Click += hall_btn_Click;
             // 
             // stat_btn
             // 

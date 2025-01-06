@@ -19,7 +19,7 @@ public class StatisticsClient
     /// </summary>
     public Task<List<SpectaclesBoxofficeYear>> GetBoxOffice()
     {
-        return SendResponse(rcl =>
+        return SendResponse(rcl => 
         rcl.GetJson<List<SpectaclesBoxofficeYear>>($"https://localhost:6001/gateway/statistics/admin/boxoffice", _token));
     }
 
@@ -28,7 +28,7 @@ public class StatisticsClient
     /// </summary>
     public Task<List<SoldTicketsMonth>> GetTickets()
     {
-        return SendResponse(rcl =>
+        return SendResponse(rcl => 
         rcl.GetJson<List<SoldTicketsMonth>>($"https://localhost:6001/gateway/statistics/admin/sold-tickets", _token));
     }
 

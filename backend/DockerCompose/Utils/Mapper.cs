@@ -19,7 +19,7 @@ public static class Mapper
 
             var outProp = outProperties.FirstOrDefault(p => p.Name == prop.Name);
 
-            if (value != null && !IsDefault(value) && outProp != null)
+            if (value != null && !IsDefault(value) && outProp != null && prop.PropertyType == outProp.PropertyType)
             {
                 outProp.SetValue(outObj, value);
             }

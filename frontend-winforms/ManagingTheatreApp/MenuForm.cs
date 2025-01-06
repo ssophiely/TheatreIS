@@ -45,4 +45,12 @@ public partial class MenuForm : Form
 
         Hide();
     }
+
+    private void hall_btn_Click(object sender, EventArgs e)
+    {
+        var form = new LocationForm(Token) { MenuForm = this };
+        form.Show();
+
+        Hide();
+    }
 }

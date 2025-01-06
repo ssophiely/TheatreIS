@@ -31,7 +31,6 @@ public class RepertoireStorage
         if (subDate.TotalDays / 30 > 1)
             throw new ExistsException("Запрещено создавать репертуар на несколько месяцев вперед");
 
-        foreach (var specId in info.SpectacleIds)
         _dbContext.Repertoire.Add(new StorageData.Repertoire()
         {
             Date = info.Date,

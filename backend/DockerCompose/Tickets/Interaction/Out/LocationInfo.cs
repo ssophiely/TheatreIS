@@ -14,6 +14,10 @@ public class LocationInfo
 
     public int? SectorId { get; set; }
 
+    public string Sector { get; set; } = null!;
+
+    public string State { get; set; } = null!;
+
     public int? LocationStateId { get; set; }
 
     public int? ActId { get; set; }

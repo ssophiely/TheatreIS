@@ -1,4 +1,9 @@
-﻿namespace ManagingTheatreApp.Client;
+﻿using ManagingTheatreApp.Interaction;
+using ManagingTheatreApp.Interaction.Out;
+using System.Text.Json;
+using System.Text;
+
+namespace ManagingTheatreApp.Client;
 
 /// <summary>
 /// Клиент сервиса билетов.
@@ -19,8 +24,27 @@ public class TicketsClient
         return SendResponse(rcl => rcl.GetJson<bool>($"https://localhost:6001/gateway/tickets/check-payed/{actId}"));
     }
 
+    /// <summary>
+    /// Получение мест.
+    /// </summary>
+    public Task<List<LocationInfo>> GetLocations(int actId)
+    {
+        return SendResponse(rcl => rcl.GetJson<List<LocationInfo>>($"https://localhost:6001/gateway/location/act/{actId}"));
+    }
 
+    /// <summary>
+    /// Изменение цены.
+    /// </summary>
+    public Task ChangePrice(ChangePrice info)
+    {
+        var content = new StringContent(
+         JsonSerializer.Serialize(info),
+         Encoding.UTF8,
+         "application/json"
+        );
 
+        return _restClient.Put($"https://localhost:6001/gateway/location/price", content, _token);
+    }
 
 
     private async Task<T> SendResponse<T>(Func<RestApiClient, Task<T?>> func)
