@@ -132,6 +132,7 @@ public class SpectacleStorage
             ?? throw new NotFoundException($"Спектакль с id {id} не найден");
 
         spectacle.UpdateObject(info);
+        spectacle.Plot = info.Plot;
 
         _dbContext.SaveChanges();
     }

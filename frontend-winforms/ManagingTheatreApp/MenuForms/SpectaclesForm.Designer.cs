@@ -587,7 +587,6 @@
             // hours
             // 
             hours.Anchor = AnchorStyles.Right;
-            hours.DecimalPlaces = 2;
             hours.Font = new Font("Times New Roman", 9F);
             hours.Location = new Point(166, 213);
             hours.Maximum = new decimal(new int[] { 5, 0, 0, 0 });

@@ -4,7 +4,7 @@ public class CreateSpectacle
 {
     public string Name { get; set; } = null!;
 
-    public double Duration { get; set; }
+    public int Duration { get; set; }
 
     public string? Plot { get; set; }
 

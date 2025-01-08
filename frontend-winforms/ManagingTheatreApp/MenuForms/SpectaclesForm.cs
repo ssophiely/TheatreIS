@@ -117,7 +117,7 @@ public partial class SpectaclesForm : Form
         UpdateSpectacle info = new()
         {
             Name = (string)row.Cells[1].Value,
-            Duration = Convert.ToDouble(row.Cells[2].Value),
+            Duration = Convert.ToInt32(row.Cells[2].Value),
             GenreId = _genres.First(g => g.Name == (string)row.Cells[3].Value).Id,
             Plot = row.Cells[4].Value?.ToString() ?? null
         };
@@ -241,7 +241,7 @@ public partial class SpectaclesForm : Form
             Name = name.Text,
             Plot = string.IsNullOrEmpty(spec_plot.Text) ? null : spec_plot.Text,
             GenreId = _genres.First(g => g.Name == spec_genre.Text).Id,
-            Duration = (double)hours.Value,
+            Duration = (int)hours.Value,
             Roles = roles
         };
 

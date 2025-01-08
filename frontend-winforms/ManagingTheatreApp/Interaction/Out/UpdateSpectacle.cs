@@ -4,7 +4,7 @@ public class UpdateSpectacle
 {
     public string? Name { get; set; }
 
-    public double Duration { get; set; }
+    public int Duration { get; set; }
 
     public string? Plot { get; set; }
 
